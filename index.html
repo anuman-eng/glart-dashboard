@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GLART @glart_official — TikTok Growth System</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0B1623;--sb:#091220;--card:#0F1E30;--card2:#152538;
+  --border:#1C3350;--border2:#253F60;--navy2:#0A1A2C;
+  --gold:#E8A020;--text:#C8DAEA;--text2:#7090A8;--text3:#3A5570;
+  --green:#2ECC71;--green-d:#1A8A4A;--red:#E74C3C;--amber:#F39C12;
+}
+html.light{
+  --bg:#F0F4F8;--sb:#E2E8F0;--card:#FFFFFF;--card2:#EEF2F7;
+  --border:#CBD5E0;--border2:#A0AEC0;--navy2:#EEF2F7;
+  --gold:#C47A00;--text:#1A2535;--text2:#4A5568;--text3:#A0AEC0;
+  --green:#1A8A4A;--green-d:#166A38;--red:#C0392B;--amber:#B7770D;
+}
+html.light .nav:hover{background:rgba(0,0,0,.05);color:var(--text)}
+html.light .nav.on{background:rgba(196,122,0,.12);color:var(--gold);border-left-color:var(--gold)}
+html.light .pp.ap{opacity:1}
+html.light .esc-r td:first-child{border-left-color:#C0392B}
+html.light .esc-a td:first-child{border-left-color:#B7770D}
+html.light .esc-g td:first-child{border-left-color:#1A8A4A}
+html.light .ns{background:linear-gradient(135deg,#EEF2F7,#E2E8F0);border-color:rgba(196,122,0,.5)}
+html.light .td-sel{background:#fff}
+html.light tr:hover td{background:rgba(0,0,0,.025)}
+html.light .bxs:hover{background:rgba(196,122,0,.1);color:var(--gold);border-color:rgba(196,122,0,.4)}
+html.light .fb:hover,html.light .fb.on{background:rgba(196,122,0,.12);color:var(--gold);border-color:rgba(196,122,0,.5)}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;height:100vh;overflow:hidden;font-size:13px}
+.sb{width:210px;background:var(--sb);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid var(--border)}
+.sb-logo h1{color:var(--gold);font-size:19px;font-weight:800;letter-spacing:-.5px}
+.sb-logo .hdl{color:var(--text2);font-size:10px;margin-top:2px}
+.sb-sec{padding:12px 16px 4px;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3)}
+.nav{padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:9px;color:var(--text2);font-size:12px;border-left:3px solid transparent;transition:all .15s;user-select:none;white-space:nowrap}
+.nav:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.nav.on{background:rgba(232,160,32,.1);color:var(--gold);border-left-color:var(--gold);font-weight:600}
+.nav-ic{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.sb-bot{margin-top:auto;padding:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+.bxs{padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:11px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;width:100%}
+.bxs:hover{background:rgba(232,160,32,.1);color:var(--gold);border-color:rgba(232,160,32,.4)}
+.main{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:0}
+.sec{display:none}.sec.on{display:flex;flex-direction:column;gap:14px}
+.ph{display:flex;align-items:center;justify-content:space-between;padding-bottom:2px}
+.ph h2{font-size:19px;font-weight:700}
+.ph-sub{color:var(--text2);font-size:11px;margin-top:2px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.g73{display:grid;grid-template-columns:7fr 3fr;gap:12px}
+.g64{display:grid;grid-template-columns:6fr 4fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px}
+.ct{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:15px}
+.kpi-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.kpi-val{font-size:24px;font-weight:700;line-height:1;color:var(--text)}
+.kpi-d{font-size:11px;margin-top:5px}
+.pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--text2)}
+.phases{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.ph-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text2);margin-bottom:10px}
+.ph-row{display:flex;gap:4px}
+.pp{flex:1;padding:8px 4px;border-radius:6px;text-align:center;font-size:10px;font-weight:600;opacity:.3;transition:opacity .2s;line-height:1.3}
+.pp.ap{opacity:1}
+.p1{background:rgba(52,152,219,.2);color:#60B4F0}.p2{background:rgba(46,204,113,.2);color:#5FDF90}
+.p3{background:rgba(243,156,18,.2);color:#F8C244}.p4{background:rgba(155,89,182,.2);color:#C48DE8}
+.p5{background:rgba(26,188,156,.2);color:#4DD8C0}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.th{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.th h3{font-size:13px;font-weight:600}
+table{width:100%;border-collapse:collapse}
+th{background:var(--navy2);color:var(--text2);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:8px 10px;text-align:left;white-space:nowrap}
+td{padding:6px 10px;font-size:11px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.025)}
+.td-in{background:transparent;border:none;color:var(--text);font-size:11px;width:100%;font-family:inherit;padding:2px 3px;border-radius:3px}
+.td-in:focus{outline:1px solid rgba(232,160,32,.6);background:rgba(232,160,32,.04)}
+.td-sel{background:var(--card2);border:1px solid var(--border2);color:var(--text);font-size:10px;padding:2px 5px;border-radius:4px;cursor:pointer;font-family:inherit}
+.td-sel:focus{outline:1px solid var(--gold)}
+.bdg{padding:2px 7px;border-radius:8px;font-size:10px;font-weight:600;display:inline-block;white-space:nowrap}
+.bgreen{background:rgba(46,204,113,.15);color:#2ECC71}.bgold{background:rgba(232,160,32,.15);color:#E8A020}
+.bgray{background:rgba(112,144,168,.12);color:#7090A8}.bred{background:rgba(231,76,60,.15);color:#E74C3C}
+.bblue{background:rgba(52,152,219,.15);color:#3498DB}.bpurp{background:rgba(155,89,182,.15);color:#9B59B6}
+.bteal{background:rgba(26,188,156,.15);color:#1ABC9C}
+.fbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.fb{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:10px;cursor:pointer;transition:all .15s;font-family:inherit}
+.fb:hover,.fb.on{background:rgba(232,160,32,.15);color:var(--gold);border-color:rgba(232,160,32,.5)}
+.s-in{background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:5px;font-size:11px;font-family:inherit;width:180px}
+.s-in:focus{outline:1px solid rgba(232,160,32,.6)}
+.pb{background:var(--border);border-radius:3px;height:5px;overflow:hidden;margin-top:5px}
+.pbf{height:100%;border-radius:3px;transition:width .4s}
+.rm-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.rm-hdr{padding:11px 13px;font-size:12px;font-weight:700}
+.rm-body{padding:10px 13px}
+.rm-goal{font-size:10px;color:var(--text2);margin-bottom:8px;line-height:1.4;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.rm-item{display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;font-size:11px;line-height:1.35;cursor:pointer;user-select:none}
+.rm-cb{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .2s}
+.rm-cb.dn{background:var(--green-d);border-color:var(--green);color:#fff}
+.rm-txt.dn{text-decoration:line-through;color:var(--text3)}
+.td-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.td-hdr{padding:10px 13px;background:var(--navy2);font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.td-item{padding:8px 13px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;cursor:pointer;transition:background .15s;user-select:none}
+.td-item:hover{background:rgba(255,255,255,.03)}.td-item:last-child{border-bottom:none}
+.td-cb{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .2s}
+.td-item.dn .td-cb{background:var(--green-d);border-color:var(--green);color:#fff}
+.td-item.dn .td-txt{text-decoration:line-through;color:var(--text3)}
+.td-txt{font-size:11px;line-height:1.35}
+.td-rst{background:transparent;border:1px solid transparent;color:var(--text3);font-size:12px;cursor:pointer;padding:1px 5px;border-radius:4px;margin-left:6px;line-height:1;transition:all .15s;font-family:inherit}
+.td-rst:hover{background:rgba(231,76,60,.12);border-color:rgba(231,76,60,.35);color:var(--red)}
+.td-ht{padding:5px 13px;font-size:10px;color:var(--text3);cursor:pointer;border-top:1px solid var(--border);display:flex;align-items:center;gap:5px;transition:color .15s;user-select:none}
+.td-ht:hover,.td-ht.on{color:var(--gold)}
+.td-ht-ct{background:var(--border);border-radius:8px;padding:1px 5px;font-size:9px;font-weight:600}
+.td-hl{display:none;border-top:1px solid var(--border);padding:4px 13px 8px;max-height:220px;overflow-y:auto}
+.td-hl.on{display:block}
+.td-hr{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--border)}
+.td-hr:last-child{border-bottom:none}
+.td-hd{font-size:10px;color:var(--text2);min-width:54px;font-variant-numeric:tabular-nums}
+.td-hb{flex:1;height:4px;background:var(--border);border-radius:3px;overflow:hidden}
+.td-hb div{height:100%;border-radius:3px;transition:width .3s}
+.td-hs{font-size:10px;min-width:28px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.ns{background:linear-gradient(135deg,#08161F,#0E2030);border:1px solid rgba(232,160,32,.5);border-radius:8px;padding:13px 16px}
+.ns-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);margin-bottom:5px}
+.ns-txt{font-size:13px;font-weight:600;color:var(--text);line-height:1.5}
+.ch{position:relative}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.esc-r td:first-child{border-left:3px solid var(--red);padding-left:8px}
+.esc-a td:first-child{border-left:3px solid var(--amber);padding-left:8px}
+.esc-g td:first-child{border-left:3px solid var(--green);padding-left:8px}
+.sy{max-height:460px;overflow-y:auto}
+.ads-sg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ads-sg7{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+.ads-wrap{overflow-x:auto;max-height:520px;overflow-y:auto}
+#ads-tbl{min-width:1260px;border-collapse:collapse;width:100%}
+#ads-tbl thead th{background:var(--navy2);color:var(--text2);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:7px 9px;text-align:right;white-space:nowrap;position:sticky;top:0;z-index:1}
+#ads-tbl thead th:first-child{text-align:left;position:sticky;left:0;z-index:2;background:var(--navy2)}
+#ads-tbl td{padding:5px 9px;font-size:11px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle;text-align:right;white-space:nowrap}
+#ads-tbl td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:600;color:var(--text2);font-size:10px;letter-spacing:.3px;border-right:1px solid var(--border)}
+#ads-tbl tr:hover td{background:rgba(255,255,255,.025)}
+#ads-tbl tr:hover td:first-child{background:var(--card2)}
+#ads-tbl tr.ads-hi td{background:rgba(46,204,113,.07)!important}
+#ads-tbl tr.ads-hi td:first-child{background:rgba(46,204,113,.12)!important;color:var(--green)}
+#ads-tbl tr.ads-lo td{background:rgba(231,76,60,.04)!important}
+#ads-tbl tr.ads-lo td:first-child{background:rgba(231,76,60,.08)!important;color:var(--red)}
+.ads-in{background:transparent;border:none;color:var(--text);font-size:11px;width:72px;text-align:right;font-family:inherit;padding:2px 3px;border-radius:3px}
+.ads-in:focus{outline:1px solid rgba(232,160,32,.6);background:rgba(232,160,32,.04)}
+.ads-note-in{background:transparent;border:none;color:var(--text2);font-size:10px;width:110px;text-align:left;font-family:inherit;padding:2px 3px;border-radius:3px}
+.ads-note-in:focus{outline:1px solid rgba(232,160,32,.4)}
+</style>
+</head>
+<body>
+
+<div class="sb">
+  <div class="sb-logo"><h1>GLART</h1><div class="hdl">@glart_official · TikTok</div></div>
+  <div class="sb-sec">Übersicht</div>
+  <div class="nav on" data-sec="dashboard" onclick="go(this)"><span class="nav-ic">🏠</span> Dashboard</div>
+  <div class="nav" data-sec="kpi" onclick="go(this)"><span class="nav-ic">📊</span> KPI Woche</div>
+  <div class="sb-sec">Content</div>
+  <div class="nav" data-sec="content" onclick="go(this)"><span class="nav-ic">🎬</span> Content Pipeline</div>
+  <div class="sb-sec">Ads & Strategie</div>
+  <div class="nav" data-sec="ads" onclick="go(this)"><span class="nav-ic">💶</span> Ads & Budget</div>
+  <div class="nav" data-sec="roadmap" onclick="go(this)"><span class="nav-ic">🗺</span> Roadmap</div>
+  <div class="sb-sec">Aufgaben</div>
+  <div class="nav" data-sec="todos" onclick="go(this)"><span class="nav-ic">✅</span> To-Dos</div>
+  <div class="nav" data-sec="esc" onclick="go(this)"><span class="nav-ic">⚠️</span> Eskalation</div>
+  <div class="sb-bot">
+    <button class="bxs" id="theme-btn" onclick="toggleTheme()" style="display:flex;align-items:center;gap:7px">☀️ <span id="theme-lbl">Hell-Modus</span></button>
+    <button class="bxs" onclick="exportData()">⬆ Daten exportieren</button>
+    <button class="bxs" onclick="document.getElementById('impFile').click()">⬇ Daten importieren</button>
+    <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(event)">
+  </div>
+</div>
+
+<div class="main" id="main">
+
+<!-- DASHBOARD -->
+<div class="sec on" id="s-dashboard">
+  <div>
+    <div class="ph">
+      <div><h2>🏠 Dashboard</h2><div class="ph-sub" id="dash-week">Noch keine KPI-Daten eingetragen</div></div>
+      <span style="font-size:11px;color:var(--text2)">Videos live: <strong id="stat-pub" style="color:var(--green)">0</strong> / 63</span>
+    </div>
+  </div>
+  <div class="phases">
+    <div class="ph-lbl">Aktuelle Phase</div>
+    <div class="ph-row">
+      <div class="pp p1 ap" id="ph1">Phase 1<div style="font-size:9px;font-weight:400;margin-top:2px">bis 5K</div></div>
+      <div class="pp p2" id="ph2">Phase 2<div style="font-size:9px;font-weight:400;margin-top:2px">5K–15K</div></div>
+      <div class="pp p3" id="ph3">Phase 3<div style="font-size:9px;font-weight:400;margin-top:2px">15K–50K</div></div>
+      <div class="pp p4" id="ph4">Phase 4<div style="font-size:9px;font-weight:400;margin-top:2px">50K–100K</div></div>
+      <div class="pp p5" id="ph5">Phase 5<div style="font-size:9px;font-weight:400;margin-top:2px">100K+</div></div>
+    </div>
+  </div>
+  <div class="g5">
+    <div class="kpi"><div class="kpi-lbl">👥 Follower</div><div class="kpi-val" id="kf">—</div><div class="kpi-d neu" id="kfd">Ziel: 5.000</div></div>
+    <div class="kpi"><div class="kpi-lbl">👁 Views / Woche</div><div class="kpi-val" id="kv">—</div><div class="kpi-d neu" id="kvd">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">💬 Engagement Rate</div><div class="kpi-val" id="ker">—</div><div class="kpi-d neu" id="kerd">Ziel: ≥3%</div></div>
+    <div class="kpi"><div class="kpi-lbl">🎬 Videos erstellt</div><div class="kpi-val" id="kcr">0/63</div><div class="kpi-d neu" id="kcrd">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">🟢 Videos live</div><div class="kpi-val" id="kli">0/63</div><div class="kpi-d neu" id="klid">—</div></div>
+  </div>
+  <div class="g73">
+    <div class="card" style="padding:16px">
+      <div class="ct">📈 Follower-Wachstum <span style="font-weight:400;font-size:10px">Letzte 12 KW</span></div>
+      <div class="ch" style="height:200px"><canvas id="ch-f"></canvas></div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div class="ct">🎬 Video-Status</div>
+      <div class="ch" style="height:200px"><canvas id="ch-st"></canvas></div>
+    </div>
+  </div>
+  <div class="ns"><div class="ns-lbl">⭐ Nordstern</div>
+    <div class="ns-txt">Zur meistgesuchten Autopflege-Marke auf TikTok DE werden — durch ehrliche Produkt-Demos, Expertenwissen und konsequente Präsenz.</div></div>
+</div>
+
+<!-- KPI WOCHE -->
+<div class="sec" id="s-kpi">
+  <div class="ph"><div><h2>📊 KPI Woche</h2><div class="ph-sub">Wöchentlich eintragen · ER und Deltas berechnen sich automatisch</div></div></div>
+  <div class="g64">
+    <div class="card" style="padding:16px">
+      <div class="ct">📈 Follower-Verlauf</div>
+      <div class="ch" style="height:190px"><canvas id="ch-kf"></canvas></div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div class="ct">💬 Engagement Rate %</div>
+      <div class="ch" style="height:190px"><canvas id="ch-ker"></canvas></div>
+    </div>
+  </div>
+  <div class="tw">
+    <div class="th"><h3>52 Wochen — KW 24/26 bis KW 23/27</h3>
+      <span style="font-size:10px;color:var(--text2)">🟡 manuell &nbsp;🟢 automatisch</span></div>
+    <div class="sy"><table>
+      <thead><tr>
+        <th>KW</th><th style="background:rgba(232,160,32,.1)">👥 Follower</th><th>Δ</th>
+        <th style="background:rgba(232,160,32,.1)">👁 Views</th><th style="background:rgba(232,160,32,.1)">❤ Likes</th>
+        <th style="background:rgba(232,160,32,.1)">💬 Komm.</th><th style="background:rgba(232,160,32,.1)">↗ Shares</th>
+        <th style="background:rgba(232,160,32,.1)">🔖 Saves</th><th>ER%</th>
+        <th style="background:rgba(46,204,113,.08)">💶 Ad €</th><th style="background:rgba(46,204,113,.08)">Boost-Video</th><th style="color:var(--green);font-size:9px" title="Automatisch aus Ads & Budget">🔗 ROAS</th>
+      </tr></thead>
+      <tbody id="kpi-tb"></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="sec" id="s-content">
+  <div class="ph">
+    <div><h2>🎬 Content Pipeline</h2><div class="ph-sub">63 Videos · Status, Datum und Notizen tracken</div></div>
+    <input type="text" class="s-in" placeholder="🔍 Suchen..." id="csearch" oninput="rContent()">
+  </div>
+  <div class="fbar" id="cflt">
+    <span style="font-size:10px;color:var(--text2)">Phase:</span>
+    <button class="fb on" data-ph="" onclick="setFlt(this,'ph')">Alle</button>
+    <button class="fb" data-ph="Phase 1" onclick="setFlt(this,'ph')">P1</button>
+    <button class="fb" data-ph="Phase 2" onclick="setFlt(this,'ph')">P2</button>
+    <button class="fb" data-ph="Phase 3" onclick="setFlt(this,'ph')">P3</button>
+    <button class="fb" data-ph="Phase 4" onclick="setFlt(this,'ph')">P4</button>
+    <button class="fb" data-ph="Phase 5" onclick="setFlt(this,'ph')">P5</button>
+    <span style="font-size:10px;color:var(--text2);margin-left:6px">Track:</span>
+    <button class="fb on" data-tr="" onclick="setFlt(this,'tr')">Alle</button>
+    <button class="fb" data-tr="Produkt" onclick="setFlt(this,'tr')">Produkt</button>
+    <button class="fb" data-tr="Infomercial" onclick="setFlt(this,'tr')">Infomercial</button>
+    <span style="font-size:10px;color:var(--text2);margin-left:6px">Status:</span>
+    <button class="fb on" data-st="" onclick="setFlt(this,'st')">Alle</button>
+    <button class="fb" data-st="live" onclick="setFlt(this,'st')">Live 🟢</button>
+    <button class="fb" data-st="erstellt" onclick="setFlt(this,'st')">Erstellt ✅</button>
+    <button class="fb" data-st="offen" onclick="setFlt(this,'st')">Offen</button>
+  </div>
+  <div class="tw">
+    <div class="th">
+      <h3 id="cnt-n">63 Videos</h3>
+      <div style="display:flex;gap:12px;font-size:10px;color:var(--text2)">
+        <span>✅ <strong id="cnt-cr" style="color:var(--text)">0</strong></span>
+        <span>🟢 <strong id="cnt-li" style="color:var(--green)">0</strong></span>
+      </div>
+    </div>
+    <div class="sy" style="max-height:500px"><table>
+      <thead><tr>
+        <th>#</th><th>Phase</th><th>Track</th><th>ID</th><th style="min-width:180px">Titel</th>
+        <th>Schw.</th><th>✅</th><th>Datum</th><th>🟢</th><th>Datum</th><th style="min-width:140px">Notizen</th>
+      </tr></thead>
+      <tbody id="ctb"></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ADS -->
+<div class="sec" id="s-ads">
+  <div class="ph"><div><h2>💶 Ads & Budget</h2><div class="ph-sub">Wöchentliche Performance-Matrix · KW 24/26 – KW 23/27 · Ausgabe &amp; Umsatz eintragen → alles automatisch</div></div></div>
+  <div id="ads-kpis" class="ads-sg7"></div>
+  <div class="card" style="padding:14px">
+    <div class="ct">📈 Ausgabe · Umsatz · ROAS — Wochenverlauf<span id="ads-ct-sub" style="font-size:10px;color:var(--text2);font-weight:400;margin-left:10px"></span></div>
+    <div style="height:210px"><canvas id="ch-ads"></canvas></div>
+  </div>
+  <div class="tw">
+    <div class="th"><h3>Wöchentliche Performance-Matrix</h3><span style="font-size:10px;color:var(--text2)">🟢 ROAS ≥ 2.0 &nbsp;🟡 ≥ 1.5 &nbsp;🔴 &lt; 1.5 &nbsp;·&nbsp; ⭐ Beste Woche &nbsp;📉 Schwächste &nbsp;·&nbsp; Δ = Veränderung zur Vorwoche</span></div>
+    <div class="ads-wrap"><table id="ads-tbl"></table></div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="sec" id="s-roadmap">
+  <div class="ph"><div><h2>🗺 Roadmap</h2><div class="ph-sub">Meilensteine abhaken · Phasen nach Performance wechseln</div></div></div>
+  <div class="g5" id="rmg"></div>
+  <div class="ns"><div class="ns-lbl">💡 Regel</div>
+    <div class="ns-txt" style="font-size:12px;font-weight:400">Phase wechseln wenn <strong>alle Trigger</strong> der aktuellen Phase erfüllt sind — nicht nach Zeitplan, sondern nach Performance-Daten.</div></div>
+</div>
+
+<!-- TODOS -->
+<div class="sec" id="s-todos">
+  <div class="ph">
+    <div><h2>✅ To-Dos</h2><div class="ph-sub">Checkboxen speichern automatisch · Jede Gruppe einzeln zurücksetzen</div></div>
+  </div>
+  <div class="g3" id="tdg"></div>
+</div>
+
+<!-- ESKALATION -->
+<div class="sec" id="s-esc">
+  <div class="ph"><div><h2>⚠️ Eskalation</h2><div class="ph-sub">Wann handeln · Was tun · Bis wann</div></div></div>
+  <div class="tw">
+    <div class="th"><h3>9 Szenarien — Rot sofort · Amber beobachten · Grün optimieren</h3></div>
+    <table>
+      <thead><tr><th>Szenario</th><th>Grenzwert</th><th>Sofortmaßnahme</th><th>Frist</th></tr></thead>
+      <tbody>
+        <tr class="esc-r"><td>Views &lt; 1.000 nach 48h</td><td>&lt; 1.000</td><td>Boost (Letizia) + Hook analysieren</td><td>48h</td></tr>
+        <tr class="esc-r"><td>Engagement Rate &lt; 2%</td><td>&lt; 2%</td><td>Hook überarbeiten · A/B-Test</td><td>nächstes Video</td></tr>
+        <tr class="esc-r"><td>Follower-Drop &gt; 200/Woche</td><td>–200 Follower</td><td>Content-Pause · Brand-Check</td><td>sofort</td></tr>
+        <tr class="esc-a"><td>ROI Ads &lt; 1.5</td><td>ROI 1.5</td><td>Video wechseln · Zielgruppe eingrenzen</td><td>nächster Block</td></tr>
+        <tr class="esc-a"><td>Kein Wachstum 2 Wochen</td><td>0 Δ</td><td>Posting-Zeit ändern · Hashtags neu</td><td>2 Wochen</td></tr>
+        <tr class="esc-a"><td>TikTok Shop Conversion &lt; 1%</td><td>&lt; 1% CVR</td><td>Produkt-Link prüfen · CTA stärker</td><td>1 Woche</td></tr>
+        <tr class="esc-a"><td>Negativkommentare &gt; 10%</td><td>&gt; 10%</td><td>Community Management · Antworten</td><td>24h</td></tr>
+        <tr class="esc-g"><td>Viral-Hit &gt; 500K Views</td><td>&gt; 500K</td><td>Produkt nachbestellen · Follow-up planen</td><td>24h</td></tr>
+        <tr class="esc-g"><td>ER &gt; 8% konstant</td><td>&gt; 8%</td><td>Posting-Frequenz erhöhen · Format doppeln</td><td>nächste Woche</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- end main -->
+
+<script>
+// ═══ DATA ═══════════════════════════════════════
+const VIDEOS = [{"phase": "Phase 1", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.7", "title": "Was ist der Abperleffekt?", "hook": "Warum perlt Wasser bei manchen Autos ab und bei deins nicht?", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T1", "title": "Watergate Trockentuch: Wassertest", "hook": "Dein Auto trocknen dauert 20 Minuten? Mit diesem Tuch 4.", "format": "Produkt-Demo / ASMR", "schwierigkeit": "Einfach", "produkt": "Watergate Trockentuch 90x60 cm"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.5", "title": "Fehler: Waschanlage zerkratzt den Lack", "hook": "Die Waschanlage ist guenstig. Der Lackschaden kostet Hunderte.", "format": "Konfrontation", "schwierigkeit": "Einfach", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F1", "title": "Felgenreiniger: Farbreaktion live", "hook": "Siehst du wie die Farbe sich aendert? Das ist Bremsstaub.", "format": "Before/After + ASMR", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger saurefrei 500ml"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "Vergleich", "id": "S4.3", "title": "Versiegelt vs. nicht versiegelt", "hook": "Gleiche Motorhaube. Links versiegelt. Rechts nicht.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Innenraum", "id": "P-I2", "title": "Kaffeefleck weg in 90 Sekunden", "hook": "Kaffeefleck auf dem Sitzbezug. 90 Sekunden. Weg.", "format": "Problem-Solution", "schwierigkeit": "Einfach", "produkt": "Innenreiniger 500ml"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.5", "title": "Was sind Hologramme im Lack?", "hook": "Diese Kreise im Lack hast du selbst verursacht.", "format": "Edu + Visual", "schwierigkeit": "Einfach", "produkt": "Anti-Hologramm Politur"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P1", "title": "Hologramme entfernen: Before/After", "hook": "So sieht ein Auto aus wenn man Hologramme entfernt.", "format": "Before/After", "schwierigkeit": "Mittel", "produkt": "Anti-Hologramm Politur 1000ml"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.1", "title": "Was ist Mikrofaser wirklich?", "hook": "Ein Mikrofasertuch hat 200.000 Fasern pro cm2. Ein normales 100.", "format": "Edu + Visual", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM 3er Set"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Vergleich", "id": "S4.1", "title": "600 GSM vs. 200 GSM: Wassertest", "hook": "Warum kostet das eine doppelt so viel? In 10 Sekunden.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T2", "title": "Kratzer beim Abtrocknen? Du machst es falsch.", "hook": "Kratzer beim Trocknen? Du machst es falsch.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "2er Set Trockentuch 70x40 cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.1", "title": "Fehler: Mikrofasertuch falsch waschen", "hook": "Du waeschst deine Mikrofasertucher falsch. Das kostet Kratzer.", "format": "Erklaerung", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher allgemein"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.1", "title": "Die richtige Reihenfolge bei der Autopflege", "hook": "Wer zuerst poliert und dann waesche, hat alles falsch gemacht.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Mehrere GLART-Produkte"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T3", "title": "Twist Trockentuch: ASMR Absorptionstest", "hook": "Das saugstaerkste Tuch das ich je getestet habe.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Twist Trockentuch XXL 80x55cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.3", "title": "Fehler: Vogelkot liegen lassen", "hook": "Vogelkot auf dem Lack - wie lange hast du Zeit? 24 Stunden.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Innenreiniger + Mikrofasertuch"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G1", "title": "Carbon-Tuch vs. normales Tuch auf Glas", "hook": "Gleiche Bewegung. Zwei Tuecher. Ein Sieger.", "format": "Vergleich", "schwierigkeit": "Einfach", "produkt": "Carbon-Tuecher 4x 50x40 cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Vergleich", "id": "S4.2", "title": "Carbon-Tuch vs. Mikrofaser auf Glas", "hook": "Gleiches Glas. Gleiche Bewegung. Zwei Tuecher. Ein Sieger.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Carbon-Tuecher 44C"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.2", "title": "Grammatur erklaert: Was bedeutet 600 g/m2?", "hook": "200 g/m2 vs. 600 g/m2. Der Unterschied ist nicht nur Gewicht.", "format": "Edu + Wassertest", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.2", "title": "Vorarbeit: Warum sie alles entscheidet", "hook": "Wenn du die Vorarbeit ueberspringst, ist jede Politur verschwendet.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Insektenentferner + Autoshampoo"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P4", "title": "Schleifpolitur: Kratzer selbst entfernen", "hook": "Dieser Kratzer kostet in der Werkstatt 300 Euro. Oder 5 Minuten.", "format": "Before/After", "schwierigkeit": "Hoch", "produkt": "Schleifpolitur 1000ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.8", "title": "Schleifpolitur vs. Finishpolitur", "hook": "Wer Finishpolitur auf tiefen Kratzer auftraegt, kann aufhoeren.", "format": "Edu", "schwierigkeit": "Mittel", "produkt": "Schleifpolitur + Finishpolitur"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P2", "title": "Finishpolitur: Aesthetic + Ergebnis", "hook": "So sieht ein Auto aus wenn man es richtig poliert.", "format": "Aesthetic", "schwierigkeit": "Mittel", "produkt": "Finishpolitur 1000ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.6", "title": "pH-neutral: Warum es deinen Lack rettet", "hook": "Dein Kuechenspuelmittel ist pH 10. Dein Lack vertraegt pH 7.", "format": "Edu", "schwierigkeit": "Einfach", "produkt": "Autoshampoo pH-neutral"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W2", "title": "Autoshampoo: Schaum-Demo", "hook": "Du verwendest das falsche Shampoo. Es zerstoert deinen Lack.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Autoshampoo Konzentrat 500ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.4", "title": "Der 2-Eimer-Trick", "hook": "Mit einem Eimer waeschst du den Lack mit dem Schmutz vom letzten Durchgang.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W1", "title": "Waschhandschuh: kein Kratzer mehr", "hook": "Schwamm oder Lappen? Beides falsch. Das hier verhindert Kratzer.", "format": "Edu-Tutorial", "schwierigkeit": "Einfach", "produkt": "Mikrofaser Waschhandschuh"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.4", "title": "Fehler: Auto in der Sonne waschen", "hook": "Auto in der Sonne waschen. Bester Weg fuer permanente Wasserflecken.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher + Trockentuch"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F2", "title": "Felgenbuerste 3er Set: Demo", "hook": "Mit einer Buerste klappt das nie. Mit drei geht es in 3 Minuten.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "3er Set Felgenbuerste"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.4", "title": "Felgenpflege: Der komplette Prozess", "hook": "Einmal alles richtig machen. Dann bleibt es laenger sauber.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Felgenreiniger + Buerste + Handschuh"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F4", "title": "Felgen Waschhandschuh: Speichen sauber", "hook": "Speichen sauber kriegen ohne Kratzer? So geht das.", "format": "How-To", "schwierigkeit": "Einfach", "produkt": "Felgen Waschhandschuh 27x12cm"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Vergleich", "id": "S4.4", "title": "Felgenreiniger Farbindikator erklaert", "hook": "Siehst du die Farbreaktion? Das ist Bremsstaub der sich loest.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger saurefrei"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Innenraum", "id": "P-I1", "title": "Cockpitreiniger: Armaturenbrett in 2 Min.", "hook": "Dein Armaturenbrett sieht so aus? Das ist in 2 Minuten weg.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "Cockpitreiniger 500ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.5", "title": "Innenraum richtig reinigen (Reihenfolge!)", "hook": "Wer den Boden zuerst saugt und dann das Dach reinigt, darf nochmal.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Cockpitreiniger + Innenreiniger"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Innenraum", "id": "P-I3", "title": "Cockpitpflege: Ausgegrauer Kunststoff", "hook": "Ausgegrautem Kunststoff keine Chance.", "format": "Transformation", "schwierigkeit": "Einfach", "produkt": "Cockpitpflege 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.6", "title": "Fehler: Leder mit Haushaltsmitteln reinigen", "hook": "Ihr reinigt euer Autoleder mit was? Damit zerstoert ihr es.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Lederreiniger + Lederversiegelung"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Leder", "id": "P-L1", "title": "Lederreiniger: Before/After", "hook": "Dein Leder kriegt Risse - und das liegt an dem was du benutzt.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Lederreiniger 500ml"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Leder", "id": "P-L2", "title": "Lederversiegelung: ROI-Argument", "hook": "Dieses Produkt kostet 16 Euro. Neue Ledersitze kosten 3.000.", "format": "Edu-Tutorial", "schwierigkeit": "Einfach", "produkt": "Lederversiegelung 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.2", "title": "Warum schwarze Autos so viel Pflege brauchen", "hook": "Du hast ein schwarzes Auto? Dann ist dieser Post fuer dich.", "format": "Erklaerung", "schwierigkeit": "Einfach", "produkt": "600 GSM + Anti-Hologramm Politur"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.3", "title": "High Pile vs. Low Pile", "hook": "Gleiches Tuch, falscher Einsatz. So zerkratzt du deinen Lack.", "format": "Vergleich", "schwierigkeit": "Mittel", "produkt": "Poliertuch + Carbon-Tuch"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.4", "title": "Ultraschallschnitt vs. Naht", "hook": "Die Naht deines Tuchs kann deinen Lack zerkratzen.", "format": "Makro", "schwierigkeit": "Mittel", "produkt": "GLART Premium Mikrofasertuch"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P3", "title": "Schnellversiegelung: 5 Minuten Schutz", "hook": "5 Minuten - und dein Auto ist versiegelt fuer Monate.", "format": "Speed-Format", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.3", "title": "Lackkorrektur fuer Einsteiger", "hook": "Kratzer selbst entfernen ist einfacher als du denkst.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Schleifpolitur + Polierpads"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P5", "title": "Polierpads: welches wofuer?", "hook": "Mit dem falschen Pad ruinierst du jede Politur.", "format": "Edu-Tutorial", "schwierigkeit": "Mittel", "produkt": "3er Set Mikrofaser Polierpads"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.1", "title": "Was Detailer wissen und du nicht", "hook": "Profis tun das nach jeder Wasche. Die meisten nicht.", "format": "Insider", "schwierigkeit": "Mittel", "produkt": "Felgenreiniger Iron Remover"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F3", "title": "Premium Felgenbuerste: abnehmbarer Bezug", "hook": "Die einzige Felgenbuerste die du je brauchst.", "format": "Spotlight", "schwierigkeit": "Einfach", "produkt": "Premium Mikrofaser Felgenbuerste"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.2", "title": "Fehler: Hochdruckreiniger falsch halten", "hook": "Der Hochdruckreiniger ist gut. Aber du haeltst ihn falsch.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher + Trockentuch"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W4", "title": "Wasserabzieher: 80% Wasser in Sekunden", "hook": "Nach dem Waschen sofort abziehen - spart 5 Minuten.", "format": "Quick-Tip", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher Silikonlippe"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Vergleich", "id": "S4.5", "title": "Handwaesche vs. Waschanlage unterm Schwarzlicht", "hook": "Was die Waschanlage hinterlaesst, siehst du erst so.", "format": "Schwarzlicht", "schwierigkeit": "Mittel", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Innenraum", "id": "P-I4", "title": "Innenreiniger-Set: Komplett-Transformation", "hook": "Komplette Innenraum-Reinigung in einem Set.", "format": "Set-Demo", "schwierigkeit": "Mittel", "produkt": "3er Set Innenreiniger 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.3", "title": "Was OEM-approved wirklich bedeutet", "hook": "Wenn Automobilhersteller ein Produkt einsetzen, weisst du es.", "format": "Trust", "schwierigkeit": "Einfach", "produkt": "GLART Mikrofasertuecher allgemein"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.5", "title": "Mikroplastik-frei: Warum das wichtig ist", "hook": "Jedes guenstige Mikrofasertuch verliert Plastik ins Abwasser.", "format": "Nachhaltigkeit", "schwierigkeit": "Einfach", "produkt": "GLART Mikrofasertuecher Oeko-Tex"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G2", "title": "Glasreiniger: Streifenfrei Tutorial", "hook": "Einmal spritzen, nie wieder Schlieren.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "Glasreiniger 500ml"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G3", "title": "Antibeschlagschwamm: Beschlag stoppen", "hook": "Beschlagene Scheiben im Winter? Dieses Ding loest das dauerhaft.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Antibeschlagschwamm 44MS2"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T4", "title": "Set Twist 80+60 cm: Unboxing + Demo", "hook": "Einmal kaufen, nie wieder Schlieren.", "format": "Unboxing", "schwierigkeit": "Einfach", "produkt": "Set Twist Trockentuch 80+60 cm"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W3", "title": "Natur-Waschschwamm: Made in Germany", "hook": "Made in Germany. Der Unterschied ist spuerbar.", "format": "Sustainability", "schwierigkeit": "Einfach", "produkt": "2er Set Natur-Waschschwamme"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S4", "title": "Insektenentferner: Autobahn-Chaos weg", "hook": "Autobahn im Sommer. Vor vs. nach GLART.", "format": "Before/After", "schwierigkeit": "Einfach", "produkt": "Insektenentferner 500ml"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.4", "title": "Insekten-Saison: Sofortmassnahmen", "hook": "Autobahnfahrt im Sommer. Dieser Film frisst deinen Lack.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Insektenentferner"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S1", "title": "Tierhaarentferner: Hundebesitzer aufgepasst", "hook": "Hundebesitzer: ihr wisst was ich meine.", "format": "Nischen", "schwierigkeit": "Einfach", "produkt": "Tierhaarentferner Silikonbuerste"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S3", "title": "Reifenglanz: Der vergessene Finishing-Touch", "hook": "Der Finishing-Touch den 90% vergessen.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Reifenglanz 500ml inkl. Schwamm"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.1", "title": "Herbst-Vorbereitung (September/Oktober)", "hook": "Bevor der erste Frost kommt, musst du das getan haben.", "format": "Checkliste", "schwierigkeit": "Einfach", "produkt": "Versiegelung + Antibeschlagschwamm + Eiskratzer"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S2", "title": "Eiskratzer: stabil und ergonomisch", "hook": "Es ist November. Bist du vorbereitet?", "format": "Saisonal", "schwierigkeit": "Einfach", "produkt": "Eiskratzer mit Schneebesen"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.2", "title": "Winter-Tipps: Streusalz ist der Feind", "hook": "Streusalz ist der schlimmste Feind deines Autos.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger + Eiskratzer + Shampoo"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.3", "title": "Fruehlings-Aufbereitung (Maerz/April)", "hook": "Winter ist vorbei. Jetzt kommt der wichtigste Pflegetermin.", "format": "Prozess", "schwierigkeit": "Mittel", "produkt": "Insektenentferner + Schleifpolitur + Versiegelung"}];
+
+const WEEKS = (()=>{
+  const w=[];
+  for(let i=24;i<=52;i++) w.push(`KW ${i}/26`);
+  for(let i=1;i<=23;i++) w.push(`KW ${String(i).padStart(2,'0')}/27`);
+  return w;
+})();
+
+// Growth plan — derived from ROADMAP phase end weeks & follower triggers
+// P1:idx 0-7 | P2:idx 8-19 | P3:idx 20-31 | P4:idx 32-42 | P5:idx 43-51
+const GROWTH_PLAN = {
+  followers: [[0,115],[7,5000],[19,15000],[31,50000],[42,100000],[51,200000]],
+  adsBudget: [[0,50],[7,100],[19,200],[31,350],[42,500],[51,700]]
+};
+function interpPlan(waypts, i) {
+  if(i<=waypts[0][0]) return waypts[0][1];
+  const last=waypts[waypts.length-1];
+  if(i>=last[0]) return last[1];
+  for(let m=0;m<waypts.length-1;m++){
+    const [wa,fa]=waypts[m],[wb,fb]=waypts[m+1];
+    if(i>=wa&&i<=wb){const t=(i-wa)/(wb-wa);return Math.round(fa*Math.pow(fb/fa,t));}
+  }
+  return waypts[0][1];
+}
+
+const ROADMAP = [
+  {id:'p1',lbl:'Phase 1',kw:'KW 24–31/26',color:'#60B4F0',bg:'rgba(52,152,219,.12)',
+   goal:'Trust & Beweis aufbauen',trigger:'5.000 Follower & 3% ER',
+   items:['5.000 Follower erreicht','8 Videos live','3% Engagement Rate','Erste TikTok Shop Verkäufe']},
+  {id:'p2',lbl:'Phase 2',kw:'KW 32–43/26',color:'#5FDF90',bg:'rgba(46,204,113,.12)',
+   goal:'Reichweite & Learnings',trigger:'15.000 Follower & 4% ER',
+   items:['15.000 Follower','20 Videos live','4% Engagement Rate','TikTok Shop Umsatz > 500€/Monat']},
+  {id:'p3',lbl:'Phase 3',kw:'KW 44/26–03/27',color:'#F8C244',bg:'rgba(243,156,18,.12)',
+   goal:'Momentum aufbauen',trigger:'50.000 Follower & 1 Viral-Hit',
+   items:['50.000 Follower','40 Videos live','1 Video > 100K Views','Umsatz > 1.000€/Monat']},
+  {id:'p4',lbl:'Phase 4',kw:'KW 04–14/27',color:'#C48DE8',bg:'rgba(155,89,182,.12)',
+   goal:'Monetarisierung & Dominanz',trigger:'100.000 Follower',
+   items:['100.000 Follower','63 Videos live','Umsatz > 2.000€/Monat','Ads ROI stabil > 2.0']},
+  {id:'p5',lbl:'Phase 5',kw:'KW 15–23/27',color:'#4DD8C0',bg:'rgba(26,188,156,.12)',
+   goal:'Marktführer Deutschland',trigger:'200.000+ Follower',
+   items:['200.000+ Follower','Collaboration-Anfragen','Organic ROI messbar','Nr.1 Autopflege TikTok DE']}
+];
+
+const TDEFS = [
+  {id:'daily',ic:'☀️',lbl:'Täglich',
+   items:['Neue Kommentare beantworten (alle)','DMs checken & antworten',
+          'TikTok Analytics: Views & ER der letzten Posts',
+          'Trending Sounds / Hashtags scannen (5 Min)',
+          '1 Kommentar auf ähnliche Accounts (Community)']},
+  {id:'wkmon',ic:'📅',lbl:'Woche: Montag (WS)',
+   items:['KPIs der Vorwoche ins Dashboard eintragen','Content für die Woche planen',
+          '2 neue Videokonzepte vorbereiten','Shooting-Tag & Produkte bereitstellen']},
+  {id:'wkfri',ic:'📅',lbl:'Woche: Freitag (WS)',
+   items:['Fertige Videos schneiden & vertonen','Hook, Text, Hashtags vorbereiten','Nächste Woche vorausplanen']},
+  {id:'ahmet',ic:'👤',lbl:'Woche: Montag (Ahmet)',
+   items:['Dashboard KPIs reviewen','Ad Budget & ROI prüfen (Letizia)',
+          'Content-Prioritäten bestätigen','Phasenfortschritt bewerten']},
+  {id:'monthly',ic:'📆',lbl:'Monatlich',
+   items:['Performance aller Videos analysieren','Beste & schlechteste Formate identifizieren',
+          'Produktauswahl für nächsten Monat','Ads ROI & Budget anpassen','Strategie definieren']},
+  {id:'quarterly',ic:'📊',lbl:'Quartalsweise',
+   items:['Phasenfortschritt evaluieren','Gesamtstrategie anpassen','Roadmap updaten']}
+];
+
+// ═══ STATE ══════════════════════════════════════
+const SK = 'glart_v3';
+function defState() {
+  const vs = {};
+  VIDEOS.forEach(v => { vs[v.id] = {cr:'—',crd:'',li:'—',lid:'',n:''}; });
+  return {
+    version:3,
+    kpi: WEEKS.map((w,i) => ({w,f:i===0?'115':'',v:'',l:'',c:'',sh:'',sa:'',ab:'',bv:'',ar:''})),
+    vs,
+    ads: Array(20).fill(null).map((_,i) => ({id:i+1,from:'',to:'',bud:'300',vid:'',rev:'',st:'—'})),
+    ms: {p1:[false,false,false,false],p2:[false,false,false,false],p3:[false,false,false,false],
+         p4:[false,false,false,false],p5:[false,false,false,false]},
+    td: {daily:Array(5).fill(false),wkmon:Array(4).fill(false),wkfri:Array(3).fill(false),
+         ahmet:Array(4).fill(false),monthly:Array(5).fill(false),quarterly:Array(3).fill(false)},
+    tdH: {daily:[],wkmon:[],wkfri:[],ahmet:[],monthly:[],quarterly:[]},
+    lastDate: '',
+    wads: WEEKS.map(()=>({bud:'',rev:'',note:''}))
+  };
+}
+let S = (()=>{
+  try { const r=localStorage.getItem(SK); if(r){const p=JSON.parse(r);const m={...defState(),...p};if(!m.tdH)m.tdH={daily:[],wkmon:[],wkfri:[],ahmet:[],monthly:[],quarterly:[]};TDEFS.forEach(t=>{if(!m.tdH[t.id])m.tdH[t.id]=[];});if(!m.lastDate)m.lastDate='';if(!m.wads||m.wads.length!==WEEKS.length)m.wads=WEEKS.map((_,i)=>m.wads&&m.wads[i]?m.wads[i]:{bud:'',rev:'',note:''});if(m.kpi&&m.kpi[0]&&m.kpi[0].f==='')m.kpi[0].f='115';return m;} }
+  catch(e) {}
+  return defState();
+})();
+const save = () => { try { localStorage.setItem(SK,JSON.stringify(S)); } catch(e) {} };
+
+// ─── Auto-log when date changes ──────────────────
+const _today=(()=>{const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getFullYear()).slice(-2)}`;})();
+if(S.lastDate && S.lastDate !== _today){
+  TDEFS.forEach(td=>{
+    const state=S.td[td.id]||[];
+    const done=state.filter(Boolean).length;
+    if(!S.tdH[td.id])S.tdH[td.id]=[];
+    const ex=S.tdH[td.id].findIndex(e=>e.d===S.lastDate);
+    const entry={d:S.lastDate,done,total:td.items.length};
+    if(ex>=0){S.tdH[td.id][ex]=entry;}else if(done>0){S.tdH[td.id].push(entry);}
+  });
+}
+S.lastDate=_today; save();
+
+// ═══ NAV ════════════════════════════════════════
+const CI = {};
+function go(el) {
+  const id = el.dataset.sec;
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.nav').forEach(n => n.classList.remove('on'));
+  document.getElementById('s-'+id).classList.add('on');
+  el.classList.add('on');
+  if (!CI[id]) { CI[id]=true; initCharts(id); }
+  refresh(id);
+}
+function refresh(id) {
+  if(id==='dashboard') rDash();
+  if(id==='kpi') rKPI();
+  if(id==='content') rContent();
+  if(id==='ads') rAds();
+  if(id==='roadmap') rRoadmap();
+  if(id==='todos') rTodos();
+}
+
+// ═══ CHARTS ═════════════════════════════════════
+// Phase zone background plugin (P1–P5 bands)
+Chart.register({
+  id:'phaseZones',
+  beforeDraw(chart){
+    if(!['ch-kf','ch-ads'].includes(chart.canvas.id))return;
+    const {ctx,chartArea:{top,bottom},scales:{x}}=chart;
+    if(!x||!x.getPixelForValue)return;
+    const zones=[[0,7,'rgba(52,152,219,.06)','P1'],[8,19,'rgba(46,204,113,.06)','P2'],[20,31,'rgba(243,156,18,.06)','P3'],[32,42,'rgba(155,89,182,.06)','P4'],[43,51,'rgba(26,188,156,.06)','P5']];
+    ctx.save();
+    zones.forEach(([s,e,col,lbl])=>{
+      try{
+        const x0=x.getPixelForValue(s),x1=x.getPixelForValue(e);
+        ctx.fillStyle=col;ctx.fillRect(x0,top,x1-x0,bottom-top);
+        ctx.fillStyle='rgba(180,200,220,0.45)';ctx.font='bold 8px Arial';ctx.textAlign='center';
+        ctx.fillText(lbl,(x0+x1)/2,top+10);
+      }catch(ex){}
+    });
+    ctx.restore();
+  }
+});
+const charts = {};
+const baseCO = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:false}},
+  scales:{x:{ticks:{color:'#3A5570',font:{size:9}},grid:{color:'rgba(28,51,80,.5)'}},
+          y:{ticks:{color:'#3A5570',font:{size:9}},grid:{color:'rgba(28,51,80,.5)'}}}
+};
+function mkChart(id, type, opts) {
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(ctx, {type, data:{labels:[],datasets:[]}, options:{...baseCO,...opts}});
+}
+function initCharts(sec) {
+  if (sec==='dashboard') {
+    mkChart('ch-f','line',{plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:8,padding:10}}}});
+    charts['ch-f'].data.datasets=[
+      {label:'Follower',data:[],borderColor:'#E8A020',backgroundColor:'rgba(232,160,32,.1)',fill:true,tension:.3,pointRadius:3},
+      {label:'🎯 Ziel: 500',data:[],borderColor:'rgba(46,204,113,.55)',borderDash:[5,3],pointRadius:0,borderWidth:1.5,fill:false}
+    ];
+    mkChart('ch-st','doughnut',{plugins:{legend:{position:'bottom',labels:{color:'#7090A8',font:{size:10},boxWidth:10}}},scales:{}});
+  }
+  if (sec==='kpi') {
+    mkChart('ch-kf','line',{plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:8,padding:10}}},scales:{y:{min:0,ticks:{color:'#3A5570',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(28,51,80,.4)'}},x:{ticks:{color:'#3A5570',font:{size:8},maxRotation:45,minRotation:45},grid:{display:false}}}});
+    charts['ch-kf'].data.datasets=[
+      {label:'Follower (Ist)',data:[],borderColor:'#E8A020',backgroundColor:'rgba(232,160,32,.1)',fill:true,tension:.3,pointRadius:[],borderWidth:2.5,order:1},
+      {label:'Phasen-Plan',data:[],borderColor:'rgba(96,165,250,.55)',borderDash:[4,3],pointRadius:0,borderWidth:1.5,fill:false,tension:.4,order:2},
+      {label:'Meilensteine',data:[],pointRadius:[],pointStyle:'circle',pointBackgroundColor:'rgba(46,204,113,.85)',pointBorderColor:'#2ECC71',pointBorderWidth:2,borderWidth:0,showLine:false,order:0}
+    ];
+    mkChart('ch-ker','line',{plugins:{legend:{display:false}}});
+    charts['ch-ker'].data.datasets=[{data:[],borderColor:'#2ECC71',backgroundColor:'rgba(46,204,113,.08)',fill:true,tension:.3,pointRadius:2,borderWidth:2}];
+  }
+  if (sec==='ads') {
+    const tc={color:'#3A5570',font:{size:9}};
+    mkChart('ch-ads','bar',{
+      plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:10,padding:14}}},
+      scales:{
+        x:{ticks:{...tc,maxRotation:45,minRotation:45},grid:{display:false}},
+        y:{ticks:tc,grid:{color:'rgba(28,51,80,.5)'},title:{display:true,text:'€',color:'#3A5570',font:{size:9}},suggestedMin:0,suggestedMax:400},
+        y2:{position:'right',ticks:{...tc,callback:v=>v.toFixed(1)+'x'},grid:{display:false},title:{display:true,text:'ROAS',color:'#3A5570',font:{size:9}},min:0,suggestedMax:4}
+      }
+    });
+  }
+}
+
+// ═══ UTILS ══════════════════════════════════════
+const esc = s => s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const n2 = v => v!==''&&v!==undefined ? parseInt(v)||0 : null;
+const fmtN = v => v!==null ? v.toLocaleString('de-DE') : '—';
+
+// ═══ DASHBOARD ══════════════════════════════════
+function rDash() {
+  const filled = S.kpi.filter(r => r.f!=='');
+  const lat = filled.length ? filled[filled.length-1] : null;
+  const prv = filled.length>1 ? filled[filled.length-2] : null;
+  if (lat) {
+    document.getElementById('dash-week').textContent = 'Letzte Daten: ' + lat.w;
+    const f=n2(lat.f), v=n2(lat.v)||1;
+    const l=n2(lat.l)||0,c=n2(lat.c)||0,sh=n2(lat.sh)||0,sa=n2(lat.sa)||0;
+    document.getElementById('kf').textContent = fmtN(f);
+    document.getElementById('kv').textContent = fmtN(n2(lat.v));
+    const er = ((l+c+sh+sa)/v*100);
+    document.getElementById('ker').textContent = er.toFixed(1)+'%';
+    document.getElementById('kerd').className = 'kpi-d '+(er>=3?'pos':er>=2?'neu':'neg');
+    document.getElementById('kerd').textContent = er>=3?'✓ Ziel erreicht':'Ziel: ≥3%';
+    if(prv&&prv.f!=='') {
+      const d=(n2(lat.f)||0)-(n2(prv.f)||0);
+      document.getElementById('kfd').textContent=(d>=0?'+':'')+d.toLocaleString('de-DE')+' vs. Vorwoche';
+      document.getElementById('kfd').className='kpi-d '+(d>0?'pos':d<0?'neg':'neu');
+    }
+    const ph=f>=100000?5:f>=50000?4:f>=15000?3:f>=5000?2:1;
+    for(let i=1;i<=5;i++) document.getElementById('ph'+i).classList.toggle('ap',i===ph);
+  }
+  const cr=VIDEOS.filter(v=>(S.vs[v.id]?.cr||'—')==='✅').length;
+  const li=VIDEOS.filter(v=>(S.vs[v.id]?.li||'—')==='🟢').length;
+  document.getElementById('kcr').textContent=cr+'/63';
+  document.getElementById('kli').textContent=li+'/63';
+  document.getElementById('stat-pub').textContent=li;
+  const last12=filled.slice(-12);
+  if(charts['ch-f']) {
+    charts['ch-f'].data.labels=last12.map(r=>r.w);
+    charts['ch-f'].data.datasets[0].data=last12.map(r=>n2(r.f));
+    charts['ch-f'].data.datasets[1].data=last12.map(()=>500);
+    charts['ch-f'].update();
+  }
+  if(charts['ch-st']) {
+    charts['ch-st'].data.labels=['Live 🟢','Erstellt ✅','Offen'];
+    charts['ch-st'].data.datasets=[{data:[li,cr-li,63-cr],backgroundColor:['#2ECC71','#E8A020','#1C3350'],borderWidth:0}];
+    charts['ch-st'].update();
+  }
+}
+
+// ═══ KPI TABLE ══════════════════════════════════
+function rKPI() {
+  const tb = document.getElementById('kpi-tb');
+  if(!tb) return;
+  tb.innerHTML='';
+  S.kpi.forEach((row,i) => {
+    const f=parseInt(row.f)||0, fp=i>0?(parseInt(S.kpi[i-1].f)||0):0;
+    const df=row.f!==''&&i>0&&S.kpi[i-1].f!==''?f-fp:null;
+    const l=parseInt(row.l)||0,c=parseInt(row.c)||0,sh=parseInt(row.sh)||0,sa=parseInt(row.sa)||0,v=parseInt(row.v)||0;
+    const er=v>0?((l+c+sh+sa)/v*100).toFixed(1):'';
+    const dfC=df===null?'neu':df>0?'pos':df<0?'neg':'neu';
+    const erC=er===''?'neu':parseFloat(er)>=3?'pos':parseFloat(er)>=2?'neu':'neg';
+    const wad=S.wads&&S.wads[i]?S.wads[i]:{bud:'',rev:''};
+    const roas=wad.bud!==''&&wad.rev!==''&&parseFloat(wad.bud)>0?(parseFloat(wad.rev)/parseFloat(wad.bud)).toFixed(2):'—';
+    const roasC=roas==='—'?'var(--text3)':parseFloat(roas)>=2?'var(--green)':parseFloat(roas)>=1.5?'var(--amber)':'var(--red)';
+    tb.insertAdjacentHTML('beforeend', `<tr>
+      <td style="color:var(--text2);white-space:nowrap">${row.w}</td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="f" value="${esc(row.f)}" onchange="upK(this)" placeholder="—" style="width:70px"></td>
+      <td class="${dfC}" style="font-size:10px">${df!==null?(df>=0?'+':'')+df.toLocaleString('de-DE'):''}</td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="v" value="${esc(row.v)}" onchange="upK(this)" placeholder="—" style="width:70px"></td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="l" value="${esc(row.l)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="c" value="${esc(row.c)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="sh" value="${esc(row.sh)}" onchange="upK(this)" placeholder="—" style="width:50px"></td>
+      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="sa" value="${esc(row.sa)}" onchange="upK(this)" placeholder="—" style="width:50px"></td>
+      <td class="${erC}" style="font-weight:600">${er?er+'%':'—'}</td>
+      <td style="background:rgba(46,204,113,.04)"><input class="td-in" data-i="${i}" data-k="ab" value="${esc(row.ab)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
+      <td style="background:rgba(46,204,113,.04)"><input class="td-in" data-i="${i}" data-k="bv" value="${esc(row.bv)}" onchange="upK(this)" placeholder="—" style="width:80px"></td>
+      <td style="color:${roasC};font-weight:600;font-size:12px" title="ROAS aus Ads & Budget">${roas}</td>
+    </tr>`);
+  });
+  const filled=S.kpi.filter(r=>r.f!=='');
+  if(charts['ch-kf']){
+    charts['ch-kf'].data.labels=WEEKS;
+    const actData=WEEKS.map((_,i)=>{const r=S.kpi[i];return r&&r.f!==''?parseInt(r.f)||0:null;});
+    charts['ch-kf'].data.datasets[0].data=actData;
+    charts['ch-kf'].data.datasets[0].pointRadius=actData.map(v=>v!==null?3:0);
+    charts['ch-kf'].data.datasets[1].data=WEEKS.map((_,i)=>interpPlan(GROWTH_PLAN.followers,i));
+    const milWks=GROWTH_PLAN.followers.map(p=>p[0]);
+    const milData=WEEKS.map((_,i)=>milWks.includes(i)?interpPlan(GROWTH_PLAN.followers,i):null);
+    charts['ch-kf'].data.datasets[2].data=milData;
+    charts['ch-kf'].data.datasets[2].pointRadius=milData.map(v=>v!==null?8:0);
+    charts['ch-kf'].update();
+  }
+  const erRows=S.kpi.filter(r=>r.f!==''&&parseInt(r.v)>0);
+  if(charts['ch-ker']){
+    charts['ch-ker'].data.labels=erRows.map(r=>r.w);
+    charts['ch-ker'].data.datasets[0].data=erRows.map(r=>{const l=parseInt(r.l)||0,c=parseInt(r.c)||0,sh=parseInt(r.sh)||0,sa=parseInt(r.sa)||0,v=parseInt(r.v)||1;return parseFloat(((l+c+sh+sa)/v*100).toFixed(2));});
+    charts['ch-ker'].update();
+  }
+}
+function upK(el){const i=+el.dataset.i,k=el.dataset.k;S.kpi[i][k]=el.value;if(k==='ab'){if(!S.wads[i])S.wads[i]={bud:'',rev:'',note:''};S.wads[i].bud=el.value;}save();if(CI.dashboard)rDash();rKPI();}
+
+// ═══ CONTENT ════════════════════════════════════
+const FLT={ph:'',tr:'',st:''};
+function setFlt(el,k) {
+  document.querySelectorAll(`.fb[data-${k}]`).forEach(b=>b.classList.remove('on'));
+  el.classList.add('on'); FLT[k]=el.dataset[k]||''; rContent();
+}
+function rContent() {
+  const q=(document.getElementById('csearch')?.value||'').toLowerCase();
+  const cr=VIDEOS.filter(v=>(S.vs[v.id]?.cr||'—')==='✅').length;
+  const li=VIDEOS.filter(v=>(S.vs[v.id]?.li||'—')==='🟢').length;
+  document.getElementById('cnt-cr').textContent=cr;
+  document.getElementById('cnt-li').textContent=li;
+  const PC={'Phase 1':'bblue','Phase 2':'bgreen','Phase 3':'bgold','Phase 4':'bpurp','Phase 5':'bteal'};
+  const SC={'Einfach':'bgreen','Mittel':'bgold','Hoch':'bred'};
+  const vis=VIDEOS.filter(v=>{
+    if(FLT.ph&&v.phase!==FLT.ph) return false;
+    if(FLT.tr&&v.track!==FLT.tr) return false;
+    const s=S.vs[v.id]||{};
+    if(FLT.st==='live'&&(s.li||'—')!=='🟢') return false;
+    if(FLT.st==='erstellt'&&(s.cr||'—')!=='✅') return false;
+    if(FLT.st==='offen'&&(s.cr||'—')==='✅') return false;
+    if(q&&!v.title.toLowerCase().includes(q)&&!v.id.toLowerCase().includes(q)&&!v.produkt.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById('cnt-n').textContent=vis.length+' Videos';
+  const tb=document.getElementById('ctb'); tb.innerHTML='';
+  vis.forEach(v=>{
+    const s=S.vs[v.id]||{};
+    const gi=VIDEOS.indexOf(v)+1;
+    tb.insertAdjacentHTML('beforeend',`<tr>
+      <td style="color:var(--text3)">${gi}</td>
+      <td><span class="bdg ${PC[v.phase]}">${v.phase.replace('Phase ','P')}</span></td>
+      <td><span class="bdg ${v.track==='Produkt'?'bblue':'bpurp'}">${v.track}</span></td>
+      <td style="font-weight:600;color:var(--gold);white-space:nowrap">${v.id}</td>
+      <td><div style="font-weight:500">${esc(v.title)}</div><div style="font-size:10px;color:var(--text2);margin-top:2px">${esc(v.produkt)}</div></td>
+      <td><span class="bdg ${SC[v.schwierigkeit]}">${v.schwierigkeit}</span></td>
+      <td><select class="td-sel" data-id="${v.id}" data-k="cr" onchange="upVS(this)">
+        <option${(s.cr||'—')==='—'?' selected':''}>—</option>
+        <option${(s.cr||'—')==='✅'?' selected':''}>✅</option>
+      </select></td>
+      <td><input class="td-in" data-id="${v.id}" data-k="crd" value="${esc(s.crd||'')}" onchange="upVSi(this)" placeholder="TT.MM" style="width:60px"></td>
+      <td><select class="td-sel" data-id="${v.id}" data-k="li" onchange="upVS(this)">
+        <option${(s.li||'—')==='—'?' selected':''}>—</option>
+        <option${(s.li||'—')==='🟢'?' selected':''}>🟢</option>
+      </select></td>
+      <td><input class="td-in" data-id="${v.id}" data-k="lid" value="${esc(s.lid||'')}" onchange="upVSi(this)" placeholder="TT.MM" style="width:60px"></td>
+      <td><input class="td-in" data-id="${v.id}" data-k="n" value="${esc(s.n||'')}" onchange="upVSi(this)" placeholder="Notiz..." style="width:100%"></td>
+    </tr>`);
+  });
+}
+function upVS(el){const id=el.dataset.id,k=el.dataset.k;if(!S.vs[id])S.vs[id]={};S.vs[id][k]=el.value;save();if(CI.dashboard)rDash();}
+function upVSi(el){const id=el.dataset.id,k=el.dataset.k;if(!S.vs[id])S.vs[id]={};S.vs[id][k]=el.value;save();}
+
+// ═══ ADS ════════════════════════════════════════
+function rAds() {
+  if(!S.wads||S.wads.length!==WEEKS.length)S.wads=WEEKS.map((_,i)=>S.wads&&S.wads[i]?S.wads[i]:{bud:'',rev:'',note:''});
+  const fmtE=v=>v===0?'0':v.toLocaleString('de-DE',{maximumFractionDigits:0});
+  const roasC=v=>v===null?'var(--text2)':v>=2?'var(--green)':v>=1.5?'var(--amber)':'var(--red)';
+  const dClr=v=>v===null?'var(--text2)':v>=10?'var(--green)':v>=-5?'var(--amber)':'var(--red)';
+  const dTxt=v=>{if(v===null)return '<span style="color:var(--text3)">—</span>';const s=v>=0?'↑':'↓';const cl=v>=10?'pos':v>=-5?'neu':'neg';return `<span class="${cl}" style="font-size:10px">${s} ${Math.abs(v).toFixed(1)}%</span>`;};
+  const dRTxt=v=>{if(v===null)return '<span style="color:var(--text3)">—</span>';const s=v>=0?'↑':'↓';const cl=v>=0.2?'pos':v>=-0.2?'neu':'neg';return `<span class="${cl}" style="font-size:10px">${s} ${Math.abs(v).toFixed(2)}</span>`;};
+
+  let cumB=0,cumR=0,totB=0,totR=0;
+  let bestIdx=-1,bestRoas=-Infinity,worstIdx=-1,worstRoas=Infinity;
+  let lastRoasArr=[],filledCount=0;
+
+  const rows=WEEKS.map((w,i)=>{
+    const a=S.wads[i]||{bud:'',rev:'',note:''};
+    const b=a.bud!==''?parseFloat(a.bud)||0:null;
+    const r=a.rev!==''?parseFloat(a.rev)||0:null;
+    const hasDat=b!==null||r!==null;
+    const bv=b||0,rv=r||0;
+    if(b!==null)totB+=bv; if(r!==null)totR+=rv;
+    if(b!==null)cumB+=bv; if(r!==null)cumR+=rv;
+    const roas=bv>0?rv/bv:null;
+    const profit=hasDat?rv-bv:null;
+    const cumRoas=cumB>0?cumR/cumB:null;
+    const prev=i>0?S.wads[i-1]||{}:{};
+    const pb=prev.bud!==''&&prev.bud!==undefined?parseFloat(prev.bud)||0:null;
+    const pr=prev.rev!==''&&prev.rev!==undefined?parseFloat(prev.rev)||0:null;
+    const dB=(pb!==null&&pb>0&&b!==null&&bv>0)?((bv-pb)/pb*100):null;
+    const dR=(pr!==null&&pr>0&&r!==null&&rv>0)?((rv-pr)/pr*100):null;
+    const prevRoas=pb!==null&&pb>0&&pr!==null?pr/pb:null;
+    const dRoas=(prevRoas!==null&&roas!==null)?roas-prevRoas:null;
+    if(roas!==null){
+      lastRoasArr.push(roas);
+      if(roas>bestRoas){bestRoas=roas;bestIdx=i;}
+      if(roas<worstRoas){worstRoas=roas;worstIdx=i;}
+    }
+    if(hasDat)filledCount++;
+    return {w,bv,rv,b,r,roas,profit,cumB:cumB,cumR:cumR,cumRoas,dB,dR,dRoas,hasDat,note:a.note||''};
+  });
+
+  const totRoas=totB>0?totR/totB:null;
+  const totProfit=totR-totB;
+  const ma3=lastRoasArr.length>=3?lastRoasArr.slice(-3).reduce((a,b)=>a+b,0)/3:lastRoasArr.length>0?lastRoasArr[lastRoasArr.length-1]:null;
+  const woW=lastRoasArr.length>=2?((lastRoasArr[lastRoasArr.length-1]-lastRoasArr[lastRoasArr.length-2])/Math.abs(lastRoasArr[lastRoasArr.length-2])*100):null;
+
+  // ─── KPI Summary ──────────────────────────────
+  const kpig=document.getElementById('ads-kpis');
+  if(kpig){
+    const kpis=[
+      {lbl:'∑ Ausgabe',val:'€ '+fmtE(totB),sub:filledCount+' Wochen',cl:'neu'},
+      {lbl:'∑ Umsatz',val:'€ '+fmtE(totR),sub:'TikTok Shop',cl:totR>totB?'pos':totR>0?'neu':'neg'},
+      {lbl:'∑ Profit',val:(totProfit>=0?'+ ':'')+'€ '+fmtE(Math.abs(Math.round(totProfit))),sub:totProfit>=0?'Positiv':'Negativ',cl:totProfit>=0?'pos':'neg'},
+      {lbl:'Ø ROAS',val:totRoas?totRoas.toFixed(2):'—',sub:totRoas>=2?'✓ Über Ziel':totRoas>0?'Ziel: ≥ 2.0':'Noch keine Daten',cl:totRoas>=2?'pos':totRoas>=1.5?'neu':'neg'},
+      {lbl:'3W-MA ROAS',val:ma3?ma3.toFixed(2):'—',sub:woW!==null?(woW>=0?'↑ +':'↓ ')+Math.abs(woW).toFixed(1)+'% Trend':'letzter Ø',cl:ma3>=2?'pos':ma3>=1.5?'neu':ma3?'neg':'neu'},
+      {lbl:'⭐ Bestes KW',val:bestIdx>=0?bestRoas.toFixed(2):'—',sub:bestIdx>=0?WEEKS[bestIdx]:'—',cl:'pos'},
+      {lbl:'📉 Schwächstes KW',val:worstIdx>=0&&worstRoas<Infinity?worstRoas.toFixed(2):'—',sub:worstIdx>=0?WEEKS[worstIdx]:'—',cl:'neg'},
+    ];
+    kpig.innerHTML=kpis.map(k=>`<div class="kpi"><div class="kpi-lbl">${k.lbl}</div><div class="kpi-val">${k.val}</div><div class="kpi-d ${k.cl}">${k.sub}</div></div>`).join('');
+  }
+
+  // ─── Matrix Table ─────────────────────────────
+  const tbl=document.getElementById('ads-tbl');
+  if(tbl){
+    const hdrStyle='background:var(--navy2);color:var(--text2);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:7px 9px;position:sticky;top:0;z-index:1;white-space:nowrap;border-bottom:1px solid var(--border2)';
+    tbl.innerHTML=`<thead><tr>
+      <th style="${hdrStyle};text-align:left;left:0;z-index:2">KW</th>
+      <th style="${hdrStyle};background:rgba(232,160,32,.08)">Ausgabe €</th>
+      <th style="${hdrStyle};background:rgba(46,204,113,.08)">Umsatz €</th>
+      <th style="${hdrStyle}">Profit €</th>
+      <th style="${hdrStyle};font-size:10px;color:var(--gold)">ROAS</th>
+      <th style="${hdrStyle}">Δ Ausgabe</th>
+      <th style="${hdrStyle}">Δ Umsatz</th>
+      <th style="${hdrStyle}">Δ ROAS</th>
+      <th style="${hdrStyle};border-left:1px solid var(--border2)">∑ Ausgabe</th>
+      <th style="${hdrStyle}">∑ Umsatz</th>
+      <th style="${hdrStyle}">∑ ROAS</th>
+      <th style="${hdrStyle};border-left:1px solid var(--border2);text-align:left">Notiz</th>
+    </tr></thead><tbody>${rows.map((row,i)=>{
+      const a=S.wads[i]||{};
+      const rC=roasC(row.roas);
+      const prC=row.profit===null?'var(--text2)':row.profit>=0?'var(--green)':'var(--red)';
+      const cumRC=roasC(row.cumRoas);
+      const trCl=i===bestIdx?'ads-hi':i===worstIdx&&worstIdx>=0?'ads-lo':'';
+      const bestBadge=i===bestIdx?' <span style="font-size:9px">⭐</span>':'';
+      const wrstBadge=i===worstIdx&&worstIdx>=0?' <span style="font-size:9px">📉</span>':'';
+      const profTxt=row.profit===null?'—':(row.profit>=0?'+ ':'– ')+'€ '+fmtE(Math.abs(Math.round(row.profit)));
+      return `<tr class="${trCl}">
+        <td style="text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:600;color:var(--text2);font-size:10px;letter-spacing:.3px;border-right:1px solid var(--border)">${row.w}${bestBadge}${wrstBadge}</td>
+        <td style="background:rgba(232,160,32,.03)"><input class="ads-in" data-i="${i}" data-k="bud" value="${esc(a.bud||'')}" onchange="upWA(this)" placeholder="—"></td>
+        <td style="background:rgba(46,204,113,.03)"><input class="ads-in" data-i="${i}" data-k="rev" value="${esc(a.rev||'')}" onchange="upWA(this)" placeholder="—"></td>
+        <td style="color:${prC};font-weight:600">${profTxt}</td>
+        <td style="color:${rC};font-weight:700;font-size:13px">${row.roas!==null?row.roas.toFixed(2):'—'}</td>
+        <td>${dTxt(row.dB)}</td>
+        <td>${dTxt(row.dR)}</td>
+        <td>${dRTxt(row.dRoas)}</td>
+        <td style="color:var(--text2);border-left:1px solid var(--border)">${row.cumB>0?'€ '+fmtE(Math.round(row.cumB)):'—'}</td>
+        <td style="color:var(--text2)">${row.cumR>0?'€ '+fmtE(Math.round(row.cumR)):'—'}</td>
+        <td style="color:${cumRC};font-weight:600">${row.cumRoas?row.cumRoas.toFixed(2):'—'}</td>
+        <td style="text-align:left;border-left:1px solid var(--border)"><input class="ads-note-in" data-i="${i}" data-k="note" value="${esc(row.note)}" onchange="upWA(this)" placeholder="…"></td>
+      </tr>`;
+    }).join('')}</tbody>`;
+  }
+
+  // ─── Chart ────────────────────────────────────
+  const filled=rows.filter(r=>r.hasDat);
+  const sub=document.getElementById('ads-ct-sub');
+  if(sub)sub.textContent=filled.length?`${filled.length} Wochen mit Daten`:'Noch keine Einträge';
+  if(charts['ch-ads']){
+    // Dynamic phase-aware budget plan (derived from GROWTH_PLAN.adsBudget)
+    const planSpend=WEEKS.map((_,i)=>interpPlan(GROWTH_PLAN.adsBudget,i));
+    const roasData=WEEKS.map((_,i)=>{const a=S.wads[i];if(!a||a.bud===''||a.rev==='')return null;const b=parseFloat(a.bud)||0;const rv=parseFloat(a.rev)||0;return b>0?+(rv/b).toFixed(2):null;});
+    charts['ch-ads'].data.labels=WEEKS;
+    charts['ch-ads'].data.datasets=[
+      {type:'bar',label:'Ausgabe €',data:WEEKS.map((_,i)=>{const a=S.wads[i];return a&&a.bud!==''?parseFloat(a.bud)||null:null;}),backgroundColor:'rgba(232,160,32,.55)',yAxisID:'y',order:2},
+      {type:'bar',label:'Umsatz €',data:WEEKS.map((_,i)=>{const a=S.wads[i];return a&&a.rev!==''?parseFloat(a.rev)||null:null;}),backgroundColor:'rgba(46,204,113,.55)',yAxisID:'y',order:2},
+      {type:'line',label:'ROAS',data:roasData,borderColor:'#60A5FA',backgroundColor:'rgba(96,165,250,.08)',fill:false,tension:.35,pointRadius:roasData.map(v=>v!==null?5:0),pointHoverRadius:7,borderWidth:2.5,yAxisID:'y2',order:1,spanGaps:false,
+       pointBackgroundColor:roasData.map(v=>v===null?'transparent':v>=2?'#2ECC71':v>=1.5?'#F39C12':'#E74C3C'),
+       pointBorderColor:roasData.map(v=>v===null?'transparent':v>=2?'#2ECC71':v>=1.5?'#F39C12':'#E74C3C')},
+      {type:'line',label:'📈 Plan Ausgabe',data:planSpend,borderColor:'rgba(232,160,32,.4)',backgroundColor:'transparent',borderDash:[4,3],pointRadius:0,borderWidth:1.5,yAxisID:'y',order:3,fill:false,tension:.4},
+      {type:'line',label:'🎯 ROAS Ziel 2.0',data:WEEKS.map(()=>2),borderColor:'rgba(46,204,113,.5)',backgroundColor:'transparent',borderDash:[5,3],pointRadius:0,borderWidth:1.5,yAxisID:'y2',order:3,fill:false},
+    ];
+    charts['ch-ads'].update();
+  }
+}
+function upWA(el){const i=+el.dataset.i,k=el.dataset.k;if(!S.wads[i])S.wads[i]={bud:'',rev:'',note:''};S.wads[i][k]=el.value;if(k==='bud'&&S.kpi[i])S.kpi[i].ab=el.value;save();rAds();if(CI.kpi)rKPI();}
+function upA(el){const i=+el.dataset.i,k=el.dataset.k;if(S.ads&&S.ads[i])S.ads[i][k]=el.value;save();}
+function upAsel(el){const i=+el.dataset.i,k=el.dataset.k;if(S.ads&&S.ads[i])S.ads[i][k]=el.value;save();}
+
+// ═══ ROADMAP ════════════════════════════════════
+function rRoadmap() {
+  const g=document.getElementById('rmg'); if(!g) return; g.innerHTML='';
+  ROADMAP.forEach(ph=>{
+    const ms=S.ms[ph.id]||[];
+    const done=ms.filter(Boolean).length, pct=Math.round(done/ph.items.length*100);
+    const items=ph.items.map((item,i)=>{
+      const d=ms[i]||false;
+      return `<div class="rm-item" data-ph="${ph.id}" data-i="${i}" onclick="toggleMS(this)">
+        <div class="rm-cb ${d?'dn':''}">${d?'✓':''}</div>
+        <span class="rm-txt ${d?'dn':''}">${esc(item)}</span>
+      </div>`;
+    }).join('');
+    g.insertAdjacentHTML('beforeend',`
+      <div class="rm-card">
+        <div class="rm-hdr" style="background:${ph.bg};color:${ph.color}">${ph.lbl} <span style="font-weight:400;font-size:10px">${ph.kw}</span></div>
+        <div class="rm-body">
+          <div class="rm-goal">${esc(ph.goal)}<br><span>Trigger: ${esc(ph.trigger)}</span></div>
+          ${items}
+          <div style="margin-top:8px;font-size:10px;color:var(--text2)">${done}/${ph.items.length} erreicht
+            <div class="pb" style="margin-top:3px"><div class="pbf" style="width:${pct}%;background:${ph.color}"></div></div>
+          </div>
+        </div>
+      </div>`);
+  });
+}
+function toggleMS(el){const ph=el.dataset.ph,i=+el.dataset.i;if(!S.ms[ph])S.ms[ph]=[];while(S.ms[ph].length<=i)S.ms[ph].push(false);S.ms[ph][i]=!S.ms[ph][i];save();rRoadmap();}
+
+// ═══ TODOS ══════════════════════════════════════
+function rTodos() {
+  const g=document.getElementById('tdg'); if(!g) return; g.innerHTML='';
+  TDEFS.forEach(td=>{
+    const state=S.td[td.id]||[];
+    const done=state.filter(Boolean).length;
+    const items=td.items.map((item,i)=>{
+      const d=state[i]||false;
+      return `<div class="td-item ${d?'dn':''}" data-id="${td.id}" data-i="${i}" onclick="toggleTD(this)">
+        <div class="td-cb">${d?'✓':''}</div>
+        <span class="td-txt">${esc(item)}</span>
+      </div>`;
+    }).join('');
+    const hist=(S.tdH&&S.tdH[td.id])?[...S.tdH[td.id]].reverse().slice(0,60):[];
+    const histHTML=hist.length?`
+      <div class="td-ht" onclick="this.nextElementSibling.classList.toggle('on');this.classList.toggle('on')">
+        📋 Verlauf <span class="td-ht-ct">${hist.length}</span>
+      </div>
+      <div class="td-hl">
+        ${hist.map(e=>{const pct=e.total?Math.round(e.done/e.total*100):0;const w=Math.round(pct/100*6);const cl=pct===100?'pos':pct>=50?'neu':'neg';return `<div class="td-hr"><span class="td-hd">${e.d}</span><div class="td-hb"><div style="width:${pct}%;background:${pct===100?'var(--green)':pct>=50?'var(--amber)':'var(--red)'}"></div></div><span class="td-hs ${cl}">${e.done}/${e.total}</span></div>`;}).join('')}
+      </div>`:'';
+    g.insertAdjacentHTML('beforeend',`
+      <div class="td-card">
+        <div class="td-hdr">${td.ic} ${td.lbl}
+          <span style="margin-left:auto;font-size:10px;color:var(--text2);font-weight:400">${done}/${td.items.length}</span>
+          <button class="td-rst" data-id="${td.id}" data-lbl="${td.lbl}" onclick="resetTD(this,event)" title="${td.lbl} zurücksetzen">↺</button>
+        </div>
+        ${items}${histHTML}
+      </div>`);
+  });
+}
+function toggleTD(el){const id=el.dataset.id,i=+el.dataset.i;if(!S.td[id])S.td[id]=[];while(S.td[id].length<=i)S.td[id].push(false);S.td[id][i]=!S.td[id][i];save();rTodos();}
+function logTD(id,def){
+  const state=S.td[id]||[];
+  const done=state.filter(Boolean).length;
+  if(!S.tdH)S.tdH={};
+  if(!S.tdH[id])S.tdH[id]=[];
+  const ex=S.tdH[id].findIndex(e=>e.d===_today);
+  const entry={d:_today,done,total:def.items.length};
+  if(ex>=0){S.tdH[id][ex]=entry;}else{S.tdH[id].push(entry);}
+}
+function resetTD(el,ev){
+  if(ev)ev.stopPropagation();
+  const id=el.dataset.id,lbl=el.dataset.lbl;
+  if(!confirm(`"${lbl}" zurücksetzen?`))return;
+  const def=TDEFS.find(t=>t.id===id);
+  if(!def)return;
+  logTD(id,def);
+  S.td[id]=Array(def.items.length).fill(false);
+  save();rTodos();
+}
+
+// ═══ THEME ══════════════════════════════════════
+function toggleTheme(){
+  const light=document.documentElement.classList.toggle('light');
+  document.getElementById('theme-lbl').textContent=light?'Dunkel-Modus':'Hell-Modus';
+  document.getElementById('theme-btn').firstChild.textContent=light?'🌙 ':'☀️ ';
+  try{localStorage.setItem('glart_theme',light?'light':'dark');}catch(e){}
+  // Rebuild charts with new colors
+  Object.keys(charts).forEach(k=>{if(charts[k])charts[k].destroy();delete charts[k];});
+  Object.keys(CI).forEach(k=>delete CI[k]);
+  const cur=document.querySelector('.nav.on')?.dataset?.sec||'dashboard';
+  CI[cur]=true; initCharts(cur); refresh(cur);
+}
+
+// ═══ EXPORT / IMPORT ════════════════════════════
+function exportData(){const b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='GLART_'+new Date().toISOString().slice(0,10)+'.json';a.click();}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);S={...defState(),...d};save();const cur=document.querySelector('.nav.on')?.dataset?.sec||'dashboard';refresh(cur);alert('Importiert!');}catch(err){alert('Fehler: '+err.message);}};r.readAsText(f);e.target.value='';}
+
+// ═══ INIT ════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  try{
+    if(localStorage.getItem('glart_theme')==='light'){
+      document.documentElement.classList.add('light');
+      document.getElementById('theme-lbl').textContent='Dunkel-Modus';
+      document.getElementById('theme-btn').firstChild.textContent='🌙 ';
+    }
+  }catch(e){}
+  CI.dashboard=true;
+  initCharts('dashboard');
+  CI.content=true;
+  rDash(); rContent(); rRoadmap(); rTodos();
+});
+</script>
+</body>
+</html>
