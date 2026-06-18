@@ -1274,13 +1274,29 @@ window.addEventListener('load',()=>{
   initCharts('dashboard');
   rDash();
 
+  // Firebase Status Badge
+  const fbBadge=(()=>{
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;bottom:8px;right:8px;font-size:10px;padding:3px 7px;border-radius:4px;z-index:9999;opacity:0.85;font-weight:700;';
+    el.textContent='⏳ Firebase…';
+    el.style.background='#555';el.style.color='#fff';
+    document.body.appendChild(el);
+    return {
+      ok:(msg)=>{el.style.background='#2a7';el.textContent='✅ '+msg;},
+      err:(msg)=>{el.style.background='#c33';el.textContent='❌ '+msg;},
+      info:(msg)=>{el.style.background='#555';el.textContent='ℹ️ '+msg;}
+    };
+  })();
+
   // Firebase loads 3s after page — never blocks or changes the UI
   setTimeout(()=>{
     const s1=document.createElement('script');
     s1.src='https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js';
+    s1.onerror=()=>fbBadge.err('SDK laden fehlgeschlagen');
     s1.onload=()=>{
       const s2=document.createElement('script');
       s2.src='https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js';
+      s2.onerror=()=>fbBadge.err('DB SDK Fehler');
       s2.onload=()=>{
         try {
           firebase.initializeApp({
@@ -1296,31 +1312,36 @@ window.addEventListener('load',()=>{
           const fbRef=fbDb.ref('glart/v3');
           const fbSID=Date.now()+'_'+Math.random().toString(36).slice(2);
           let fbSaving=false;
+          fbBadge.ok('Verbunden');
           _fbSync=()=>{
             fbSaving=true;
-            fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{}).finally(()=>{
-              setTimeout(()=>{fbSaving=false;},2000);
-            });
+            fbBadge.ok('Speichert…');
+            fbRef.set({...S,_sid:fbSID,_ts:Date.now()})
+              .then(()=>fbBadge.ok('Gespeichert ✓'))
+              .catch((e)=>fbBadge.err('Schreib-Fehler'))
+              .finally(()=>{setTimeout(()=>{fbSaving=false;},2000);});
           };
           // Beim Öffnen: Firebase-Daten ziehen wenn neuer als zuletzt geladen
           fbRef.once('value').then(snap=>{
             const d=snap.val();
             if(!d){
-              // Firebase leer → einmalig eigene Daten hochladen
+              fbBadge.info('Firebase leer → eigene Daten');
               fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
               return;
             }
             const fbTs=d._ts||0;
             const syncedTs=parseInt(sessionStorage.getItem('fbSyncTs')||'0');
+            fbBadge.info('fbTs='+fbTs+' syncedTs='+syncedTs);
             if(fbTs>syncedTs){
-              // Firebase neuer → übernehmen und einmal neu laden
+              fbBadge.ok('Neuere Daten → lade…');
               sessionStorage.setItem('fbSyncTs',String(fbTs));
               const {_sid,_ts,...data}=d;
               try{localStorage.setItem(SK,JSON.stringify({...data,_ts:fbTs}));}catch(e){}
-              location.reload();
+              setTimeout(()=>location.reload(),800);
+            } else {
+              fbBadge.ok('Aktuell ✓');
             }
-            // sonst: nichts tun — nur bei Nutzeränderungen pushen
-          }).catch(()=>{});
+          }).catch((e)=>fbBadge.err('Lese-Fehler: '+e.message));
           // Live-Listener: Änderungen anderer Geräte → auto reload
           let first=true;
           fbRef.on('value',snap=>{
@@ -1329,6 +1350,7 @@ window.addEventListener('load',()=>{
             const d=snap.val();
             if(!d||d._sid===fbSID) return;
             sessionStorage.setItem('fbSyncTs',String(d._ts||Date.now()));
+            fbBadge.ok('Team-Update → lade…');
             let b=document.getElementById('fb-banner');
             if(!b){
               b=document.createElement('div');
@@ -1340,7 +1362,7 @@ window.addEventListener('load',()=>{
             b.style.display='block';
             setTimeout(()=>location.reload(),1500);
           });
-        } catch(e){console.warn('Firebase:',e);}
+        } catch(e){fbBadge.err('Init: '+e.message);}
       };
       document.head.appendChild(s2);
     };
