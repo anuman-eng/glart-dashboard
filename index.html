@@ -1302,23 +1302,21 @@ window.addEventListener('load',()=>{
               setTimeout(()=>{fbSaving=false;},2000);
             });
           };
-          // Beim Öffnen: Firebase-Daten ziehen wenn neuer als localStorage
+          // Beim ersten Öffnen (nicht Reload): Firebase ist die Wahrheit
           fbRef.once('value').then(snap=>{
             const d=snap.val();
             if(!d){
+              // Firebase leer → eigene Daten hochladen
               fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
+            } else if(!sessionStorage.getItem('fbLoaded')){
+              // Erster Besuch diese Sitzung → Firebase-Daten übernehmen
+              sessionStorage.setItem('fbLoaded','1');
+              const {_sid,_ts,...data}=d;
+              try{localStorage.setItem(SK,JSON.stringify({...data,_ts:_ts||Date.now()}));}catch(e){}
+              location.reload();
             } else {
-              const fbTs=d._ts||0;
-              const localTs=S._ts||0;
-              if(fbTs>localTs){
-                // Firebase ist neuer → übernehmen und neu laden
-                const {_sid,_ts,...data}=d;
-                try{localStorage.setItem(SK,JSON.stringify({...data,_ts:fbTs}));}catch(e){}
-                location.reload();
-              } else {
-                // Lokale Daten neuer → zu Firebase pushen
-                fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
-              }
+              // Schon geladen → aktuellen Stand zu Firebase pushen
+              fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
             }
           }).catch(()=>{});
           // Live-Listener: Änderungen anderer Geräte → auto reload
