@@ -1302,25 +1302,24 @@ window.addEventListener('load',()=>{
               setTimeout(()=>{fbSaving=false;},2000);
             });
           };
-          // Beim Öffnen: Firebase vs. lokaler Stand per Timestamp vergleichen
+          // Beim Öffnen: Firebase-Daten ziehen wenn neuer als zuletzt geladen
           fbRef.once('value').then(snap=>{
             const d=snap.val();
             if(!d){
+              // Firebase leer → einmalig eigene Daten hochladen
               fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
               return;
             }
             const fbTs=d._ts||0;
             const syncedTs=parseInt(sessionStorage.getItem('fbSyncTs')||'0');
             if(fbTs>syncedTs){
-              // Firebase hat neuere Daten → übernehmen
+              // Firebase neuer → übernehmen und einmal neu laden
               sessionStorage.setItem('fbSyncTs',String(fbTs));
               const {_sid,_ts,...data}=d;
               try{localStorage.setItem(SK,JSON.stringify({...data,_ts:fbTs}));}catch(e){}
               location.reload();
-            } else {
-              // Lokaler Stand aktuell → zu Firebase pushen
-              fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
             }
+            // sonst: nichts tun — nur bei Nutzeränderungen pushen
           }).catch(()=>{});
           // Live-Listener: Änderungen anderer Geräte → auto reload
           let first=true;
