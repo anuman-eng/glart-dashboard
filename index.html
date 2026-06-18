@@ -1302,20 +1302,23 @@ window.addEventListener('load',()=>{
               setTimeout(()=>{fbSaving=false;},2000);
             });
           };
-          // Beim ersten Öffnen (nicht Reload): Firebase ist die Wahrheit
+          // Beim Öffnen: Firebase vs. lokaler Stand per Timestamp vergleichen
           fbRef.once('value').then(snap=>{
             const d=snap.val();
             if(!d){
-              // Firebase leer → eigene Daten hochladen
               fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
-            } else if(!sessionStorage.getItem('fbLoaded')){
-              // Erster Besuch diese Sitzung → Firebase-Daten übernehmen
-              sessionStorage.setItem('fbLoaded','1');
+              return;
+            }
+            const fbTs=d._ts||0;
+            const syncedTs=parseInt(sessionStorage.getItem('fbSyncTs')||'0');
+            if(fbTs>syncedTs){
+              // Firebase hat neuere Daten → übernehmen
+              sessionStorage.setItem('fbSyncTs',String(fbTs));
               const {_sid,_ts,...data}=d;
-              try{localStorage.setItem(SK,JSON.stringify({...data,_ts:_ts||Date.now()}));}catch(e){}
+              try{localStorage.setItem(SK,JSON.stringify({...data,_ts:fbTs}));}catch(e){}
               location.reload();
             } else {
-              // Schon geladen → aktuellen Stand zu Firebase pushen
+              // Lokaler Stand aktuell → zu Firebase pushen
               fbRef.set({...S,_sid:fbSID,_ts:Date.now()}).catch(()=>{});
             }
           }).catch(()=>{});
@@ -1326,7 +1329,7 @@ window.addEventListener('load',()=>{
             if(fbSaving) return;
             const d=snap.val();
             if(!d||d._sid===fbSID) return;
-            // Kurze Meldung dann auto-reload
+            sessionStorage.setItem('fbSyncTs',String(d._ts||Date.now()));
             let b=document.getElementById('fb-banner');
             if(!b){
               b=document.createElement('div');
