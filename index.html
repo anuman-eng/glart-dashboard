@@ -2,1288 +2,708 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>GLART @glart_official — TikTok Growth System</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon Vendor Glossar – ALCLEAR</title>
+<meta name="description" content="Interaktives Amazon Vendor Glossar mit allen wichtigen KPIs, Begriffen und Lernkarten für ALCLEAR.">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0B1623;--sb:#091220;--card:#0F1E30;--card2:#152538;
-  --border:#1C3350;--border2:#253F60;--navy2:#0A1A2C;
-  --gold:#E8A020;--text:#C8DAEA;--text2:#7090A8;--text3:#3A5570;
-  --green:#2ECC71;--green-d:#1A8A4A;--red:#E74C3C;--amber:#F39C12;
-}
-html.light{
-  --bg:#F0F4F8;--sb:#E2E8F0;--card:#FFFFFF;--card2:#EEF2F7;
-  --border:#CBD5E0;--border2:#A0AEC0;--navy2:#EEF2F7;
-  --gold:#C47A00;--text:#1A2535;--text2:#4A5568;--text3:#A0AEC0;
-  --green:#1A8A4A;--green-d:#166A38;--red:#C0392B;--amber:#B7770D;
-}
-html.light .nav:hover{background:rgba(0,0,0,.05);color:var(--text)}
-html.light .nav.on{background:rgba(196,122,0,.12);color:var(--gold);border-left-color:var(--gold)}
-html.light .pp.ap{opacity:1}
-html.light .esc-r td:first-child{border-left-color:#C0392B}
-html.light .esc-a td:first-child{border-left-color:#B7770D}
-html.light .esc-g td:first-child{border-left-color:#1A8A4A}
-html.light .ns{background:linear-gradient(135deg,#EEF2F7,#E2E8F0);border-color:rgba(196,122,0,.5)}
-html.light .td-sel{background:#fff}
-html.light tr:hover td{background:rgba(0,0,0,.025)}
-html.light .bxs:hover{background:rgba(196,122,0,.1);color:var(--gold);border-color:rgba(196,122,0,.4)}
-html.light .fb:hover,html.light .fb.on{background:rgba(196,122,0,.12);color:var(--gold);border-color:rgba(196,122,0,.5)}
-body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;height:100vh;overflow:hidden;font-size:13px}
-.sb{width:210px;background:var(--sb);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sb-logo{padding:18px 16px 14px;border-bottom:1px solid var(--border)}
-.sb-logo h1{color:var(--gold);font-size:19px;font-weight:800;letter-spacing:-.5px}
-.sb-logo .hdl{color:var(--text2);font-size:10px;margin-top:2px}
-.sb-sec{padding:12px 16px 4px;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3)}
-.nav{padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:9px;color:var(--text2);font-size:12px;border-left:3px solid transparent;transition:all .15s;user-select:none;white-space:nowrap}
-.nav:hover{background:rgba(255,255,255,.04);color:var(--text)}
-.nav.on{background:rgba(232,160,32,.1);color:var(--gold);border-left-color:var(--gold);font-weight:600}
-.nav-ic{font-size:15px;width:20px;text-align:center;flex-shrink:0}
-.sb-bot{margin-top:auto;padding:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
-.bxs{padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:11px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;width:100%}
-.bxs:hover{background:rgba(232,160,32,.1);color:var(--gold);border-color:rgba(232,160,32,.4)}
-.main{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:0}
-.sec{display:none}.sec.on{display:flex;flex-direction:column;gap:14px}
-.ph{display:flex;align-items:center;justify-content:space-between;padding-bottom:2px}
-.ph h2{font-size:19px;font-weight:700}
-.ph-sub{color:var(--text2);font-size:11px;margin-top:2px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
-.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.g73{display:grid;grid-template-columns:7fr 3fr;gap:12px}
-.g64{display:grid;grid-template-columns:6fr 4fr;gap:12px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px}
-.ct{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:15px}
-.kpi-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-.kpi-val{font-size:24px;font-weight:700;line-height:1;color:var(--text)}
-.kpi-d{font-size:11px;margin-top:5px}.kk{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px}.kk-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}.kk-val{font-size:20px;font-weight:700;line-height:1;color:var(--text)}.kk-val.pos{color:var(--green)}.kk-val.neg{color:var(--red)}.kk-val.neu{color:var(--text2)}.kk-sub{font-size:11px;margin-top:4px;color:var(--text3)}
-.pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--text2)}
-.phases{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.ph-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text2);margin-bottom:10px}
-.ph-row{display:flex;gap:4px}
-.pp{flex:1;padding:8px 4px;border-radius:6px;text-align:center;font-size:10px;font-weight:600;opacity:.3;transition:opacity .2s;line-height:1.3}
-.pp.ap{opacity:1}
-.p1{background:rgba(52,152,219,.2);color:#60B4F0}.p2{background:rgba(46,204,113,.2);color:#5FDF90}
-.p3{background:rgba(243,156,18,.2);color:#F8C244}.p4{background:rgba(155,89,182,.2);color:#C48DE8}
-.p5{background:rgba(26,188,156,.2);color:#4DD8C0}
-.tw{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.th{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.th h3{font-size:13px;font-weight:600}
-table{width:100%;border-collapse:collapse}
-th{background:var(--navy2);color:var(--text2);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:8px 10px;text-align:left;white-space:nowrap}
-td{padding:6px 10px;font-size:11px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(255,255,255,.025)}
-.td-in{background:transparent;border:none;color:var(--text);font-size:11px;width:100%;font-family:inherit;padding:2px 3px;border-radius:3px}
-.td-in:focus{outline:1px solid rgba(232,160,32,.6);background:rgba(232,160,32,.04)}
-.td-sel{background:var(--card2);border:1px solid var(--border2);color:var(--text);font-size:10px;padding:2px 5px;border-radius:4px;cursor:pointer;font-family:inherit}
-.td-sel:focus{outline:1px solid var(--gold)}
-.bdg{padding:2px 7px;border-radius:8px;font-size:10px;font-weight:600;display:inline-block;white-space:nowrap}
-.bgreen{background:rgba(46,204,113,.15);color:#2ECC71}.bgold{background:rgba(232,160,32,.15);color:#E8A020}
-.bgray{background:rgba(112,144,168,.12);color:#7090A8}.bred{background:rgba(231,76,60,.15);color:#E74C3C}
-.bblue{background:rgba(52,152,219,.15);color:#3498DB}.bpurp{background:rgba(155,89,182,.15);color:#9B59B6}
-.bteal{background:rgba(26,188,156,.15);color:#1ABC9C}
-.fbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.fb{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:10px;cursor:pointer;transition:all .15s;font-family:inherit}
-.fb:hover,.fb.on{background:rgba(232,160,32,.15);color:var(--gold);border-color:rgba(232,160,32,.5)}
-.s-in{background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:5px;font-size:11px;font-family:inherit;width:180px}
-.s-in:focus{outline:1px solid rgba(232,160,32,.6)}
-.pb{background:var(--border);border-radius:3px;height:5px;overflow:hidden;margin-top:5px}
-.pbf{height:100%;border-radius:3px;transition:width .4s}
-.rm-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.rm-hdr{padding:11px 13px;font-size:12px;font-weight:700}
-.rm-body{padding:10px 13px}
-.rm-goal{font-size:10px;color:var(--text2);margin-bottom:8px;line-height:1.4;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.rm-item{display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;font-size:11px;line-height:1.35;cursor:pointer;user-select:none}
-.rm-cb{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .2s}
-.rm-cb.dn{background:var(--green-d);border-color:var(--green);color:#fff}
-.rm-txt.dn{text-decoration:line-through;color:var(--text3)}
-.td-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.td-hdr{padding:10px 13px;background:var(--navy2);font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
-.td-item{padding:8px 13px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;cursor:pointer;transition:background .15s;user-select:none}
-.td-item:hover{background:rgba(255,255,255,.03)}.td-item:last-child{border-bottom:none}
-.td-cb{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .2s}
-.td-item.dn .td-cb{background:var(--green-d);border-color:var(--green);color:#fff}
-.td-item.dn .td-txt{text-decoration:line-through;color:var(--text3)}
-.td-txt{font-size:11px;line-height:1.35}
-.td-rst{background:transparent;border:1px solid transparent;color:var(--text3);font-size:12px;cursor:pointer;padding:1px 5px;border-radius:4px;margin-left:6px;line-height:1;transition:all .15s;font-family:inherit}
-.td-rst:hover{background:rgba(231,76,60,.12);border-color:rgba(231,76,60,.35);color:var(--red)}
-.td-ht{padding:5px 13px;font-size:10px;color:var(--text3);cursor:pointer;border-top:1px solid var(--border);display:flex;align-items:center;gap:5px;transition:color .15s;user-select:none}
-.td-ht:hover,.td-ht.on{color:var(--gold)}
-.td-ht-ct{background:var(--border);border-radius:8px;padding:1px 5px;font-size:9px;font-weight:600}
-.td-hl{display:none;border-top:1px solid var(--border);padding:4px 13px 8px;max-height:220px;overflow-y:auto}
-.td-hl.on{display:block}
-.td-hr{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--border)}
-.td-hr:last-child{border-bottom:none}
-.td-hd{font-size:10px;color:var(--text2);min-width:54px;font-variant-numeric:tabular-nums}
-.td-hb{flex:1;height:4px;background:var(--border);border-radius:3px;overflow:hidden}
-.td-hb div{height:100%;border-radius:3px;transition:width .3s}
-.td-hs{font-size:10px;min-width:28px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-.ns{background:linear-gradient(135deg,#08161F,#0E2030);border:1px solid rgba(232,160,32,.5);border-radius:8px;padding:13px 16px}
-.ns-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);margin-bottom:5px}
-.ns-txt{font-size:13px;font-weight:600;color:var(--text);line-height:1.5}
-.ch{position:relative}
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-.esc-r td:first-child{border-left:3px solid var(--red);padding-left:8px}
-.esc-a td:first-child{border-left:3px solid var(--amber);padding-left:8px}
-.esc-g td:first-child{border-left:3px solid var(--green);padding-left:8px}
-.sy{max-height:460px;overflow-y:auto}
-.ads-sg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.ads-sg7{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
-.ads-wrap{overflow-x:auto;max-height:520px;overflow-y:auto}
-#ads-tbl{min-width:1260px;border-collapse:collapse;width:100%}
-#ads-tbl thead th{background:var(--navy2);color:var(--text2);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:7px 9px;text-align:right;white-space:nowrap;position:sticky;top:0;z-index:1}
-#ads-tbl thead th:first-child{text-align:left;position:sticky;left:0;z-index:2;background:var(--navy2)}
-#ads-tbl td{padding:5px 9px;font-size:11px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle;text-align:right;white-space:nowrap}
-#ads-tbl td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:600;color:var(--text2);font-size:10px;letter-spacing:.3px;border-right:1px solid var(--border)}
-#ads-tbl tr:hover td{background:rgba(255,255,255,.025)}
-#ads-tbl tr:hover td:first-child{background:var(--card2)}
-#ads-tbl tr.ads-hi td{background:rgba(46,204,113,.07)!important}
-#ads-tbl tr.ads-hi td:first-child{background:rgba(46,204,113,.12)!important;color:var(--green)}
-#ads-tbl tr.ads-lo td{background:rgba(231,76,60,.04)!important}
-#ads-tbl tr.ads-lo td:first-child{background:rgba(231,76,60,.08)!important;color:var(--red)}
-.ads-in{background:transparent;border:none;color:var(--text);font-size:11px;width:72px;text-align:right;font-family:inherit;padding:2px 3px;border-radius:3px}
-.ads-in:focus{outline:1px solid rgba(232,160,32,.6);background:rgba(232,160,32,.04)}
-.ads-note-in{background:transparent;border:none;color:var(--text2);font-size:10px;width:110px;text-align:left;font-family:inherit;padding:2px 3px;border-radius:3px}
-.ads-note-in:focus{outline:1px solid rgba(232,160,32,.4)}
+  :root {
+    --bg:#f7f7f5;--card:#fff;--border:#e5e4e0;--text:#1a1a1a;--muted:#6b6b6b;
+    --blue:#185FA5;--blue-bg:#E6F1FB;--blue-text:#0C447C;
+    --green:#3B6D11;--green-bg:#EAF3DE;--green-text:#27500A;
+    --amber:#854F0B;--amber-bg:#FAEEDA;--amber-text:#633806;
+    --red:#A32D2D;--red-bg:#FCEBEB;--red-text:#791F1F;
+    --teal-bg:#E1F5EE;--teal-text:#085041;
+    --purple-bg:#EEEDFE;--purple-text:#3C3489;
+    --gray-bg:#F1EFE8;--gray-text:#444441;
+    --radius:10px;--radius-sm:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;}
+
+  /* HEADER */
+  header{background:var(--blue);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.15);}
+  .header-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-icon{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .logo h1{font-size:17px;font-weight:700;letter-spacing:-.01em;}
+  .logo p{font-size:11px;opacity:.7;margin-top:1px;}
+  .header-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:13px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .15s;white-space:nowrap;}
+  .btn:hover{background:rgba(255,255,255,.2);}
+  .btn-white{background:#fff;color:var(--blue);border-color:#fff;}
+  .btn-white:hover{background:#E6F1FB;}
+
+  /* NAV */
+  .nav-bar{background:var(--card);border-bottom:1px solid var(--border);}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;}
+  .nav-tab{padding:12px 18px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;transition:all .15s;}
+  .nav-tab:hover{color:var(--text);}
+  .nav-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+  /* MAIN */
+  main{max-width:1100px;margin:0 auto;padding:28px 24px 80px;}
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,var(--blue) 0%,#0C447C 100%);border-radius:16px;padding:36px 40px;color:#fff;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .hero h2{font-size:26px;font-weight:700;margin-bottom:8px;}
+  .hero p{font-size:14px;opacity:.8;max-width:500px;line-height:1.6;}
+  .hero-stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px;}
+  .hero-stat{text-align:center;}
+  .hero-stat-num{font-size:28px;font-weight:700;}
+  .hero-stat-label{font-size:11px;opacity:.7;margin-top:2px;}
+  .hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn-hero{padding:10px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
+  .btn-hero-white{background:#fff;color:var(--blue);border:none;}
+  .btn-hero-white:hover{background:#E6F1FB;}
+  .btn-hero-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+  .btn-hero-outline:hover{background:rgba(255,255,255,.1);}
+
+  /* SEARCH */
+  .search-wrap{position:relative;margin-bottom:18px;}
+  .search-wrap input{width:100%;padding:11px 16px 11px 42px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--card);font-size:14px;color:var(--text);outline:none;transition:border-color .15s;}
+  .search-wrap input:focus{border-color:var(--blue);}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--muted);}
+
+  /* FILTERS */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .filter-pill{padding:5px 14px;border-radius:99px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:500;cursor:pointer;color:var(--muted);transition:all .15s;}
+  .filter-pill.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .filter-pill:hover:not(.active){background:var(--bg);color:var(--text);}
+
+  /* GLOSSARY GRID */
+  .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px;}
+  .gcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+  .gcard:hover{border-color:#aaa;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .gcard.open{border-color:var(--blue);}
+  .gcard-header{padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .gcard-abbr{font-size:15px;font-weight:700;}
+  .gcard-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+  .gcard-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;}
+  .badge-blue{background:var(--blue-bg);color:var(--blue-text);}
+  .badge-green{background:var(--green-bg);color:var(--green-text);}
+  .badge-amber{background:var(--amber-bg);color:var(--amber-text);}
+  .badge-teal{background:var(--teal-bg);color:var(--teal-text);}
+  .badge-purple{background:var(--purple-bg);color:var(--purple-text);}
+  .badge-gray{background:var(--gray-bg);color:var(--gray-text);}
+  .chevron{font-size:13px;color:var(--muted);transition:transform .2s;flex-shrink:0;}
+  .gcard.open .chevron{transform:rotate(180deg);}
+  .gcard-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border);}
+  .gcard.open .gcard-body{display:block;padding-top:14px;}
+  .gcard-body p{font-size:13px;color:#333;line-height:1.65;margin-bottom:8px;}
+  .formula{font-family:'Courier New',monospace;font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;margin:8px 0;color:var(--text);}
+  .ex-label{font-size:10px;font-weight:700;color:var(--amber-text);margin-top:10px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em;}
+  .ex-box{background:var(--amber-bg);border-left:3px solid #EF9F27;border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:7px 12px;font-size:12px;color:var(--amber-text);}
+  .no-results{text-align:center;color:var(--muted);padding:48px;font-size:14px;}
+
+  /* FLASHCARDS */
+  .fc-wrap{max-width:560px;margin:0 auto;}
+  .fc-deck-select{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;justify-content:center;}
+  .fc-meta{font-size:13px;color:var(--muted);text-align:center;margin-bottom:10px;}
+  .fc-bar-bg{height:4px;background:var(--border);border-radius:2px;margin-bottom:24px;overflow:hidden;}
+  .fc-bar-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .3s;}
+  .flashcard{background:var(--card);border:1.5px solid var(--border);border-radius:16px;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:32px 28px;cursor:pointer;transition:border-color .2s,box-shadow .2s;user-select:none;}
+  .flashcard:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(24,95,165,.1);}
+  .fc-side{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:16px;}
+  .fc-term{font-size:26px;font-weight:700;margin-bottom:8px;line-height:1.2;}
+  .fc-sub{font-size:13px;color:var(--muted);}
+  .fc-answer{font-size:14px;line-height:1.65;color:var(--text);max-width:420px;}
+  .fc-formula-sm{font-family:'Courier New',monospace;font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 12px;margin-top:10px;}
+  .fc-hint{font-size:12px;color:var(--muted);margin-top:18px;}
+  .fc-controls{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
+  .fc-good{border:1.5px solid var(--green);color:var(--green-text);background:var(--card);padding:9px 20px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;font-weight:600;transition:background .15s;}
+  .fc-good:hover{background:var(--green-bg);}
+  .fc-hard{border:1.5px solid #EF9F27;color:var(--amber-text);background:var(--card);padding:9px 20px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;font-weight:600;transition:background .15s;}
+  .fc-hard:hover{background:var(--amber-bg);}
+  .fc-skip{border:1px solid var(--border);color:var(--muted);background:var(--card);padding:9px 16px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;transition:background .15s;}
+  .fc-skip:hover{background:var(--bg);}
+  .fc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+  .fc-stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px;}
+  .fc-stat-num{font-size:22px;font-weight:700;}
+  .fc-stat-label{font-size:11px;color:var(--muted);}
+
+  /* CHEATSHEET */
+  .cs-section{margin-bottom:28px;}
+  .cs-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:6px;}
+  .cs-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);font-size:13px;}
+  .cs-table th{background:var(--bg);font-weight:600;padding:9px 14px;text-align:left;border-bottom:1px solid var(--border);font-size:12px;}
+  .cs-table td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .cs-table tr:last-child td{border-bottom:none;}
+  .cs-table tr:hover td{background:#fafafa;}
+  .ok{color:var(--green);font-weight:600;}
+  .warn{color:var(--amber);font-weight:600;}
+  .bad{color:var(--red);font-weight:600;}
+
+  /* VS TABLE */
+  .vs-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);font-size:13px;}
+  .vs-table th{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:12px;}
+  .vs-table td{padding:10px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .vs-table tr:last-child td{border-bottom:none;}
+  .th-v{background:var(--blue-bg);color:var(--blue-text);}
+  .th-s{background:var(--green-bg);color:var(--green-text);}
+  .th-t{background:var(--bg);color:var(--muted);}
+
+  /* PROCESS */
+  .steps{display:flex;flex-direction:column;gap:12px;}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;gap:16px;align-items:flex-start;}
+  .step-num{width:32px;height:32px;border-radius:50%;background:var(--blue-bg);color:var(--blue-text);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step h4{font-size:14px;font-weight:600;margin-bottom:4px;}
+  .step p{font-size:13px;color:var(--muted);}
+  .step-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-top:6px;}
+
+  /* IDQ */
+  .idq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:20px;}
+  .idq-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+  .idq-card h4{font-size:13px;font-weight:700;margin-bottom:4px;}
+  .idq-card p{font-size:12px;color:var(--muted);}
+
+  /* DOWNLOAD SECTION */
+  .download-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .dl-info h3{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .dl-info p{font-size:13px;color:var(--muted);}
+  .dl-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .dl-btn{padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:all .15s;}
+  .dl-btn-primary{background:var(--blue);color:#fff;border:none;}
+  .dl-btn-primary:hover{background:var(--blue-text);}
+  .dl-btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border);}
+  .dl-btn-secondary:hover{background:var(--bg);}
+
+  @media(max-width:600px){
+    .hero{padding:24px 20px;}
+    .hero h2{font-size:20px;}
+    main{padding:16px 12px 60px;}
+    .glossary-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
 
-<div class="sb">
-  <div class="sb-logo"><h1>GLART</h1><div class="hdl">@glart_official · TikTok</div></div>
-  <div class="sb-sec">Übersicht</div>
-  <div class="nav on" data-sec="dashboard" onclick="go(this)"><span class="nav-ic">🏠</span> Dashboard</div>
-  <div class="nav" data-sec="kpi" onclick="go(this)"><span class="nav-ic">📊</span> KPI Woche</div>
-  <div class="sb-sec">Content</div>
-  <div class="nav" data-sec="content" onclick="go(this)"><span class="nav-ic">🎬</span> Content Pipeline</div>
-  <div class="nav" data-sec="kreativ" onclick="go(this)"><span class="nav-ic">🎨</span> Kreativ-Videos</div>
-  <div class="nav" data-sec="creator" onclick="go(this)"><span class="nav-ic">🤝</span> Creator</div>
-  <div class="sb-sec">Ads & Strategie</div>
-  <div class="nav" data-sec="ads" onclick="go(this)"><span class="nav-ic">💶</span> Ads & Budget</div>
-  <div class="nav" data-sec="roadmap" onclick="go(this)"><span class="nav-ic">🗺</span> Roadmap</div>
-  <div class="sb-sec">Aufgaben</div>
-  <div class="nav" data-sec="todos" onclick="go(this)"><span class="nav-ic">✅</span> To-Dos</div>
-  <div class="nav" data-sec="esc" onclick="go(this)"><span class="nav-ic">⚠️</span> Eskalation</div>
-  <div class="sb-bot">
-    <button class="bxs" id="theme-btn" onclick="toggleTheme()" style="display:flex;align-items:center;gap:7px">☀️ <span id="theme-lbl">Hell-Modus</span></button>
-    <button class="bxs" onclick="exportData()">⬆ Daten exportieren</button>
-    <button class="bxs" onclick="document.getElementById('impFile').click()">⬇ Daten importieren</button>
-    <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(event)">
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">📦</div>
+      <div>
+        <h1>Amazon Vendor Glossar</h1>
+        <p>ALCLEAR · Stand: Juni 2026</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="window.print()">🖨 Drucken</button>
+      <button class="btn btn-white" onclick="copyLink()">🔗 Link kopieren</button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-bar">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="showPage('home',this)">🏠 Start</button>
+    <button class="nav-tab" onclick="showPage('glossar',this)">📖 Glossar</button>
+    <button class="nav-tab" onclick="showPage('flashcards',this)">🃏 Lernkarten</button>
+    <button class="nav-tab" onclick="showPage('cheatsheet',this)">⚡ Cheatsheet</button>
+    <button class="nav-tab" onclick="showPage('process',this)">🔄 Prozesse</button>
+    <button class="nav-tab" onclick="showPage('vsvs',this)">⚖️ Vendor vs Seller</button>
+    <button class="nav-tab" onclick="showPage('idq',this)">🏆 IDQ</button>
   </div>
 </div>
 
-<div class="main" id="main">
+<main>
 
-<!-- DASHBOARD -->
-<div class="sec on" id="s-dashboard">
-  <div>
-    <div class="ph">
-      <div><h2>🏠 Dashboard</h2><div class="ph-sub" id="dash-week">Noch keine KPI-Daten eingetragen</div></div>
-      <span style="font-size:11px;color:var(--text2)">Videos live: <strong id="stat-pub" style="color:var(--green)">0</strong> / 63</span>
-    </div>
-  </div>
-  <div class="phases">
-    <div class="ph-lbl">Aktuelle Phase</div>
-    <div class="ph-row">
-      <div class="pp p1 ap" id="ph1">Phase 1<div style="font-size:9px;font-weight:400;margin-top:2px">bis 5K</div></div>
-      <div class="pp p2" id="ph2">Phase 2<div style="font-size:9px;font-weight:400;margin-top:2px">5K–15K</div></div>
-      <div class="pp p3" id="ph3">Phase 3<div style="font-size:9px;font-weight:400;margin-top:2px">15K–50K</div></div>
-      <div class="pp p4" id="ph4">Phase 4<div style="font-size:9px;font-weight:400;margin-top:2px">50K–100K</div></div>
-      <div class="pp p5" id="ph5">Phase 5<div style="font-size:9px;font-weight:400;margin-top:2px">100K+</div></div>
-    </div>
-  </div>
-  <div class="g5">
-    <div class="kpi"><div class="kpi-lbl">👥 Follower</div><div class="kpi-val" id="kf">—</div><div class="kpi-d neu" id="kfd">Ziel: 5.000</div></div>
-    <div class="kpi"><div class="kpi-lbl">👁 Views / Woche</div><div class="kpi-val" id="kv">—</div><div class="kpi-d neu" id="kvd">—</div></div>
-    <div class="kpi"><div class="kpi-lbl">💬 Engagement Rate</div><div class="kpi-val" id="ker">—</div><div class="kpi-d neu" id="kerd">Ziel: ≥3%</div></div>
-    <div class="kpi"><div class="kpi-lbl">🎬 Videos erstellt</div><div class="kpi-val" id="kcr">0/63</div><div class="kpi-d neu" id="kcrd">—</div></div>
-    <div class="kpi"><div class="kpi-lbl">🟢 Videos live</div><div class="kpi-val" id="kli">0/63</div><div class="kpi-d neu" id="klid">—</div></div>
-  </div>
-  <div class="g73">
-    <div class="card" style="padding:16px">
-      <div class="ct">📈 Follower-Wachstum <span style="font-weight:400;font-size:10px">Letzte 12 KW</span></div>
-      <div class="ch" style="height:200px"><canvas id="ch-f"></canvas></div>
-    </div>
-    <div class="card" style="padding:16px">
-      <div class="ct">🎬 Video-Status</div>
-      <div class="ch" style="height:200px"><canvas id="ch-st"></canvas></div>
-    </div>
-  </div>
-  <div class="ns"><div class="ns-lbl">⭐ Nordstern</div>
-    <div class="ns-txt">Zur meistgesuchten Autopflege-Marke auf TikTok DE werden — durch ehrliche Produkt-Demos, Expertenwissen und konsequente Präsenz.</div></div>
-</div>
-
-<!-- KPI WOCHE -->
-<div class="sec" id="s-kpi">
-  <div class="ph"><div><h2>📊 KPI Woche</h2><div class="ph-sub">Wöchentlich eintragen · ER und Deltas berechnen sich automatisch</div></div></div>
-  <div class="g64">
-    <div class="card" style="padding:16px">
-      <div class="ct">📈 Follower-Verlauf</div>
-      <div class="ch" style="height:190px"><canvas id="ch-kf"></canvas></div>
-    </div>
-    <div class="card" style="padding:16px">
-      <div class="ct">💬 Engagement Rate %</div>
-      <div class="ch" style="height:190px"><canvas id="ch-ker"></canvas></div>
-    </div>
-  </div>
-  <div class="tw">
-    <div class="th"><h3>52 Wochen — KW 24/26 bis KW 23/27</h3>
-      <span style="font-size:10px;color:var(--text2)">🟡 manuell &nbsp;🟢 automatisch</span></div>
-    <div class="sy"><table>
-      <thead><tr>
-        <th>KW</th><th style="background:rgba(232,160,32,.1)">👥 Follower</th><th>Δ</th>
-        <th style="background:rgba(232,160,32,.1)">👁 Views</th><th style="background:rgba(232,160,32,.1)">❤ Likes</th>
-        <th style="background:rgba(232,160,32,.1)">💬 Komm.</th><th style="background:rgba(232,160,32,.1)">↗ Shares</th>
-        <th style="background:rgba(232,160,32,.1)">🔖 Saves</th><th>ER%</th>
-        <th style="background:rgba(46,204,113,.08)">💶 Ad €</th><th style="background:rgba(46,204,113,.08)">Boost-Video</th><th style="color:var(--green);font-size:9px" title="Automatisch aus Ads & Budget">🔗 ROAS</th>
-      </tr></thead>
-      <tbody id="kpi-tb"></tbody>
-    </table></div>
-  </div>
-</div>
-
-<!-- CONTENT -->
-<div class="sec" id="s-content">
-  <div class="ph">
-    <div><h2>🎬 Content Pipeline</h2><div class="ph-sub">63 Videos · Status, Datum und Notizen tracken</div></div>
-    <input type="text" class="s-in" placeholder="🔍 Suchen..." id="csearch" oninput="rContent()">
-  </div>
-  <div class="fbar" id="cflt">
-    <span style="font-size:10px;color:var(--text2)">Phase:</span>
-    <button class="fb on" data-ph="" onclick="setFlt(this,'ph')">Alle</button>
-    <button class="fb" data-ph="Phase 1" onclick="setFlt(this,'ph')">P1</button>
-    <button class="fb" data-ph="Phase 2" onclick="setFlt(this,'ph')">P2</button>
-    <button class="fb" data-ph="Phase 3" onclick="setFlt(this,'ph')">P3</button>
-    <button class="fb" data-ph="Phase 4" onclick="setFlt(this,'ph')">P4</button>
-    <button class="fb" data-ph="Phase 5" onclick="setFlt(this,'ph')">P5</button>
-    <span style="font-size:10px;color:var(--text2);margin-left:6px">Track:</span>
-    <button class="fb on" data-tr="" onclick="setFlt(this,'tr')">Alle</button>
-    <button class="fb" data-tr="Produkt" onclick="setFlt(this,'tr')">Produkt</button>
-    <button class="fb" data-tr="Infomercial" onclick="setFlt(this,'tr')">Infomercial</button>
-    <span style="font-size:10px;color:var(--text2);margin-left:6px">Status:</span>
-    <button class="fb on" data-st="" onclick="setFlt(this,'st')">Alle</button>
-    <button class="fb" data-st="live" onclick="setFlt(this,'st')">Live 🟢</button>
-    <button class="fb" data-st="erstellt" onclick="setFlt(this,'st')">Erstellt ✅</button>
-    <button class="fb" data-st="offen" onclick="setFlt(this,'st')">Offen</button>
-  </div>
-  <div class="tw">
-    <div class="th">
-      <h3 id="cnt-n">63 Videos</h3>
-      <div style="display:flex;gap:12px;font-size:10px;color:var(--text2)">
-        <span>✅ <strong id="cnt-cr" style="color:var(--text)">0</strong></span>
-        <span>🟢 <strong id="cnt-li" style="color:var(--green)">0</strong></span>
-      </div>
-    </div>
-    <div class="sy" style="max-height:500px"><table>
-      <thead><tr>
-        <th>#</th><th>Phase</th><th>Track</th><th>ID</th><th style="min-width:180px">Titel</th>
-        <th>Schw.</th><th>✅</th><th>Datum</th><th>🟢</th><th>Datum</th><th style="min-width:140px">Notizen</th>
-      </tr></thead>
-      <tbody id="ctb"></tbody>
-    </table></div>
-  </div>
-</div>
-
-
-<!-- KREATIV -->
-<div class="sec" id="s-kreativ">
-  <div class="ph">
-    <div><h2>🎨 Kreativ-Videos</h2><div class="ph-sub">Eigene Ideen initiieren &amp; tracken — unabhängig von der Content Pipeline</div></div>
-    <button onclick="ckShowForm()" style="padding:7px 16px;background:rgba(232,160,32,.12);border:1px solid rgba(232,160,32,.4);color:var(--gold);font-weight:600;border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px">+ Neues Video</button>
-  </div>
-
-  <div id="ck-form" style="display:none" class="card">
-    <div class="ct" style="margin-bottom:14px">🎨 Neues Kreativ-Video <span style="font-weight:400;color:var(--text2);font-size:10px">— durch eigene Idee initiiert</span></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Titel *</div>
-        <input id="ck-titel" class="s-in" style="width:100%" placeholder="z.B. Before/After: Felgen-Demo">
-      </div>
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Konzept / Hook</div>
-        <input id="ck-konzept" class="s-in" style="width:100%" placeholder="Was ist die Kernidee oder der Hook?">
-      </div>
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Format</div>
-        <select id="ck-format" class="td-sel" style="width:100%;padding:6px 10px;font-size:11px">
-          <option>Demo</option><option>Tutorial</option><option>Before/After</option>
-          <option>ASMR</option><option>Trending Sound</option><option>Community / Q&A</option>
-          <option>Behind the Scenes</option><option>Vergleich</option><option>Sonstige</option>
-        </select>
-      </div>
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Phase</div>
-        <select id="ck-phase" class="td-sel" style="width:100%;padding:6px 10px;font-size:11px">
-          <option>Phase 1</option><option>Phase 2</option><option>Phase 3</option>
-          <option>Phase 4</option><option>Phase 5</option>
-        </select>
-      </div>
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Schwierigkeit</div>
-        <select id="ck-schw" class="td-sel" style="width:100%;padding:6px 10px;font-size:11px">
-          <option>Einfach</option><option>Mittel</option><option>Hoch</option>
-        </select>
-      </div>
-      <div>
-        <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Geplant für (Datum)</div>
-        <input id="ck-datum" class="s-in" style="width:100%" placeholder="TT.MM.YY">
-      </div>
-    </div>
-    <div style="margin-bottom:14px">
-      <div style="font-size:10px;color:var(--text2);margin-bottom:5px">Notizen / Inspiration</div>
-      <input id="ck-notiz" class="s-in" style="width:100%" placeholder="Inspiration, Referenz-Video, Anforderungen...">
-    </div>
-    <div style="display:flex;gap:8px">
-      <button onclick="ckSave()" style="padding:7px 18px;background:rgba(232,160,32,.15);border:1px solid rgba(232,160,32,.5);color:var(--gold);border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px">✓ Speichern</button>
-      <button onclick="ckHideForm()" style="padding:7px 12px;background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px">Abbrechen</button>
-    </div>
-  </div>
-
-  <div class="tw">
-    <div class="th">
-      <h3 id="ck-cnt">0 eigene Videos</h3>
-      <div style="display:flex;gap:14px;font-size:10px;color:var(--text2)">
-        <span>✅ <strong id="ck-cr" style="color:var(--text)">0</strong> erstellt</span>
-        <span>🟢 <strong id="ck-li" style="color:var(--green)">0</strong> live</span>
-      </div>
-    </div>
-    <div class="sy" style="max-height:420px"><table>
-      <thead><tr>
-        <th>#</th><th>Phase</th><th>Format</th><th style="min-width:200px">Titel &amp; Konzept</th>
-        <th>Geplant</th><th>Schw.</th>
-        <th>✅</th><th>Datum</th><th>🟢</th><th>Datum</th>
-        <th style="min-width:130px">Notizen</th><th></th>
-      </tr></thead>
-      <tbody id="ck-tb"><tr><td colspan="12" style="text-align:center;color:var(--text3);padding:28px">Noch keine Kreativ-Videos — klick "+ Neues Video" um loszulegen</td></tr></tbody>
-    </table></div>
-  </div>
-
-  <div class="card">
-    <div class="ct">📊 Quellen-Matrix <span style="font-weight:400;color:var(--text2);font-size:10px">— Eigene Kreativität vs. Content Pipeline</span></div>
-    <div class="g2" style="gap:10px;margin-bottom:16px">
-      <div style="background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.2);border-radius:8px;padding:14px">
-        <div style="font-size:10px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🎨 Eigene Kreativität</div>
-        <div class="g3" style="gap:8px">
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Initiiert</div><div class="kpi-val" id="mx-ck-tot" style="font-size:20px">0</div></div>
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Erstellt ✅</div><div class="kpi-val" id="mx-ck-cr" style="font-size:20px">0</div></div>
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Live 🟢</div><div class="kpi-val pos" id="mx-ck-li" style="font-size:20px">0</div></div>
-        </div>
-      </div>
-      <div style="background:rgba(52,152,219,.07);border:1px solid rgba(52,152,219,.2);border-radius:8px;padding:14px">
-        <div style="font-size:10px;color:#60B4F0;font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🎬 Content Pipeline</div>
-        <div class="g3" style="gap:8px">
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Geplant</div><div class="kpi-val" style="font-size:20px">63</div></div>
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Erstellt ✅</div><div class="kpi-val" id="mx-pp-cr" style="font-size:20px">0</div></div>
-          <div class="kpi" style="padding:10px"><div class="kpi-lbl">Live 🟢</div><div class="kpi-val pos" id="mx-pp-li" style="font-size:20px">0</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="tw">
-      <div class="th"><h3>Alle Videos — Herkunft &amp; Status</h3><span style="font-size:10px;color:var(--text2)">Pipeline: nur mit Status · Kreativ: alle</span></div>
-      <div style="max-height:320px;overflow-y:auto"><table>
-        <thead><tr>
-          <th>Quelle</th><th>ID</th><th style="min-width:200px">Titel</th><th>Phase</th><th>✅ Erstellt</th><th>🟢 Live</th>
-        </tr></thead>
-        <tbody id="mx-tb"><tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">Noch keine Videos mit Status</td></tr></tbody>
-      </table></div>
-    </div>
-  </div>
-</div>
-
-<!-- CREATOR -->
-<div class="sec" id="s-creator">
-  <div class="ph">
+<!-- ═══════════ HOME ═══════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
     <div>
-      <h2>🤝 Creator-Tracking</h2>
-      <div class="ph-sub">Bezahlte Creator · Videos auf deren eigenen Kanälen · Budget & Performance tracken</div>
-    </div>
-    <button class="bxs" onclick="crShowForm()">+ Neuer Creator-Deal</button>
-  </div>
-
-  <!-- KPI cards -->
-  <div class="g4" id="cr-kpis"></div>
-
-  <!-- Add form -->
-  <div id="cr-form" style="display:none" class="card">
-    <div class="ct">➕ Neuen Creator-Deal anlegen</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Creator Name *</div>
-        <input id="cr-name" placeholder="z.B. Max Müller" style="width:100%">
+      <h2>Amazon Vendor Wissen<br>— alles an einem Ort</h2>
+      <p>Interaktives Glossar, Lernkarten und Cheatsheets für das Amazon Vendor Programm. Für ALCLEAR-Team und alle die Amazon Vendor verstehen wollen.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">30+</div><div class="hero-stat-label">Begriffe</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Kategorien</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Kostenlos</div></div>
       </div>
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">TikTok @Handle</div>
-        <input id="cr-handle" placeholder="@handle" style="width:100%">
+      <div class="hero-btns" style="margin-top:20px">
+        <button class="btn-hero btn-hero-white" onclick="showPage('glossar',document.querySelectorAll('.nav-tab')[1])">📖 Glossar öffnen</button>
+        <button class="btn-hero btn-hero-outline" onclick="showPage('flashcards',document.querySelectorAll('.nav-tab')[2])">🃏 Lernkarten starten</button>
       </div>
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Honorar (€)</div>
-        <input id="cr-bud" type="number" min="0" placeholder="z.B. 150" style="width:100%">
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Video-Konzept / Brief</div>
-        <input id="cr-konzept" placeholder="Worum geht es?" style="width:100%">
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Deadline</div>
-        <input id="cr-dline" placeholder="TT.MM.JJJJ" style="width:100%">
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Notiz</div>
-        <input id="cr-notiz" placeholder="Optional…" style="width:100%">
-      </div>
-    </div>
-    <div style="margin-top:12px;display:flex;gap:8px">
-      <button class="bxs" onclick="crSave()">💾 Speichern</button>
-      <button class="bxs" style="background:var(--card2)" onclick="crHideForm()">Abbrechen</button>
     </div>
   </div>
 
-  <!-- Creator table -->
-  <div class="tw">
-    <div class="th">
-      <h3>Creator-Deals <span id="cr-cnt" style="font-size:11px;color:var(--text2);font-weight:400"></span></h3>
-      <span style="font-size:10px;color:var(--text2)">✅ Gepostet · Status, Link & Views direkt eintragen</span>
+  <div class="download-section">
+    <div class="dl-info">
+      <h3>📄 PDF-Version herunterladen</h3>
+      <p>Alle Begriffe, Zielwerte und Tabellen — druckfertig und versendbar.</p>
     </div>
-    <div class="ads-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th>Creator</th><th>@Handle</th><th>Konzept</th>
-          <th>💶 Honorar</th><th>Deadline</th><th>Status</th>
-          <th>Video-Link</th><th>👁 Views</th><th>❤️ Likes</th><th>Notiz</th><th></th>
-        </tr></thead>
-        <tbody id="cr-tb"></tbody>
-      </table>
+    <div class="dl-btns">
+      <a class="dl-btn dl-btn-primary" href="Amazon_Vendor_Glossar_ALCLEAR.pdf" download>⬇ PDF herunterladen</a>
+      <button class="dl-btn dl-btn-secondary" onclick="copyLink()">🔗 Seite teilen</button>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('glossar',document.querySelectorAll('.nav-tab')[1])">
+      <div style="font-size:24px;margin-bottom:8px">📖</div>
+      <div style="font-weight:600;margin-bottom:4px">Glossar</div>
+      <div style="font-size:12px;color:var(--muted)">30+ Begriffe mit Erklärung, Formel und Beispiel. Suchbar und filterbar.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('flashcards',document.querySelectorAll('.nav-tab')[2])">
+      <div style="font-size:24px;margin-bottom:8px">🃏</div>
+      <div style="font-weight:600;margin-bottom:4px">Lernkarten</div>
+      <div style="font-size:12px;color:var(--muted)">Flashcard-System. Begriff anklicken → Erklärung. Schwierige Karten merken.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('cheatsheet',document.querySelectorAll('.nav-tab')[3])">
+      <div style="font-size:24px;margin-bottom:8px">⚡</div>
+      <div style="font-weight:600;margin-bottom:4px">Cheatsheet</div>
+      <div style="font-size:12px;color:var(--muted)">Alle KPIs mit Zielwerten, Wochentakt und alle Kürzel kompakt.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('process',document.querySelectorAll('.nav-tab')[4])">
+      <div style="font-size:24px;margin-bottom:8px">🔄</div>
+      <div style="font-weight:600;margin-bottom:4px">Prozesse</div>
+      <div style="font-size:12px;color:var(--muted)">PO-Prozess Schritt für Schritt. Cancelled PO, Reopen PO erklärt.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('vsvs',document.querySelectorAll('.nav-tab')[5])">
+      <div style="font-size:24px;margin-bottom:8px">⚖️</div>
+      <div style="font-weight:600;margin-bottom:4px">Vendor vs. Seller</div>
+      <div style="font-size:12px;color:var(--muted)">Was ist der Unterschied? Vollständige Vergleichstabelle.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;" onclick="showPage('idq',document.querySelectorAll('.nav-tab')[6])">
+      <div style="font-size:24px;margin-bottom:8px">🏆</div>
+      <div style="font-weight:600;margin-bottom:4px">IDQ Score</div>
+      <div style="font-size:12px;color:var(--muted)">Item Data Quality — Bewertungsskala, Faktoren und TACoS-Zusammenhang.</div>
     </div>
   </div>
 </div>
 
-
-<!-- ADS -->
-<div class="sec" id="s-ads">
-  <div class="ph"><div><h2>💶 Ads & Budget</h2><div class="ph-sub">Monatliches Budget an TikTok · TikTok verteilt intern auf Tage/Wochen · Hier: Monats-Tracking</div></div></div>
-  <div id="ads-kpis" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px"></div>
-  <div class="card" style="padding:14px">
-    <div class="ct">📈 Budget · Umsatz · ROAS — Monatsverlauf</div>
-    <div style="height:210px"><canvas id="ch-ads"></canvas></div>
+<!-- ═══════════ GLOSSAR ═══════════ -->
+<div id="page-glossar" class="page">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Begriff suchen... z.B. TACoS, PCOGS, VLT, Conversion" oninput="filterCards()">
   </div>
-  <div class="tw">
-    <div class="th"><h3>Monatliche Performance</h3><span style="font-size:10px;color:var(--text2)">🟢 ROAS ≥ 2.0 &nbsp;🟡 ≥ 1.5 &nbsp;🔴 &lt; 1.5 &nbsp;·&nbsp; Plan-Budget in Placeholder · ∑ = kumuliert</span></div>
-    <div class="ads-wrap"><table><thead><tr><th>Monat</th><th>Phase</th><th>💶 Budget TikTok</th><th>📈 Umsatz Shop</th><th>Profit</th><th>ROAS</th><th>Δ ROAS</th><th>∑ Budget</th><th>∑ ROAS</th><th>Notiz</th></tr></thead><tbody id="mads-tbl"></tbody></table></div>
+  <div class="filters">
+    <button class="filter-pill active" onclick="setFilter('all',this)">Alle</button>
+    <button class="filter-pill" onclick="setFilter('umsatz',this)">💰 Umsatz</button>
+    <button class="filter-pill" onclick="setFilter('werbung',this)">📣 Werbung</button>
+    <button class="filter-pill" onclick="setFilter('gewinn',this)">📈 Gewinn</button>
+    <button class="filter-pill" onclick="setFilter('supply',this)">🚚 Supply Chain</button>
+    <button class="filter-pill" onclick="setFilter('reporting',this)">📊 Reporting</button>
+    <button class="filter-pill" onclick="setFilter('po',this)">📋 PO-Management</button>
+  </div>
+  <div class="glossary-grid" id="glossary-grid"></div>
+  <div class="no-results" id="no-results" style="display:none">Kein Begriff gefunden.</div>
+</div>
+
+<!-- ═══════════ FLASHCARDS ═══════════ -->
+<div id="page-flashcards" class="page">
+  <div class="fc-wrap">
+    <div class="fc-deck-select" id="fc-deck-select">
+      <button class="filter-pill active" onclick="setDeck('all',this)">Alle Karten</button>
+      <button class="filter-pill" onclick="setDeck('umsatz',this)">💰 Umsatz</button>
+      <button class="filter-pill" onclick="setDeck('werbung',this)">📣 Werbung</button>
+      <button class="filter-pill" onclick="setDeck('gewinn',this)">📈 Gewinn</button>
+      <button class="filter-pill" onclick="setDeck('supply',this)">🚚 Supply</button>
+      <button class="filter-pill" onclick="setDeck('hard',this)">🔴 Schwierig</button>
+    </div>
+    <div class="fc-meta">Karte <span id="fc-cur">1</span> von <span id="fc-tot">1</span></div>
+    <div class="fc-bar-bg"><div class="fc-bar-fill" id="fc-bar" style="width:0%"></div></div>
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-side" id="fc-side">Begriff</div>
+      <div class="fc-term" id="fc-term">—</div>
+      <div class="fc-sub" id="fc-sub"></div>
+      <div class="fc-answer" id="fc-answer" style="display:none"></div>
+      <div class="fc-formula-sm" id="fc-formula" style="display:none"></div>
+      <div class="fc-hint" id="fc-hint">Klicken zum Aufdecken</div>
+    </div>
+    <div class="fc-controls" id="fc-controls" style="display:none">
+      <button class="fc-good" onclick="rateCard('good')">✅ Gewusst</button>
+      <button class="fc-hard" onclick="rateCard('hard')">🔶 Schwer</button>
+      <button class="fc-skip" onclick="rateCard('skip')">⏭ Skip</button>
+    </div>
+    <div class="fc-stats">
+      <div class="fc-stat"><div class="fc-stat-num ok" id="s-good">0</div><div class="fc-stat-label">Gewusst</div></div>
+      <div class="fc-stat"><div class="fc-stat-num warn" id="s-hard">0</div><div class="fc-stat-label">Schwer</div></div>
+      <div class="fc-stat"><div class="fc-stat-num" id="s-skip">0</div><div class="fc-stat-label">Übersprungen</div></div>
+    </div>
   </div>
 </div>
 
-<!-- ROADMAP -->
-<div class="sec" id="s-roadmap">
-  <div class="ph"><div><h2>🗺 Roadmap</h2><div class="ph-sub">Meilensteine abhaken · Phasen nach Performance wechseln</div></div></div>
-  <div class="g5" id="rmg"></div>
-  <div class="ns"><div class="ns-lbl">💡 Regel</div>
-    <div class="ns-txt" style="font-size:12px;font-weight:400">Phase wechseln wenn <strong>alle Trigger</strong> der aktuellen Phase erfüllt sind — nicht nach Zeitplan, sondern nach Performance-Daten.</div></div>
-</div>
-
-<!-- TODOS -->
-<div class="sec" id="s-todos">
-  <div class="ph">
-    <div><h2>✅ To-Dos</h2><div class="ph-sub">Checkboxen speichern automatisch · Jede Gruppe einzeln zurücksetzen</div></div>
+<!-- ═══════════ CHEATSHEET ═══════════ -->
+<div id="page-cheatsheet" class="page">
+  <div class="cs-section">
+    <div class="cs-title">Wichtigste KPIs — Zielwerte auf einen Blick</div>
+    <table class="cs-table">
+      <tr><th>KPI</th><th>Was misst es?</th><th>Formel</th><th>Zielwert</th></tr>
+      <tr><td><strong>PCOGS</strong></td><td>Amazon-Einkauf bei ALCLEAR</td><td>Units × Einkaufspreis</td><td>↑ YoY Wachstum</td></tr>
+      <tr><td><strong>Rev TACoS</strong></td><td>Werbequote am Gesamtumsatz</td><td>Spend ÷ Shipped Rev</td><td class="ok">≤ 15%</td></tr>
+      <tr><td><strong>PCOGS TACoS</strong></td><td>Werbequote am PCOGS</td><td>Spend ÷ PCOGS</td><td class="ok">≤ 20%</td></tr>
+      <tr><td><strong>ACOS</strong></td><td>Werbequote am PPC-Umsatz</td><td>Spend ÷ PPC-Rev</td><td class="ok">≤ 30%</td></tr>
+      <tr><td><strong>SoROOS</strong></td><td>Out-of-Stock-Rate</td><td>OOS-Tage ÷ Gesamttage</td><td class="ok">≤ 1,75%</td></tr>
+      <tr><td><strong>VLT</strong></td><td>Lieferzeit Vendor → Amazon</td><td>Tage PO bis Einbuchung</td><td class="ok">≤ 15 Tage</td></tr>
+      <tr><td><strong>CR-%</strong></td><td>Conversion Rate</td><td>Orders ÷ Sessions</td><td class="ok">≥ 12%</td></tr>
+      <tr><td><strong>IDQ Score</strong></td><td>Listingqualität</td><td>Amazon-Score 0–100</td><td class="ok">≥ 90</td></tr>
+      <tr><td><strong>Vendor Conf. Rate</strong></td><td>PO-Bestätigungsrate</td><td>Best. POs ÷ alle POs</td><td class="ok">≥ 95%</td></tr>
+      <tr><td><strong>GPAAC</strong></td><td>Gewinn nach Werbekosten</td><td>GPBA − Spend − OPEX</td><td class="ok">> 0 €</td></tr>
+      <tr><td><strong>AMG % of PCOGS</strong></td><td>Display Ads vs. PCOGS</td><td>Display Spend ÷ PCOGS</td><td class="ok">≤ 18%</td></tr>
+    </table>
   </div>
-  <div class="g3" id="tdg"></div>
-</div>
-
-<!-- ESKALATION -->
-<div class="sec" id="s-esc">
-  <div class="ph"><div><h2>⚠️ Eskalation</h2><div class="ph-sub">Wann handeln · Was tun · Bis wann</div></div></div>
-  <div class="tw">
-    <div class="th"><h3>9 Szenarien — Rot sofort · Amber beobachten · Grün optimieren</h3></div>
-    <table>
-      <thead><tr><th>Szenario</th><th>Grenzwert</th><th>Sofortmaßnahme</th><th>Frist</th></tr></thead>
-      <tbody>
-        <tr class="esc-r"><td>Views &lt; 1.000 nach 48h</td><td>&lt; 1.000</td><td>Boost (Letizia) + Hook analysieren</td><td>48h</td></tr>
-        <tr class="esc-r"><td>Engagement Rate &lt; 2%</td><td>&lt; 2%</td><td>Hook überarbeiten · A/B-Test</td><td>nächstes Video</td></tr>
-        <tr class="esc-r"><td>Follower-Drop &gt; 200/Woche</td><td>–200 Follower</td><td>Content-Pause · Brand-Check</td><td>sofort</td></tr>
-        <tr class="esc-a"><td>ROI Ads &lt; 1.5</td><td>ROI 1.5</td><td>Video wechseln · Zielgruppe eingrenzen</td><td>nächster Block</td></tr>
-        <tr class="esc-a"><td>Kein Wachstum 2 Wochen</td><td>0 Δ</td><td>Posting-Zeit ändern · Hashtags neu</td><td>2 Wochen</td></tr>
-        <tr class="esc-a"><td>TikTok Shop Conversion &lt; 1%</td><td>&lt; 1% CVR</td><td>Produkt-Link prüfen · CTA stärker</td><td>1 Woche</td></tr>
-        <tr class="esc-a"><td>Negativkommentare &gt; 10%</td><td>&gt; 10%</td><td>Community Management · Antworten</td><td>24h</td></tr>
-        <tr class="esc-g"><td>Viral-Hit &gt; 500K Views</td><td>&gt; 500K</td><td>Produkt nachbestellen · Follow-up planen</td><td>24h</td></tr>
-        <tr class="esc-g"><td>ER &gt; 8% konstant</td><td>&gt; 8%</td><td>Posting-Frequenz erhöhen · Format doppeln</td><td>nächste Woche</td></tr>
-      </tbody>
+  <div class="cs-section">
+    <div class="cs-title">Kürzel & Abkürzungen</div>
+    <table class="cs-table">
+      <tr><th>Kürzel</th><th>Bedeutung</th><th>Merkhilfe</th></tr>
+      <tr><td><strong>WoW</strong></td><td>Week over Week</td><td>Diese Woche vs. letzte Woche</td></tr>
+      <tr><td><strong>YoY</strong></td><td>Year over Year</td><td>Diese Woche vs. gleiche Woche Vorjahr</td></tr>
+      <tr><td><strong>YTD</strong></td><td>Year to Date</td><td>Von KW1 bis heute kumuliert</td></tr>
+      <tr><td><strong>bps</strong></td><td>Basispunkte</td><td>100 bps = 1 Prozentpunkt</td></tr>
+      <tr><td><strong>PO</strong></td><td>Purchase Order</td><td>Bestellung von Amazon an ALCLEAR</td></tr>
+      <tr><td><strong>ASIN</strong></td><td>Amazon Standard ID</td><td>Eindeutige Produkt-ID (B08XY...)</td></tr>
+      <tr><td><strong>BSR</strong></td><td>Best Seller Rank</td><td>Platzierung in Kategorie</td></tr>
+      <tr><td><strong>OOS</strong></td><td>Out of Stock</td><td>Ausverkauft / nicht verfügbar</td></tr>
+      <tr><td><strong>A+</strong></td><td>A+ Content</td><td>Erweitertes Listing mit Bildern/Tabellen</td></tr>
+      <tr><td><strong>AMG</strong></td><td>Amazon Media Group</td><td>Display-Werbung außerhalb Suche</td></tr>
+      <tr><td><strong>DSP</strong></td><td>Demand-Side Platform</td><td>Programmatische Display-Werbung</td></tr>
+      <tr><td><strong>GV</strong></td><td>Gesamtvolumen</td><td>Alle bestellten/versendeten Einheiten</td></tr>
+      <tr><td><strong>CPGV</strong></td><td>Cost per GV</td><td>Kosten pro verkaufter Einheit</td></tr>
+      <tr><td><strong>RPC</strong></td><td>Revenue per Click</td><td>Umsatz je Anzeigenklick</td></tr>
+      <tr><td><strong>CPA</strong></td><td>Cost per Acquisition</td><td>Kosten pro Bestellung</td></tr>
+      <tr><td><strong>VLT</strong></td><td>Vendor Lead Time</td><td>Lieferzeit PO → Einbuchung</td></tr>
+    </table>
+  </div>
+  <div class="cs-section">
+    <div class="cs-title">Wochentakt — fester Rhythmus</div>
+    <table class="cs-table">
+      <tr><th>Tag / Zeit</th><th>Was passiert?</th><th>Wichtig für</th></tr>
+      <tr><td><strong>Montag</strong></td><td>PO-Welle 1 von Amazon</td><td>Sofort prüfen, 8-Tage-Fenster startet</td></tr>
+      <tr><td><strong>Mo. bis 11:00</strong></td><td>Ware bereitstellen (Cut-off)</td><td>Abholung durch Schenker / Daxer</td></tr>
+      <tr><td><strong>Donnerstag</strong></td><td>PO-Welle 2 von Amazon</td><td>Gleicher Prozess wie Montag</td></tr>
+      <tr><td><strong>Dienstag 10:00</strong></td><td>Amazon Performance Call</td><td>KPIs vorbereiten, Fragen notieren</td></tr>
+    </table>
+  </div>
+  <div class="cs-section">
+    <div class="cs-title">Logistikmodelle — TheyPay vs. WePay</div>
+    <table class="cs-table">
+      <tr><th>Modell</th><th>Kosten</th><th>Wer macht Logistik?</th><th>Fazit</th></tr>
+      <tr><td><strong>TheyPay</strong> (aktuell)</td><td class="ok">~1,90%</td><td>ALCLEAR organisiert Transport</td><td>Mehr Aufwand, günstigere Kosten</td></tr>
+      <tr><td><strong>WePay</strong></td><td class="bad">~5,94%</td><td>Amazon übernimmt Logistik</td><td>+4,04% Mehrkosten = ~€40k/Jahr/Mio.</td></tr>
     </table>
   </div>
 </div>
 
-</div><!-- end main -->
+<!-- ═══════════ PROZESSE ═══════════ -->
+<div id="page-process" class="page">
+  <div class="cs-section">
+    <div class="cs-title">PO-Prozess — Von Bestellung bis Einbuchung</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><h4>PO-Eingang (Mo & Do)</h4><p>Amazon sendet Purchase Orders in Vendor Central. Sofort prüfen und innerhalb von 24h bestätigen.</p><span class="step-tag" style="background:var(--blue-bg);color:var(--blue-text)">Vendor Confirmation Rate ↑</span></div></div>
+      <div class="step"><div class="step-num">2</div><div><h4>Ware bereitstellen (taggleich bis 11:00)</h4><p>Interne Cut-off-Zeit. Ware muss abholbereit sein — Abholung durch Schenker / Daxer.</p><span class="step-tag" style="background:var(--amber-bg);color:var(--amber-text)">8-Tage-Lieferfenster startet</span></div></div>
+      <div class="step"><div class="step-num">3</div><div><h4>Transport (TheyPay-Modell)</h4><p>Spediteure Schenker und Daxer holen ab. Kosten ca. 1,90% — deutlich günstiger als WePay.</p><span class="step-tag" style="background:var(--teal-bg);color:var(--teal-text)">VLT-relevant</span></div></div>
+      <div class="step"><div class="step-num">4</div><div><h4>Einbuchung bei Amazon</h4><p>Amazon bucht Ware ins Lager. Erst jetzt werden Net Receipts registriert. VLT = Zeit von PO bis hier.</p><span class="step-tag" style="background:var(--blue-bg);color:var(--blue-text)">Net Receipts steigen</span></div></div>
+      <div class="step"><div class="step-num">5</div><div><h4>Verkauf an Endkunde</h4><p>Amazon verkauft Ware an Endkunden. PCOGS und Shipped Revenue steigen im Dashboard.</p><span class="step-tag" style="background:var(--purple-bg);color:var(--purple-text)">PCOGS, Shipped Rev</span></div></div>
+    </div>
+  </div>
+  <div class="cs-section" style="margin-top:24px">
+    <div class="cs-title">Sonderfall: Cancelled PO / Reopen PO</div>
+    <div class="steps">
+      <div class="step"><div class="step-num" style="background:var(--red-bg);color:var(--red-text)">!</div><div><h4>Amazon storniert eine PO</h4><p>Wenn ALCLEAR nicht rechtzeitig bestätigt oder das Lieferfenster nicht einhält. Verschlechtert Net Receipts und SoROOS.</p></div></div>
+      <div class="step"><div class="step-num" style="background:var(--amber-bg);color:var(--amber-text)">↩</div><div><h4>Reopen PO — erneut öffnen</h4><p>ALCLEAR kann Amazon bitten, eine stornierte PO wieder zu aktivieren. Aktuelle offene Fälle: 2TX8SLMX und 8T5OWYFU.</p><span class="step-tag" style="background:var(--red-bg);color:var(--red-text)">Hohe Priorität</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ VENDOR VS SELLER ═══════════ -->
+<div id="page-vsvs" class="page">
+  <div class="cs-section">
+    <div class="cs-title">Vendor Central vs. Seller Central</div>
+    <table class="vs-table">
+      <tr><th class="th-t">Thema</th><th class="th-v">🏭 Vendor (ALCLEAR aktuell)</th><th class="th-s">🛒 Seller (Alternative)</th></tr>
+      <tr><td><strong>Kunde</strong></td><td>Amazon ist der Kunde</td><td>Endkunde ist der Kunde</td></tr>
+      <tr><td><strong>Plattform</strong></td><td>Vendor Central (VC)</td><td>Seller Central (SC)</td></tr>
+      <tr><td><strong>Preissteuerung</strong></td><td style="color:var(--red)">Amazon bestimmt Endpreis</td><td style="color:var(--green)">ALCLEAR steuert Preis selbst</td></tr>
+      <tr><td><strong>Marge</strong></td><td style="color:var(--red)">Amazon schlägt Marge drauf</td><td style="color:var(--green)">Mehr Marge möglich (minus ~15% Gebühren)</td></tr>
+      <tr><td><strong>Kontrolle</strong></td><td style="color:var(--red)">Weniger — Amazon entscheidet</td><td style="color:var(--green)">Mehr — ALCLEAR steuert alles</td></tr>
+      <tr><td><strong>Aufwand</strong></td><td style="color:var(--green)">Weniger (Amazon macht Logistik + CS)</td><td style="color:var(--red)">Mehr (Lager, Versand, Kundenservice)</td></tr>
+      <tr><td><strong>KPIs</strong></td><td>PCOGS, Net Receipts, SoROOS, VLT</td><td>Sales, Fees, Buy Box, TACoS</td></tr>
+      <tr><td><strong>Zahlung</strong></td><td>Amazon zahlt nach Lieferung (Net 30–90)</td><td>Auszahlung 2x/Monat von Amazon</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════ IDQ ═══════════ -->
+<div id="page-idq" class="page">
+  <div class="cs-section">
+    <div class="cs-title">Was ist IDQ?</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px">
+      <p style="font-size:15px;font-weight:600;margin-bottom:8px">IDQ = Item Data Quality Score (0–100)</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">Amazon bewertet damit wie vollständig, sauber und verkaufsstark ein Produktlisting ist. Direkt verknüpft mit Conversion Rate und TACoS. Schlechter IDQ → niedrige CR → höhere Werbekosten → höherer TACoS.</p>
+    </div>
+    <table class="cs-table">
+      <tr><th>Score</th><th>Bewertung</th><th>Was tun?</th></tr>
+      <tr><td><strong>95–100</strong></td><td class="ok">Sehr stark</td><td>Halten, regelmäßig prüfen</td></tr>
+      <tr><td><strong>90–95</strong></td><td class="ok">Gut</td><td>Kleinigkeiten optimieren</td></tr>
+      <tr><td><strong>80–90</strong></td><td class="warn">Optimierbar</td><td>Bilder, Bullets, Keywords verbessern</td></tr>
+      <tr><td><strong>70–80</strong></td><td class="bad">Problematisch</td><td>Sofort Content-Überarbeitung starten</td></tr>
+      <tr><td><strong>&lt; 70</strong></td><td class="bad">Kritisch</td><td>Dringend — kostet Umsatz und erhöht TACoS</td></tr>
+    </table>
+  </div>
+  <div class="cs-section">
+    <div class="cs-title">Was Amazon beim IDQ bewertet</div>
+    <div class="idq-grid">
+      <div class="idq-card"><h4>📝 Titel</h4><p>Keywords + Nutzen + Marke. Klar und lesbar. Länge: ca. 150–200 Zeichen.</p></div>
+      <div class="idq-card"><h4>• Bullet Points</h4><p>Vorteile statt nur Eigenschaften. Vollständig, überzeugend, min. 5 Punkte.</p></div>
+      <div class="idq-card"><h4>📷 Bilder</h4><p>Auflösung ≥1000px, Lifestyle-Bilder, Anwendungsfotos, Infografiken.</p></div>
+      <div class="idq-card"><h4>⭐ A+ Content</h4><p>Markenstory, Vergleichstabellen, Anwendungserklärungen. Fast Pflicht für Marken.</p></div>
+      <div class="idq-card"><h4>🔍 Backend Keywords</h4><p>Unsichtbar für Kunden, entscheidend für Indexierung. Keine Wiederholungen.</p></div>
+      <div class="idq-card"><h4>📂 Leaf Node</h4><p>Exakte Unterkategorie zuweisen. Falsche Zuordnung = schlechtere Datenqualität.</p></div>
+      <div class="idq-card"><h4>📏 Attribute</h4><p>Größe, Material, Farbe, Maße, Anwendungsbereich vollständig ausfüllen.</p></div>
+    </div>
+  </div>
+  <div class="cs-section">
+    <div class="cs-title">IDQ ↔ TACoS — der direkte Zusammenhang</div>
+    <table class="cs-table">
+      <tr><th></th><th>Schlechter IDQ</th><th>Guter IDQ</th></tr>
+      <tr><td><strong>Conversion Rate</strong></td><td class="bad">~5%</td><td class="ok">~12–15%</td></tr>
+      <tr><td><strong>Werbeeffizienz</strong></td><td class="bad">Teuer, wenig Umsatz zurück</td><td class="ok">Effizient, mehr Umsatz pro Euro</td></tr>
+      <tr><td><strong>TACoS</strong></td><td class="bad">Hoch (~25%+)</td><td class="ok">Niedrig (~10–14%)</td></tr>
+      <tr><td><strong>Merksatz</strong></td><td colspan="2" style="color:var(--muted)">Erst Listing optimieren, dann PPC skalieren — nie umgekehrt.</td></tr>
+    </table>
+  </div>
+</div>
+
+</main>
 
 <script>
-const _fbSID=Date.now()+'_'+Math.random().toString(36).slice(2);
-const _fbUrl='https://glart-dashboard-default-rtdb.europe-west1.firebasedatabase.app/glart/v3.json';
-const _fbUrlTs=parseInt(new URL(location.href).searchParams.get('fbts')||'0');
-const _fbShow=(ok,msg)=>{let el=document.getElementById('_fbSt');if(!el){el=document.createElement('div');el.id='_fbSt';el.style.cssText='position:fixed;bottom:8px;right:8px;padding:6px 12px;border-radius:4px;font-size:12px;font-weight:bold;z-index:99999;cursor:pointer;max-width:350px;word-break:break-word;';el.onclick=()=>el.remove();document.body.appendChild(el);}el.style.background=ok?'#1a7a3a':'#c0392b';el.style.color='#fff';el.textContent=(ok?'✅ Firebase: Gespeichert':'❌ Firebase-Fehler: ')+msg;if(ok)setTimeout(()=>{if(el.parentNode)el.remove();},4000);};
-const _fbPush=()=>{try{const body=JSON.stringify({...S,_sid:_fbSID,_ts:S._ts||Date.now()});fetch(_fbUrl,{method:'PUT',headers:{'Content-Type':'application/json'},body}).then(r=>{if(r.ok){_fbShow(true,'');}else{r.text().then(t=>_fbShow(false,'HTTP '+r.status+': '+t.slice(0,80)));}}).catch(e=>_fbShow(false,e.message||'Netzwerkfehler'));}catch(e){_fbShow(false,'JSON-Fehler: '+e.message);}};
-const _fbPull=async()=>{try{const r=await fetch(_fbUrl);if(!r.ok)return;const d=await r.json();if(!d||d._sid===_fbSID)return;const fbTs=d._ts||0;if(fbTs>(S._ts||0)&&fbTs!==_fbUrlTs){const{_sid,_ts,...data}=d;Object.assign(S,data);S._ts=fbTs;try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}location.replace(location.pathname+'?fbts='+fbTs);}}catch(e){}};
-setTimeout(_fbPull,2000);
-setInterval(_fbPull,5000);
-
-// ═══ DATA ═══════════════════════════════════════
-const VIDEOS = [{"phase": "Phase 1", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.7", "title": "Was ist der Abperleffekt?", "hook": "Warum perlt Wasser bei manchen Autos ab und bei deins nicht?", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T1", "title": "Watergate Trockentuch: Wassertest", "hook": "Dein Auto trocknen dauert 20 Minuten? Mit diesem Tuch 4.", "format": "Produkt-Demo / ASMR", "schwierigkeit": "Einfach", "produkt": "Watergate Trockentuch 90x60 cm"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.5", "title": "Fehler: Waschanlage zerkratzt den Lack", "hook": "Die Waschanlage ist guenstig. Der Lackschaden kostet Hunderte.", "format": "Konfrontation", "schwierigkeit": "Einfach", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F1", "title": "Felgenreiniger: Farbreaktion live", "hook": "Siehst du wie die Farbe sich aendert? Das ist Bremsstaub.", "format": "Before/After + ASMR", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger saurefrei 500ml"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "Vergleich", "id": "S4.3", "title": "Versiegelt vs. nicht versiegelt", "hook": "Gleiche Motorhaube. Links versiegelt. Rechts nicht.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Innenraum", "id": "P-I2", "title": "Kaffeefleck weg in 90 Sekunden", "hook": "Kaffeefleck auf dem Sitzbezug. 90 Sekunden. Weg.", "format": "Problem-Solution", "schwierigkeit": "Einfach", "produkt": "Innenreiniger 500ml"}, {"phase": "Phase 1", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.5", "title": "Was sind Hologramme im Lack?", "hook": "Diese Kreise im Lack hast du selbst verursacht.", "format": "Edu + Visual", "schwierigkeit": "Einfach", "produkt": "Anti-Hologramm Politur"}, {"phase": "Phase 1", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P1", "title": "Hologramme entfernen: Before/After", "hook": "So sieht ein Auto aus wenn man Hologramme entfernt.", "format": "Before/After", "schwierigkeit": "Mittel", "produkt": "Anti-Hologramm Politur 1000ml"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.1", "title": "Was ist Mikrofaser wirklich?", "hook": "Ein Mikrofasertuch hat 200.000 Fasern pro cm2. Ein normales 100.", "format": "Edu + Visual", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM 3er Set"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Vergleich", "id": "S4.1", "title": "600 GSM vs. 200 GSM: Wassertest", "hook": "Warum kostet das eine doppelt so viel? In 10 Sekunden.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T2", "title": "Kratzer beim Abtrocknen? Du machst es falsch.", "hook": "Kratzer beim Trocknen? Du machst es falsch.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "2er Set Trockentuch 70x40 cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.1", "title": "Fehler: Mikrofasertuch falsch waschen", "hook": "Du waeschst deine Mikrofasertucher falsch. Das kostet Kratzer.", "format": "Erklaerung", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher allgemein"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.1", "title": "Die richtige Reihenfolge bei der Autopflege", "hook": "Wer zuerst poliert und dann waesche, hat alles falsch gemacht.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Mehrere GLART-Produkte"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T3", "title": "Twist Trockentuch: ASMR Absorptionstest", "hook": "Das saugstaerkste Tuch das ich je getestet habe.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Twist Trockentuch XXL 80x55cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.3", "title": "Fehler: Vogelkot liegen lassen", "hook": "Vogelkot auf dem Lack - wie lange hast du Zeit? 24 Stunden.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Innenreiniger + Mikrofasertuch"}, {"phase": "Phase 2", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G1", "title": "Carbon-Tuch vs. normales Tuch auf Glas", "hook": "Gleiche Bewegung. Zwei Tuecher. Ein Sieger.", "format": "Vergleich", "schwierigkeit": "Einfach", "produkt": "Carbon-Tuecher 4x 50x40 cm"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "Vergleich", "id": "S4.2", "title": "Carbon-Tuch vs. Mikrofaser auf Glas", "hook": "Gleiches Glas. Gleiche Bewegung. Zwei Tuecher. Ein Sieger.", "format": "Split-Demo", "schwierigkeit": "Einfach", "produkt": "Carbon-Tuecher 44C"}, {"phase": "Phase 2", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.2", "title": "Grammatur erklaert: Was bedeutet 600 g/m2?", "hook": "200 g/m2 vs. 600 g/m2. Der Unterschied ist nicht nur Gewicht.", "format": "Edu + Wassertest", "schwierigkeit": "Einfach", "produkt": "Mikrofasertuecher 600 GSM"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.2", "title": "Vorarbeit: Warum sie alles entscheidet", "hook": "Wenn du die Vorarbeit ueberspringst, ist jede Politur verschwendet.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Insektenentferner + Autoshampoo"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P4", "title": "Schleifpolitur: Kratzer selbst entfernen", "hook": "Dieser Kratzer kostet in der Werkstatt 300 Euro. Oder 5 Minuten.", "format": "Before/After", "schwierigkeit": "Hoch", "produkt": "Schleifpolitur 1000ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.8", "title": "Schleifpolitur vs. Finishpolitur", "hook": "Wer Finishpolitur auf tiefen Kratzer auftraegt, kann aufhoeren.", "format": "Edu", "schwierigkeit": "Mittel", "produkt": "Schleifpolitur + Finishpolitur"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P2", "title": "Finishpolitur: Aesthetic + Ergebnis", "hook": "So sieht ein Auto aus wenn man es richtig poliert.", "format": "Aesthetic", "schwierigkeit": "Mittel", "produkt": "Finishpolitur 1000ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.6", "title": "pH-neutral: Warum es deinen Lack rettet", "hook": "Dein Kuechenspuelmittel ist pH 10. Dein Lack vertraegt pH 7.", "format": "Edu", "schwierigkeit": "Einfach", "produkt": "Autoshampoo pH-neutral"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W2", "title": "Autoshampoo: Schaum-Demo", "hook": "Du verwendest das falsche Shampoo. Es zerstoert deinen Lack.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Autoshampoo Konzentrat 500ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.4", "title": "Der 2-Eimer-Trick", "hook": "Mit einem Eimer waeschst du den Lack mit dem Schmutz vom letzten Durchgang.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W1", "title": "Waschhandschuh: kein Kratzer mehr", "hook": "Schwamm oder Lappen? Beides falsch. Das hier verhindert Kratzer.", "format": "Edu-Tutorial", "schwierigkeit": "Einfach", "produkt": "Mikrofaser Waschhandschuh"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.4", "title": "Fehler: Auto in der Sonne waschen", "hook": "Auto in der Sonne waschen. Bester Weg fuer permanente Wasserflecken.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher + Trockentuch"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F2", "title": "Felgenbuerste 3er Set: Demo", "hook": "Mit einer Buerste klappt das nie. Mit drei geht es in 3 Minuten.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "3er Set Felgenbuerste"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.4", "title": "Felgenpflege: Der komplette Prozess", "hook": "Einmal alles richtig machen. Dann bleibt es laenger sauber.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Felgenreiniger + Buerste + Handschuh"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F4", "title": "Felgen Waschhandschuh: Speichen sauber", "hook": "Speichen sauber kriegen ohne Kratzer? So geht das.", "format": "How-To", "schwierigkeit": "Einfach", "produkt": "Felgen Waschhandschuh 27x12cm"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Vergleich", "id": "S4.4", "title": "Felgenreiniger Farbindikator erklaert", "hook": "Siehst du die Farbreaktion? Das ist Bremsstaub der sich loest.", "format": "ASMR", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger saurefrei"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Innenraum", "id": "P-I1", "title": "Cockpitreiniger: Armaturenbrett in 2 Min.", "hook": "Dein Armaturenbrett sieht so aus? Das ist in 2 Minuten weg.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "Cockpitreiniger 500ml"}, {"phase": "Phase 3", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.5", "title": "Innenraum richtig reinigen (Reihenfolge!)", "hook": "Wer den Boden zuerst saugt und dann das Dach reinigt, darf nochmal.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Cockpitreiniger + Innenreiniger"}, {"phase": "Phase 3", "track": "Produkt", "kat": "Innenraum", "id": "P-I3", "title": "Cockpitpflege: Ausgegrauer Kunststoff", "hook": "Ausgegrautem Kunststoff keine Chance.", "format": "Transformation", "schwierigkeit": "Einfach", "produkt": "Cockpitpflege 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.6", "title": "Fehler: Leder mit Haushaltsmitteln reinigen", "hook": "Ihr reinigt euer Autoleder mit was? Damit zerstoert ihr es.", "format": "Warnung", "schwierigkeit": "Einfach", "produkt": "Lederreiniger + Lederversiegelung"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Leder", "id": "P-L1", "title": "Lederreiniger: Before/After", "hook": "Dein Leder kriegt Risse - und das liegt an dem was du benutzt.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Lederreiniger 500ml"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Leder", "id": "P-L2", "title": "Lederversiegelung: ROI-Argument", "hook": "Dieses Produkt kostet 16 Euro. Neue Ledersitze kosten 3.000.", "format": "Edu-Tutorial", "schwierigkeit": "Einfach", "produkt": "Lederversiegelung 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.2", "title": "Warum schwarze Autos so viel Pflege brauchen", "hook": "Du hast ein schwarzes Auto? Dann ist dieser Post fuer dich.", "format": "Erklaerung", "schwierigkeit": "Einfach", "produkt": "600 GSM + Anti-Hologramm Politur"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.3", "title": "High Pile vs. Low Pile", "hook": "Gleiches Tuch, falscher Einsatz. So zerkratzt du deinen Lack.", "format": "Vergleich", "schwierigkeit": "Mittel", "produkt": "Poliertuch + Carbon-Tuch"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "GLART erklaert", "id": "S1.4", "title": "Ultraschallschnitt vs. Naht", "hook": "Die Naht deines Tuchs kann deinen Lack zerkratzen.", "format": "Makro", "schwierigkeit": "Mittel", "produkt": "GLART Premium Mikrofasertuch"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P3", "title": "Schnellversiegelung: 5 Minuten Schutz", "hook": "5 Minuten - und dein Auto ist versiegelt fuer Monate.", "format": "Speed-Format", "schwierigkeit": "Einfach", "produkt": "Lack Schnellversiegelung 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Mach es richtig", "id": "S2.3", "title": "Lackkorrektur fuer Einsteiger", "hook": "Kratzer selbst entfernen ist einfacher als du denkst.", "format": "Tutorial", "schwierigkeit": "Mittel", "produkt": "Schleifpolitur + Polierpads"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Politur & Lack", "id": "P-P5", "title": "Polierpads: welches wofuer?", "hook": "Mit dem falschen Pad ruinierst du jede Politur.", "format": "Edu-Tutorial", "schwierigkeit": "Mittel", "produkt": "3er Set Mikrofaser Polierpads"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.1", "title": "Was Detailer wissen und du nicht", "hook": "Profis tun das nach jeder Wasche. Die meisten nicht.", "format": "Insider", "schwierigkeit": "Mittel", "produkt": "Felgenreiniger Iron Remover"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Felgenpflege", "id": "P-F3", "title": "Premium Felgenbuerste: abnehmbarer Bezug", "hook": "Die einzige Felgenbuerste die du je brauchst.", "format": "Spotlight", "schwierigkeit": "Einfach", "produkt": "Premium Mikrofaser Felgenbuerste"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Fehler-Serie", "id": "S3.2", "title": "Fehler: Hochdruckreiniger falsch halten", "hook": "Der Hochdruckreiniger ist gut. Aber du haeltst ihn falsch.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher + Trockentuch"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W4", "title": "Wasserabzieher: 80% Wasser in Sekunden", "hook": "Nach dem Waschen sofort abziehen - spart 5 Minuten.", "format": "Quick-Tip", "schwierigkeit": "Einfach", "produkt": "Wasserabzieher Silikonlippe"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Vergleich", "id": "S4.5", "title": "Handwaesche vs. Waschanlage unterm Schwarzlicht", "hook": "Was die Waschanlage hinterlaesst, siehst du erst so.", "format": "Schwarzlicht", "schwierigkeit": "Mittel", "produkt": "Waschhandschuh + Autoshampoo"}, {"phase": "Phase 4", "track": "Produkt", "kat": "Innenraum", "id": "P-I4", "title": "Innenreiniger-Set: Komplett-Transformation", "hook": "Komplette Innenraum-Reinigung in einem Set.", "format": "Set-Demo", "schwierigkeit": "Mittel", "produkt": "3er Set Innenreiniger 500ml"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.3", "title": "Was OEM-approved wirklich bedeutet", "hook": "Wenn Automobilhersteller ein Produkt einsetzen, weisst du es.", "format": "Trust", "schwierigkeit": "Einfach", "produkt": "GLART Mikrofasertuecher allgemein"}, {"phase": "Phase 4", "track": "Infomercial", "kat": "Profi-Wissen", "id": "S5.5", "title": "Mikroplastik-frei: Warum das wichtig ist", "hook": "Jedes guenstige Mikrofasertuch verliert Plastik ins Abwasser.", "format": "Nachhaltigkeit", "schwierigkeit": "Einfach", "produkt": "GLART Mikrofasertuecher Oeko-Tex"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G2", "title": "Glasreiniger: Streifenfrei Tutorial", "hook": "Einmal spritzen, nie wieder Schlieren.", "format": "Demo", "schwierigkeit": "Einfach", "produkt": "Glasreiniger 500ml"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Glasreinigung", "id": "P-G3", "title": "Antibeschlagschwamm: Beschlag stoppen", "hook": "Beschlagene Scheiben im Winter? Dieses Ding loest das dauerhaft.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Antibeschlagschwamm 44MS2"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Trockentuecher", "id": "P-T4", "title": "Set Twist 80+60 cm: Unboxing + Demo", "hook": "Einmal kaufen, nie wieder Schlieren.", "format": "Unboxing", "schwierigkeit": "Einfach", "produkt": "Set Twist Trockentuch 80+60 cm"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Waschzubehoer", "id": "P-W3", "title": "Natur-Waschschwamm: Made in Germany", "hook": "Made in Germany. Der Unterschied ist spuerbar.", "format": "Sustainability", "schwierigkeit": "Einfach", "produkt": "2er Set Natur-Waschschwamme"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S4", "title": "Insektenentferner: Autobahn-Chaos weg", "hook": "Autobahn im Sommer. Vor vs. nach GLART.", "format": "Before/After", "schwierigkeit": "Einfach", "produkt": "Insektenentferner 500ml"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.4", "title": "Insekten-Saison: Sofortmassnahmen", "hook": "Autobahnfahrt im Sommer. Dieser Film frisst deinen Lack.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Insektenentferner"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S1", "title": "Tierhaarentferner: Hundebesitzer aufgepasst", "hook": "Hundebesitzer: ihr wisst was ich meine.", "format": "Nischen", "schwierigkeit": "Einfach", "produkt": "Tierhaarentferner Silikonbuerste"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S3", "title": "Reifenglanz: Der vergessene Finishing-Touch", "hook": "Der Finishing-Touch den 90% vergessen.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Reifenglanz 500ml inkl. Schwamm"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.1", "title": "Herbst-Vorbereitung (September/Oktober)", "hook": "Bevor der erste Frost kommt, musst du das getan haben.", "format": "Checkliste", "schwierigkeit": "Einfach", "produkt": "Versiegelung + Antibeschlagschwamm + Eiskratzer"}, {"phase": "Phase 5", "track": "Produkt", "kat": "Sonder-Content", "id": "P-S2", "title": "Eiskratzer: stabil und ergonomisch", "hook": "Es ist November. Bist du vorbereitet?", "format": "Saisonal", "schwierigkeit": "Einfach", "produkt": "Eiskratzer mit Schneebesen"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.2", "title": "Winter-Tipps: Streusalz ist der Feind", "hook": "Streusalz ist der schlimmste Feind deines Autos.", "format": "Tutorial", "schwierigkeit": "Einfach", "produkt": "Felgenreiniger + Eiskratzer + Shampoo"}, {"phase": "Phase 5", "track": "Infomercial", "kat": "Saisonale Tipps", "id": "S6.3", "title": "Fruehlings-Aufbereitung (Maerz/April)", "hook": "Winter ist vorbei. Jetzt kommt der wichtigste Pflegetermin.", "format": "Prozess", "schwierigkeit": "Mittel", "produkt": "Insektenentferner + Schleifpolitur + Versiegelung"}];
-
-const WEEKS = (()=>{
-  const w=[];
-  for(let i=24;i<=52;i++) w.push(`KW ${i}/26`);
-  for(let i=1;i<=23;i++) w.push(`KW ${String(i).padStart(2,'0')}/27`);
-  return w;
-})();
-
-// Growth plan — derived from ROADMAP phase end weeks & follower triggers
-// P1:idx 0-7 | P2:idx 8-19 | P3:idx 20-31 | P4:idx 32-42 | P5:idx 43-51
-const GROWTH_PLAN = {
-  followers: [[0,115],[7,5000],[19,15000],[31,50000],[42,100000],[51,200000]],
-  adsBudget: [[0,50],[7,100],[19,200],[31,350],[42,500],[51,700]]
-};
-function interpPlan(waypts, i) {
-  if(i<=waypts[0][0]) return waypts[0][1];
-  const last=waypts[waypts.length-1];
-  if(i>=last[0]) return last[1];
-  for(let m=0;m<waypts.length-1;m++){
-    const [wa,fa]=waypts[m],[wb,fb]=waypts[m+1];
-    if(i>=wa&&i<=wb){const t=(i-wa)/(wb-wa);return Math.round(fa*Math.pow(fb/fa,t));}
-  }
-  return waypts[0][1];
-}
-
-const ROADMAP = [
-  {id:'p1',lbl:'Phase 1',kw:'KW 24–31/26',color:'#60B4F0',bg:'rgba(52,152,219,.12)',
-   goal:'Trust & Beweis aufbauen',trigger:'5.000 Follower & 3% ER',
-   items:['5.000 Follower erreicht','8 Videos live','3% Engagement Rate','Erste TikTok Shop Verkäufe']},
-  {id:'p2',lbl:'Phase 2',kw:'KW 32–43/26',color:'#5FDF90',bg:'rgba(46,204,113,.12)',
-   goal:'Reichweite & Learnings',trigger:'15.000 Follower & 4% ER',
-   items:['15.000 Follower','20 Videos live','4% Engagement Rate','TikTok Shop Umsatz > 500€/Monat']},
-  {id:'p3',lbl:'Phase 3',kw:'KW 44/26–03/27',color:'#F8C244',bg:'rgba(243,156,18,.12)',
-   goal:'Momentum aufbauen',trigger:'50.000 Follower & 1 Viral-Hit',
-   items:['50.000 Follower','40 Videos live','1 Video > 100K Views','Umsatz > 1.000€/Monat']},
-  {id:'p4',lbl:'Phase 4',kw:'KW 04–14/27',color:'#C48DE8',bg:'rgba(155,89,182,.12)',
-   goal:'Monetarisierung & Dominanz',trigger:'100.000 Follower',
-   items:['100.000 Follower','63 Videos live','Umsatz > 2.000€/Monat','Ads ROI stabil > 2.0']},
-  {id:'p5',lbl:'Phase 5',kw:'KW 15–23/27',color:'#4DD8C0',bg:'rgba(26,188,156,.12)',
-   goal:'Marktführer Deutschland',trigger:'200.000+ Follower',
-   items:['200.000+ Follower','Collaboration-Anfragen','Organic ROI messbar','Nr.1 Autopflege TikTok DE']}
+const terms=[
+  {abbr:"PCOGS",full:"Product Cost of Goods Sold",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Was Amazon bei ALCLEAR für Produkte einkauft. Nicht der Endkundenpreis — sondern was Amazon an ALCLEAR überweist. Die zentrale Kennzahl im Vendor-Report.",
+   formula:"PCOGS = Units × Einkaufspreis (Amazon → Vendor)",
+   ex:"KW 23: €55.258 (+5,99% WoW, +15,18% YoY). YTD: €1,39 Mio. (+14,37% YoY)"},
+  {abbr:"Shipped Revenue",full:"Tatsächlich versendeter Endkundenpreis",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Was Endkunden für die Produkte bezahlt haben. Immer höher als PCOGS — Amazon schlägt eine Marge drauf. ALCLEAR sieht diesen Betrag nicht direkt.",
+   formula:"Shipped Rev = Units × Endkundenpreis",
+   ex:"KW 23: €72.768 vs. €55.258 PCOGS → Amazons Rohspanne €17.510"},
+  {abbr:"Net Receipts",full:"Netto-Warenwert eingekauft",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Von Amazon tatsächlich eingekaufter und eingebuchter Warenwert. Kritischer KPI — spiegelt PO-Einbuchungen wider, nicht PCOGS.",
+   formula:"Net Receipts = Summe eingebuchter PO-Werte im Zeitraum",
+   ex:"KW 22: -84,23% YoY — Amazon hat deutlich weniger Ware eingebucht. Sofort eskalieren!"},
+  {abbr:"Shipped Units",full:"Versandte Einheiten",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Anzahl der Produkte, die Amazon in einem Zeitraum an Endkunden versendet hat. Zeigt das Absatzvolumen.",
+   formula:"Shipped Units = Stückzahl versendeter Bestellpositionen",
+   ex:"KW 23: 6.613 Units (+3,93% WoW). YTD: 176.126 Units (+14,48% YoY)"},
+  {abbr:"ASP",full:"Average Selling Price",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Durchschnittlicher Verkaufspreis pro Einheit. Sinkender ASP deutet auf Deals, Rabattdruck oder veränderten Produktmix hin.",
+   formula:"ASP = Shipped Revenue ÷ Shipped Units",
+   ex:"KW 23: €11,51. YTD-Durchschnitt: €10,81 (-2,61% YoY) — Rabattdruck sichtbar."},
+  {abbr:"CR-% / Conversion Rate",full:"Anteil Besucher die kaufen",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"Von allen Besuchern der Produktseiten: wie viele kaufen tatsächlich? Hohe CR = überzeugendes Listing (Bilder, Preis, Bullets, IDQ).",
+   formula:"CR = Bestellungen ÷ Sessions × 100",
+   ex:"KW 23: 15,18% — von 100 Seitenbesuchern kaufen ~15. Ziel: ≥12%."},
+  {abbr:"GV / CPGV",full:"Gesamtvolumen / Cost per GV",cat:"umsatz",badge:"badge-blue",bl:"Umsatz",
+   def:"GV = Gesamtvolumen aller Einheiten. CPGV = Kosten pro verkaufter Einheit — zeigt Kosteneffizienz auf Stückebene.",
+   formula:"CPGV = Gesamtkosten ÷ GV",
+   ex:"KW 23: GV = 43.567, CPGV = €0,23 — sehr günstige Kosten pro Einheit."},
+  {abbr:"PPC / Sponsored Ads",full:"Pay-per-Click Werbung auf Amazon",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Bezahlte Werbeanzeigen auf Amazon (Sponsored Products, Sponsored Brands). Kosten entstehen nur bei Klicks — nicht bei Anzeigeneinblendungen.",
+   formula:"PPC-Kosten = Klicks × CPC",
+   ex:"KW 23: 9.573 Klicks × €1,07 CPC = €10.237 Werbeausgaben"},
+  {abbr:"ACOS",full:"Advertising Cost of Sales",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Wie viel Prozent des PPC-Umsatzes für Werbung ausgegeben wird. Nur auf den Umsatz bezogen der durch Werbeklicks entstand. Ziel: unter 30%.",
+   formula:"ACOS = Werbeausgaben ÷ PPC-Umsatz × 100",
+   ex:"KW 23: €10.237 ÷ €27.964 = 36,61% — zu hoch! Ziel ≤30%."},
+  {abbr:"TACoS",full:"Total Advertising Cost of Sales",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Wie viel Prozent des GESAMTEN Umsatzes (organisch + PPC) für Werbung ausgegeben wird. Wichtiger als ACOS — zeigt das komplette Bild.",
+   formula:"TACoS = Werbeausgaben ÷ Gesamtumsatz × 100",
+   ex:"Rev TACoS KW 23: 14,07% ✓ (Ziel ≤15%). PCOGS TACoS: 18,53% ✓ (Ziel ≤20%)."},
+  {abbr:"CPC",full:"Cost per Click",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Durchschnittliche Kosten pro Klick auf eine Werbeanzeige. Je wettbewerbsintensiver ein Keyword, desto höher der CPC.",
+   formula:"CPC = Werbeausgaben ÷ Anzahl Klicks",
+   ex:"KW 23: €1,07 pro Klick. Im Jahresvergleich sehr stabil."},
+  {abbr:"CTR-%",full:"Click-Through-Rate",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Von allen die eine Anzeige sehen: wie viele klicken? Zeigt ob Anzeigentitel und Bild ansprechend sind.",
+   formula:"CTR = Klicks ÷ Impressionen × 100",
+   ex:"KW 23: 9.573 ÷ 1.611.059 = 0,59%"},
+  {abbr:"Paid-% / PPC-CR",full:"Paid Share und PPC Conversion Rate",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Paid-% = Anteil des Umsatzes aus bezahlter Werbung. PPC-CR = Wie viele PPC-Klicks führen zur Bestellung.",
+   formula:"Paid-% = PPC-Umsatz ÷ Gesamtumsatz × 100",
+   ex:"KW 23: Paid-% = 32,38% — ein Drittel des Umsatzes kommt aus Werbung."},
+  {abbr:"AMG / Display Ads",full:"Amazon Media Group / Display Werbung",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Display-Werbung außerhalb der Suchergebnisse — auf Produktseiten, Apps, externen Websites. Wird separat zu PPC gemessen.",
+   formula:"AMG % of PCOGS = Display-Spend ÷ PCOGS × 100",
+   ex:"KW 23: 16,19% (Ziel ≤18%). YTD: 18,80% — leicht über Ziel."},
+  {abbr:"RPC / CPA",full:"Revenue per Click / Cost per Acquisition",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"RPC = Umsatz pro Werbeklick. CPA = Kosten pro gewonnener Bestellung. Beide zeigen Werbeeffizienz aus verschiedenen Blickwinkeln.",
+   formula:"RPC = Umsatz ÷ Klicks  |  CPA = Spend ÷ Bestellungen",
+   ex:"KW 23: RPC = €5,77 | CPA = €1,55 — für €1,55 Werbung kommt eine Bestellung."},
+  {abbr:"Deal Spend",full:"Kosten für Deals und Aktionen",cat:"werbung",badge:"badge-amber",bl:"Werbung",
+   def:"Kosten für Lightning Deals, Prime Day oder Rabattpromotions. Kann die Marge in Aktionswochen massiv belasten.",
+   formula:"Total Spend = Vendor Spend + Deal Spend",
+   ex:"KW 4: Deal Spend €7.030 → GPAAC wurde negativ (-€3.314). Immer in Marge einrechnen!"},
+  {abbr:"GPBA",full:"Gross Profit Before Advertising",cat:"gewinn",badge:"badge-green",bl:"Gewinn",
+   def:"Rohgewinn VOR Abzug der Werbekosten. Zeigt wie profitabel das Produkt grundsätzlich ist — unabhängig vom Marketingaufwand.",
+   formula:"GPBA = PCOGS − eigene Herstellkosten",
+   ex:"KW 23: €21.808 GPBA (+10,97% WoW). KW 4 mit €12.334 war deutlich schwächer."},
+  {abbr:"GPAAC",full:"Gross Profit After Advertising Cost",cat:"gewinn",badge:"badge-green",bl:"Gewinn",
+   def:"Echter operativer Gewinn nach Abzug aller Werbekosten und OPEX. Die wichtigste Profitabilitätskennzahl im gesamten Report.",
+   formula:"GPAAC = GPBA − Total Spend − OPEX",
+   ex:"KW 23: €21.808 − €10.237 − €726 = €10.845 ✓. KW 4: −€3.314 (negativ durch Deal Spend!)"},
+  {abbr:"OPEX",full:"Operating Expenses",cat:"gewinn",badge:"badge-green",bl:"Gewinn",
+   def:"Laufende Betriebskosten — Agenturgebühren, Software, Account-Management. Im Report konstant ca. €726/Woche.",
+   formula:"GPAAC = GPBA − Spend − OPEX",
+   ex:"KW 13: OPEX sprang auf €898 — vermutlich Sondergebühr. YTD GPAAC: €208.653."},
+  {abbr:"VLT",full:"Vendor Lead Time",cat:"supply",badge:"badge-teal",bl:"Supply Chain",
+   def:"Zeit von Amazons Bestellung (PO) bis zur Einbuchung der Ware bei Amazon. Lange VLT erhöht das Out-of-Stock-Risiko erheblich.",
+   formula:"VLT = Tage von PO-Eingang bis Einbuchung bei Amazon",
+   ex:"KW 23: 27,21 Tage (+91,75% YoY) — kritisch! Ziel: ≤15 Tage."},
+  {abbr:"SoROOS",full:"Share of Retail Out-of-Stock",cat:"supply",badge:"badge-teal",bl:"Supply Chain",
+   def:"Anteil der Zeit, in dem ein Produkt nicht verfügbar (ausverkauft) war. Hoher Wert = verlorener Umsatz und schlechteres Ranking.",
+   formula:"SoROOS = OOS-Tage ÷ Gesamttage × 100",
+   ex:"KW 23: 1,59%. YTD: ~2,37-2,41% (Ziel ≤1,75%) — noch über Ziel."},
+  {abbr:"TheyPay / WePay",full:"Logistikmodelle bei Amazon",cat:"supply",badge:"badge-teal",bl:"Supply Chain",
+   def:"TheyPay = ALCLEAR organisiert Transport (aktuell, ~1,90%). WePay = Amazon übernimmt Logistik (~5,94%). Mehr Komfort, höhere Kosten.",
+   formula:"Mehrkosten WePay vs TheyPay = +4,04% | €1 Mio. Umsatz = +€40.400/Jahr",
+   ex:"Wechsel zu WePay: weniger Aufwand, aber ca. €40k Mehrkosten pro Mio. Jahresumsatz."},
+  {abbr:"PO / Purchase Order",full:"Einkaufsbestellung von Amazon",cat:"po",badge:"badge-purple",bl:"PO-Management",
+   def:"Einkaufsbestellung von Amazon an ALCLEAR. Amazon bestellt Ware; ALCLEAR muss bestätigen und innerhalb von 8 Tagen liefern.",
+   formula:"— (Prozessschritt)",
+   ex:"POs kommen montags und donnerstags rein. Sofort bestätigen!"},
+  {abbr:"Vendor Confirmation Rate",full:"PO-Bestätigungsrate",cat:"po",badge:"badge-purple",bl:"PO-Management",
+   def:"Wie viele Amazon-POs ALCLEAR bestätigt hat. Hohe Rate = zuverlässiger Lieferant. Niedrige Rate = Amazon kauft woanders.",
+   formula:"VCR = bestätigte POs ÷ alle POs × 100",
+   ex:"KW 23: 99,04% ✓ (Ziel ≥95%). YTD: 89,91% — zu niedrig."},
+  {abbr:"Reopen PO",full:"Stornierte PO reaktivieren",cat:"po",badge:"badge-purple",bl:"PO-Management",
+   def:"Amazon kann eine Cancelled PO auf Anfrage wieder öffnen. Aktuell offen: 2TX8SLMX und 8T5OWYFU.",
+   formula:"— (Prozessschritt)",
+   ex:"Cancelled POs verschlechtern Net Receipts und SoROOS. Sofort eskalieren."},
+  {abbr:"WoW / YoY / YTD",full:"Zeitvergleich-Abkürzungen",cat:"reporting",badge:"badge-gray",bl:"Reporting",
+   def:"WoW = Week over Week (vs. Vorwoche). YoY = Year over Year (vs. gleiche Woche Vorjahr). YTD = Year to Date (seit 1. Januar).",
+   formula:"WoW = (Woche N ÷ Woche N-1) − 1  |  YoY = (Woche N ÷ Vorjahreswoche) − 1",
+   ex:"KW 23 PCOGS: +5,99% WoW und +15,18% YoY — besser als Vorwoche und Vorjahr."},
+  {abbr:"bps / Basispunkte",full:"Maßeinheit für Prozentveränderungen",cat:"reporting",badge:"badge-gray",bl:"Reporting",
+   def:"Maßeinheit für Veränderungen von Prozentzahlen. 100 bps = 1 Prozentpunkt. Vermeidet Verwechslungen.",
+   formula:"100 bps = 1 Prozentpunkt  |  10 bps = 0,1 Prozentpunkt",
+   ex:"AMG % of PCOGS: -193 bps WoW = -1,93 Pp. VCR: +1.125 bps = +11,25 Pp."},
+  {abbr:"ASIN",full:"Amazon Standard Identification Number",cat:"reporting",badge:"badge-gray",bl:"Reporting",
+   def:"Eindeutige 10-stellige alphanumerische ID für jedes Produkt auf Amazon. Wird für alle ASIN-Level-Analysen genutzt.",
+   formula:"Format: B + 9 alphanumerische Zeichen (z.B. B08XY12345)",
+   ex:"SoROOS-Treiber, CR-Analyse und IDQ werden immer auf ASIN-Ebene gemessen."},
+  {abbr:"IDQ Score",full:"Item Data Quality Score",cat:"reporting",badge:"badge-gray",bl:"Reporting",
+   def:"Amazon-Score (0-100) für die Qualität eines Produktlistings. Direkt verknüpft mit Conversion Rate und TACoS.",
+   formula:"Schlechter IDQ → niedrige CR → höhere Werbekosten → höherer TACoS",
+   ex:"Ziel: ≥90. Unter 70 = kritisch. Größter Hebel: Bilder, Titel, A+ Content, Keywords."},
+  {abbr:"Org. Sessions",full:"Organische Seitenbesuche",cat:"reporting",badge:"badge-gray",bl:"Reporting",
+   def:"Besucher die Produktseiten ohne Werbeklick aufrufen — über organische Suchergebnisse. Kostenfreie Reichweite.",
+   formula:"Sessions gesamt = organisch + PPC-Sessions",
+   ex:"KW 23: 33.994 organische Sessions — kostenlose Reichweite dank gutem Ranking und IDQ."},
 ];
 
-const MONTHS=[
-  {lbl:'Jun 26',phase:'Phase 1',plan:50},
-  {lbl:'Jul 26',phase:'Phase 1',plan:100},
-  {lbl:'Aug 26',phase:'Phase 2',plan:300},
-  {lbl:'Sep 26',phase:'Phase 2',plan:300},
-  {lbl:'Okt 26',phase:'Phase 2',plan:300},
-  {lbl:'Nov 26',phase:'Phase 3',plan:600},
-  {lbl:'Dez 26',phase:'Phase 3',plan:600},
-  {lbl:'Jan 27',phase:'Phase 3',plan:600},
-  {lbl:'Feb 27',phase:'Phase 3',plan:600},
-  {lbl:'Mär 27',phase:'Phase 4',plan:1000},
-  {lbl:'Apr 27',phase:'Phase 4',plan:1000},
-  {lbl:'Mai 27',phase:'Phase 5',plan:1000}
-];
-// Week-index → Month-index mapping (KW24/26 = idx 0 → Jun 26 = month 0)
-const W2M=[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,9,10,10,10,10,11,11,11,11,11,11];
+let activeFilter='all', flipped=false, fcDeck=[], fcDeckKey='all', fcIdx=0, fcStats={good:0,hard:0,skip:0}, hardSet=new Set();
 
-const TDEFS = [
-  {id:'daily',ic:'☀️',lbl:'Täglich',
-   items:['Neue Kommentare beantworten (alle)','DMs checken & antworten',
-          'TikTok Analytics: Views & ER der letzten Posts',
-          'Trending Sounds / Hashtags scannen (5 Min)',
-          '1 Kommentar auf ähnliche Accounts (Community)']},
-  {id:'wkmon',ic:'📅',lbl:'Woche: Montag (WS)',
-   items:['KPIs der Vorwoche ins Dashboard eintragen','Content für die Woche planen',
-          '2 neue Videokonzepte vorbereiten','Shooting-Tag & Produkte bereitstellen']},
-  {id:'wkfri',ic:'📅',lbl:'Woche: Freitag (WS)',
-   items:['Fertige Videos schneiden & vertonen','Hook, Text, Hashtags vorbereiten','Nächste Woche vorausplanen']},
-  {id:'ahmet',ic:'👤',lbl:'Woche: Montag (Ahmet)',
-   items:['Dashboard KPIs reviewen','Ad Budget & ROI prüfen (Letizia)',
-          'Content-Prioritäten bestätigen','Phasenfortschritt bewerten']},
-  {id:'monthly',ic:'📆',lbl:'Monatlich',
-   items:['Performance aller Videos analysieren','Beste & schlechteste Formate identifizieren',
-          'Produktauswahl für nächsten Monat','Ads ROI & Budget anpassen','Strategie definieren']},
-  {id:'quarterly',ic:'📊',lbl:'Quartalsweise',
-   items:['Phasenfortschritt evaluieren','Gesamtstrategie anpassen','Roadmap updaten']}
-];
-
-// ═══ STATE ══════════════════════════════════════
-const SK = 'glart_v3';
-function defState() {
-  const vs = {};
-  VIDEOS.forEach(v => { vs[v.id] = {cr:'—',crd:'',li:'—',lid:'',n:''}; });
-  return {
-    version:3,
-    kpi: WEEKS.map((w,i) => ({w,f:i===0?'115':'',v:'',l:'',c:'',sh:'',sa:'',ab:'',bv:'',ar:''})),
-    vs,
-    ads: Array(20).fill(null).map((_,i) => ({id:i+1,from:'',to:'',bud:'300',vid:'',rev:'',st:'—'})),
-    ms: {p1:[false,false,false,false],p2:[false,false,false,false],p3:[false,false,false,false],
-         p4:[false,false,false,false],p5:[false,false,false,false]},
-    td: {daily:Array(5).fill(false),wkmon:Array(4).fill(false),wkfri:Array(3).fill(false),
-         ahmet:Array(4).fill(false),monthly:Array(5).fill(false),quarterly:Array(3).fill(false)},
-    tdH: {daily:[],wkmon:[],wkfri:[],ahmet:[],monthly:[],quarterly:[]},
-    ck: [],
-    lastDate: '',
-    wads: WEEKS.map(()=>({bud:'',rev:'',note:''})),
-    mads: MONTHS.map(()=>({bud:'',rev:'',note:''})),  // monthly ad budget
-    crd: []  // paid creator deals
-  };
-}
-let S = (()=>{
-  try { const r=localStorage.getItem(SK); if(r){const p=JSON.parse(r);const m={...defState(),...p};if(!m.tdH)m.tdH={daily:[],wkmon:[],wkfri:[],ahmet:[],monthly:[],quarterly:[]};TDEFS.forEach(t=>{if(!m.tdH[t.id])m.tdH[t.id]=[];});if(!m.lastDate)m.lastDate='';
-  if(!m.ck)m.ck=[];if(!m.crd)m.crd=[];if(!m.mads||m.mads.length!==12)m.mads=Array(12).fill(null).map((_,i2)=>m.mads&&m.mads[i2]?m.mads[i2]:{bud:'',rev:'',note:''});if(!m.wads||m.wads.length!==WEEKS.length)m.wads=WEEKS.map((_,i)=>m.wads&&m.wads[i]?m.wads[i]:{bud:'',rev:'',note:''});if(m.kpi&&m.kpi[0]&&m.kpi[0].f==='')m.kpi[0].f='115';return m;} }
-  catch(e) {}
-  return defState();
-})();
-const save = () => {
-  S._ts=Date.now();
-  try { localStorage.setItem(SK,JSON.stringify(S)); } catch(e) {}
-  _fbPush();
-};
-
-// ─── Auto-log when date changes ──────────────────
-const _today=(()=>{const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getFullYear()).slice(-2)}`;})();
-if(S.lastDate && S.lastDate !== _today){
-  TDEFS.forEach(td=>{
-    const state=S.td[td.id]||[];
-    const done=state.filter(Boolean).length;
-    if(!S.tdH[td.id])S.tdH[td.id]=[];
-    const ex=S.tdH[td.id].findIndex(e=>e.d===S.lastDate);
-    const entry={d:S.lastDate,done,total:td.items.length};
-    if(ex>=0){S.tdH[td.id][ex]=entry;}else if(done>0){S.tdH[td.id].push(entry);}
+function renderGlossary(){
+  const grid=document.getElementById('glossary-grid');
+  const noRes=document.getElementById('no-results');
+  const q=(document.getElementById('search-input')||{value:''}).value.toLowerCase();
+  const filtered=terms.filter(t=>{
+    const mc=activeFilter==='all'||t.cat===activeFilter;
+    const ms=!q||t.abbr.toLowerCase().includes(q)||t.full.toLowerCase().includes(q)||t.def.toLowerCase().includes(q);
+    return mc&&ms;
   });
-}
-S.lastDate=_today; save();
-
-// ═══ NAV ════════════════════════════════════════
-const CI = {};
-function go(el) {
-  const id = el.dataset.sec;
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
-  document.querySelectorAll('.nav').forEach(n => n.classList.remove('on'));
-  document.getElementById('s-'+id).classList.add('on');
-  el.classList.add('on');
-  if (!CI[id]) { CI[id]=true; initCharts(id); }
-  refresh(id);
-}
-function refresh(id) {
-  if(id==='dashboard') rDash();
-  if(id==='kpi') rKPI();
-  if(id==='content') rContent();
-  if(id==='kreativ') rKreativ();
-  if(id==='creator') rCreator();
-  if(id==='ads') rAds();
-  if(id==='roadmap') rRoadmap();
-  if(id==='todos') rTodos();
+  if(!filtered.length){grid.innerHTML='';noRes.style.display='block';return;}
+  noRes.style.display='none';
+  grid.innerHTML=filtered.map(t=>`
+    <div class="gcard" onclick="this.classList.toggle('open')">
+      <div class="gcard-header">
+        <div><div class="gcard-abbr">${t.abbr}</div><div class="gcard-sub">${t.full}</div></div>
+        <div class="gcard-right"><span class="badge ${t.badge}">${t.bl}</span><span class="chevron">▾</span></div>
+      </div>
+      <div class="gcard-body">
+        <p>${t.def}</p>
+        ${t.formula!=='—'?`<div class="formula">${t.formula}</div>`:''}
+        <div class="ex-label">Beispiel aus deinen Daten</div>
+        <div class="ex-box">${t.ex}</div>
+      </div>
+    </div>`).join('');
 }
 
-// ═══ CHARTS ═════════════════════════════════════
-// Phase zone background plugin (P1–P5 bands)
-Chart.register({
-  id:'phaseZones',
-  beforeDraw(chart){
-    if(!['ch-kf','ch-ads'].includes(chart.canvas.id))return;
-    const {ctx,chartArea:{top,bottom},scales:{x}}=chart;
-    if(!x||!x.getPixelForValue)return;
-    const zones=chart.canvas.id==='ch-ads'
-      ?[[0,1,'rgba(52,152,219,.06)','P1'],[2,4,'rgba(46,204,113,.06)','P2'],[5,8,'rgba(243,156,18,.06)','P3'],[9,10,'rgba(155,89,182,.06)','P4'],[11,11,'rgba(26,188,156,.06)','P5']]
-      :[[0,7,'rgba(52,152,219,.06)','P1'],[8,19,'rgba(46,204,113,.06)','P2'],[20,31,'rgba(243,156,18,.06)','P3'],[32,42,'rgba(155,89,182,.06)','P4'],[43,51,'rgba(26,188,156,.06)','P5']];
-    ctx.save();
-    zones.forEach(([s,e,col,lbl])=>{
-      try{
-        const x0=x.getPixelForValue(s),x1=x.getPixelForValue(e);
-        ctx.fillStyle=col;ctx.fillRect(x0,top,x1-x0,bottom-top);
-        ctx.fillStyle='rgba(180,200,220,0.45)';ctx.font='bold 8px Arial';ctx.textAlign='center';
-        ctx.fillText(lbl,(x0+x1)/2,top+10);
-      }catch(ex){}
-    });
-    ctx.restore();
-  }
-});
-const charts = {};
-const baseCO = {
-  responsive:true, maintainAspectRatio:false,
-  plugins:{legend:{display:false}},
-  scales:{x:{ticks:{color:'#3A5570',font:{size:9}},grid:{color:'rgba(28,51,80,.5)'}},
-          y:{ticks:{color:'#3A5570',font:{size:9}},grid:{color:'rgba(28,51,80,.5)'}}}
-};
-function mkChart(id, type, opts) {
-  const ctx = document.getElementById(id);
-  if (!ctx) return;
-  if (charts[id]) charts[id].destroy();
-  charts[id] = new Chart(ctx, {type, data:{labels:[],datasets:[]}, options:{...baseCO,...opts}});
+function setFilter(cat,btn){
+  activeFilter=cat;
+  document.querySelectorAll('#page-glossar .filter-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderGlossary();
 }
-function initCharts(sec) {
-  if (sec==='dashboard') {
-    mkChart('ch-f','line',{plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:8,padding:10}}}});
-    charts['ch-f'].data.datasets=[
-      {label:'Follower',data:[],borderColor:'#E8A020',backgroundColor:'rgba(232,160,32,.1)',fill:true,tension:.3,pointRadius:3},
-      {label:'🎯 Ziel: 500',data:[],borderColor:'rgba(46,204,113,.55)',borderDash:[5,3],pointRadius:0,borderWidth:1.5,fill:false}
-    ];
-    mkChart('ch-st','doughnut',{plugins:{legend:{position:'bottom',labels:{color:'#7090A8',font:{size:10},boxWidth:10}}},scales:{}});
-  }
-  if (sec==='kpi') {
-    mkChart('ch-kf','line',{plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:8,padding:10}}},scales:{y:{min:0,ticks:{color:'#3A5570',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(28,51,80,.4)'}},x:{ticks:{color:'#3A5570',font:{size:8},maxRotation:45,minRotation:45},grid:{display:false}}}});
-    charts['ch-kf'].data.datasets=[
-      {label:'Follower (Ist)',data:[],borderColor:'#E8A020',backgroundColor:'rgba(232,160,32,.1)',fill:true,tension:.3,pointRadius:[],borderWidth:2.5,order:1},
-      {label:'Phasen-Plan',data:[],borderColor:'rgba(96,165,250,.55)',borderDash:[4,3],pointRadius:0,borderWidth:1.5,fill:false,tension:.4,order:2},
-      {label:'Meilensteine',data:[],pointRadius:[],pointStyle:'circle',pointBackgroundColor:'rgba(46,204,113,.85)',pointBorderColor:'#2ECC71',pointBorderWidth:2,borderWidth:0,showLine:false,order:0}
-    ];
-    mkChart('ch-ker','line',{plugins:{legend:{display:false}}});
-    charts['ch-ker'].data.datasets=[{data:[],borderColor:'#2ECC71',backgroundColor:'rgba(46,204,113,.08)',fill:true,tension:.3,pointRadius:2,borderWidth:2}];
-  }
-  if (sec==='ads') {
-    const tc={color:'#3A5570',font:{size:9}};
-    mkChart('ch-ads','bar',{
-      plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:10,padding:14}}},
-      scales:{
-        x:{ticks:{...tc,maxRotation:45,minRotation:45},grid:{display:false}},
-        y:{ticks:tc,grid:{color:'rgba(28,51,80,.5)'},title:{display:true,text:'€',color:'#3A5570',font:{size:9}},suggestedMin:0},
-        y2:{position:'right',ticks:{...tc,callback:v=>v.toFixed(1)+'x'},grid:{display:false},title:{display:true,text:'ROAS',color:'#3A5570',font:{size:9}},min:0,suggestedMax:4}
-      }
-    });
-    charts['ch-ads'].data.datasets=[
-      {label:'Budget (Ist)',data:[],backgroundColor:'rgba(60,130,240,.5)',borderColor:'rgba(60,130,240,.8)',type:'bar',yAxisID:'y'},
-      {label:'Umsatz (Shop)',data:[],backgroundColor:'rgba(46,204,113,.45)',borderColor:'rgba(46,204,113,.7)',type:'bar',yAxisID:'y'},
-      {label:'ROAS',data:[],type:'line',borderColor:'#F8C244',backgroundColor:'rgba(248,194,68,.12)',tension:.3,pointRadius:4,borderWidth:2.5,yAxisID:'y2',fill:false},
-      {label:'Plan-Budget',data:[],type:'line',borderColor:'rgba(96,165,250,.5)',borderDash:[4,3],pointRadius:0,borderWidth:1.5,fill:false,yAxisID:'y',tension:.3}
-    ];
-  }
-}
+function filterCards(){renderGlossary();}
 
-// ═══ UTILS ══════════════════════════════════════
-const esc = s => s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const n2 = v => v!==''&&v!==undefined ? parseInt(v)||0 : null;
-const fmtN = v => v!==null ? v.toLocaleString('de-DE') : '—';
-
-// ═══ DASHBOARD ══════════════════════════════════
-function rDash() {
-  const filled = S.kpi.filter(r => r.f!=='');
-  const lat = filled.length ? filled[filled.length-1] : null;
-  const prv = filled.length>1 ? filled[filled.length-2] : null;
-  if (lat) {
-    document.getElementById('dash-week').textContent = 'Letzte Daten: ' + lat.w;
-    const f=n2(lat.f), v=n2(lat.v)||1;
-    const l=n2(lat.l)||0,c=n2(lat.c)||0,sh=n2(lat.sh)||0,sa=n2(lat.sa)||0;
-    document.getElementById('kf').textContent = fmtN(f);
-    document.getElementById('kv').textContent = fmtN(n2(lat.v));
-    const er = ((l+c+sh+sa)/v*100);
-    document.getElementById('ker').textContent = er.toFixed(1)+'%';
-    document.getElementById('kerd').className = 'kpi-d '+(er>=3?'pos':er>=2?'neu':'neg');
-    document.getElementById('kerd').textContent = er>=3?'✓ Ziel erreicht':'Ziel: ≥3%';
-    if(prv&&prv.f!=='') {
-      const d=(n2(lat.f)||0)-(n2(prv.f)||0);
-      document.getElementById('kfd').textContent=(d>=0?'+':'')+d.toLocaleString('de-DE')+' vs. Vorwoche';
-      document.getElementById('kfd').className='kpi-d '+(d>0?'pos':d<0?'neg':'neu');
-    }
-    const ph=f>=100000?5:f>=50000?4:f>=15000?3:f>=5000?2:1;
-    for(let i=1;i<=5;i++) document.getElementById('ph'+i).classList.toggle('ap',i===ph);
-  }
-  const cr=VIDEOS.filter(v=>(S.vs[v.id]?.cr||'—')==='✅').length;
-  const li=VIDEOS.filter(v=>(S.vs[v.id]?.li||'—')==='🟢').length;
-  document.getElementById('kcr').textContent=cr+'/63';
-  document.getElementById('kli').textContent=li+'/63';
-  document.getElementById('stat-pub').textContent=li;
-  const last12=filled.slice(-12);
-  if(charts['ch-f']) {
-    charts['ch-f'].data.labels=last12.map(r=>r.w);
-    charts['ch-f'].data.datasets[0].data=last12.map(r=>n2(r.f));
-    charts['ch-f'].data.datasets[1].data=last12.map(()=>500);
-    charts['ch-f'].update();
-  }
-  if(charts['ch-st']) {
-    charts['ch-st'].data.labels=['Live 🟢','Erstellt ✅','Offen'];
-    charts['ch-st'].data.datasets=[{data:[li,cr-li,63-cr],backgroundColor:['#2ECC71','#E8A020','#1C3350'],borderWidth:0}];
-    charts['ch-st'].update();
-  }
+function buildDeck(key){
+  let base=key==='hard'?terms.filter(t=>hardSet.has(t.abbr)):key==='all'?terms:terms.filter(t=>t.cat===key);
+  if(!base.length)base=terms;
+  fcDeck=[...base].sort(()=>Math.random()-.5);
+  fcIdx=0; fcStats={good:0,hard:0,skip:0};
+  updateFCStats(); showFCCard();
 }
-
-// ═══ KPI TABLE ══════════════════════════════════
-function rKPI() {
-  const tb = document.getElementById('kpi-tb');
-  if(!tb) return;
-  tb.innerHTML='';
-  S.kpi.forEach((row,i) => {
-    const f=parseInt(row.f)||0, fp=i>0?(parseInt(S.kpi[i-1].f)||0):0;
-    const df=row.f!==''&&i>0&&S.kpi[i-1].f!==''?f-fp:null;
-    const l=parseInt(row.l)||0,c=parseInt(row.c)||0,sh=parseInt(row.sh)||0,sa=parseInt(row.sa)||0,v=parseInt(row.v)||0;
-    const er=v>0?((l+c+sh+sa)/v*100).toFixed(1):'';
-    const dfC=df===null?'neu':df>0?'pos':df<0?'neg':'neu';
-    const erC=er===''?'neu':parseFloat(er)>=3?'pos':parseFloat(er)>=2?'neu':'neg';
-    const mIdx=W2M[i]||0;const mad=S.mads&&S.mads[mIdx]?S.mads[mIdx]:{bud:'',rev:''};
-    const roas=mad.bud!==''&&mad.rev!==''&&parseFloat(mad.bud)>0?(parseFloat(mad.rev)/parseFloat(mad.bud)).toFixed(2):'—';
-    const roasC=roas==='—'?'var(--text3)':parseFloat(roas)>=2?'var(--green)':parseFloat(roas)>=1.5?'var(--amber)':'var(--red)';
-    tb.insertAdjacentHTML('beforeend', `<tr>
-      <td style="color:var(--text2);white-space:nowrap">${row.w}</td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="f" value="${esc(row.f)}" onchange="upK(this)" placeholder="—" style="width:70px"></td>
-      <td class="${dfC}" style="font-size:10px">${df!==null?(df>=0?'+':'')+df.toLocaleString('de-DE'):''}</td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="v" value="${esc(row.v)}" onchange="upK(this)" placeholder="—" style="width:70px"></td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="l" value="${esc(row.l)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="c" value="${esc(row.c)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="sh" value="${esc(row.sh)}" onchange="upK(this)" placeholder="—" style="width:50px"></td>
-      <td style="background:rgba(232,160,32,.04)"><input class="td-in" data-i="${i}" data-k="sa" value="${esc(row.sa)}" onchange="upK(this)" placeholder="—" style="width:50px"></td>
-      <td class="${erC}" style="font-weight:600">${er?er+'%':'—'}</td>
-      <td style="background:rgba(46,204,113,.04)"><input class="td-in" data-i="${i}" data-k="ab" value="${esc(row.ab)}" onchange="upK(this)" placeholder="—" style="width:55px"></td>
-      <td style="background:rgba(46,204,113,.04)"><input class="td-in" data-i="${i}" data-k="bv" value="${esc(row.bv)}" onchange="upK(this)" placeholder="—" style="width:80px"></td>
-      <td style="color:${roasC};font-weight:600;font-size:12px" title="ROAS aus Ads & Budget">${roas}</td>
-    </tr>`);
-  });
-  const filled=S.kpi.filter(r=>r.f!=='');
-  if(charts['ch-kf']){
-    charts['ch-kf'].data.labels=WEEKS;
-    const actData=WEEKS.map((_,i)=>{const r=S.kpi[i];return r&&r.f!==''?parseInt(r.f)||0:null;});
-    charts['ch-kf'].data.datasets[0].data=actData;
-    charts['ch-kf'].data.datasets[0].pointRadius=actData.map(v=>v!==null?3:0);
-    charts['ch-kf'].data.datasets[1].data=WEEKS.map((_,i)=>interpPlan(GROWTH_PLAN.followers,i));
-    const milWks=GROWTH_PLAN.followers.map(p=>p[0]);
-    const milData=WEEKS.map((_,i)=>milWks.includes(i)?interpPlan(GROWTH_PLAN.followers,i):null);
-    charts['ch-kf'].data.datasets[2].data=milData;
-    charts['ch-kf'].data.datasets[2].pointRadius=milData.map(v=>v!==null?8:0);
-    charts['ch-kf'].update();
-  }
-  const erRows=S.kpi.filter(r=>r.f!==''&&parseInt(r.v)>0);
-  if(charts['ch-ker']){
-    charts['ch-ker'].data.labels=erRows.map(r=>r.w);
-    charts['ch-ker'].data.datasets[0].data=erRows.map(r=>{const l=parseInt(r.l)||0,c=parseInt(r.c)||0,sh=parseInt(r.sh)||0,sa=parseInt(r.sa)||0,v=parseInt(r.v)||1;return parseFloat(((l+c+sh+sa)/v*100).toFixed(2));});
-    charts['ch-ker'].update();
-  }
+function setDeck(key,btn){
+  fcDeckKey=key;
+  document.querySelectorAll('#fc-deck-select .filter-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  buildDeck(key);
 }
-function upK(el){const i=+el.dataset.i,k=el.dataset.k;S.kpi[i][k]=el.value;save();if(CI.dashboard)rDash();rKPI();}
-
-// ═══ CONTENT ════════════════════════════════════
-const FLT={ph:'',tr:'',st:''};
-function setFlt(el,k) {
-  document.querySelectorAll(`.fb[data-${k}]`).forEach(b=>b.classList.remove('on'));
-  el.classList.add('on'); FLT[k]=el.dataset[k]||''; rContent();
-}
-function rContent() {
-  const q=(document.getElementById('csearch')?.value||'').toLowerCase();
-  const cr=VIDEOS.filter(v=>(S.vs[v.id]?.cr||'—')==='✅').length;
-  const li=VIDEOS.filter(v=>(S.vs[v.id]?.li||'—')==='🟢').length;
-  document.getElementById('cnt-cr').textContent=cr;
-  document.getElementById('cnt-li').textContent=li;
-  const PC={'Phase 1':'bblue','Phase 2':'bgreen','Phase 3':'bgold','Phase 4':'bpurp','Phase 5':'bteal'};
-  const SC={'Einfach':'bgreen','Mittel':'bgold','Hoch':'bred'};
-  const vis=VIDEOS.filter(v=>{
-    if(FLT.ph&&v.phase!==FLT.ph) return false;
-    if(FLT.tr&&v.track!==FLT.tr) return false;
-    const s=S.vs[v.id]||{};
-    if(FLT.st==='live'&&(s.li||'—')!=='🟢') return false;
-    if(FLT.st==='erstellt'&&(s.cr||'—')!=='✅') return false;
-    if(FLT.st==='offen'&&(s.cr||'—')==='✅') return false;
-    if(q&&!v.title.toLowerCase().includes(q)&&!v.id.toLowerCase().includes(q)&&!v.produkt.toLowerCase().includes(q)) return false;
-    return true;
-  });
-  document.getElementById('cnt-n').textContent=vis.length+' Videos';
-  const tb=document.getElementById('ctb'); tb.innerHTML='';
-  vis.forEach(v=>{
-    const s=S.vs[v.id]||{};
-    const gi=VIDEOS.indexOf(v)+1;
-    tb.insertAdjacentHTML('beforeend',`<tr>
-      <td style="color:var(--text3)">${gi}</td>
-      <td><span class="bdg ${PC[v.phase]}">${v.phase.replace('Phase ','P')}</span></td>
-      <td><span class="bdg ${v.track==='Produkt'?'bblue':'bpurp'}">${v.track}</span></td>
-      <td style="font-weight:600;color:var(--gold);white-space:nowrap">${v.id}</td>
-      <td><div style="font-weight:500">${esc(v.title)}</div><div style="font-size:10px;color:var(--text2);margin-top:2px">${esc(v.produkt)}</div></td>
-      <td><span class="bdg ${SC[v.schwierigkeit]}">${v.schwierigkeit}</span></td>
-      <td><select class="td-sel" data-id="${v.id}" data-k="cr" onchange="upVS(this)">
-        <option${(s.cr||'—')==='—'?' selected':''}>—</option>
-        <option${(s.cr||'—')==='✅'?' selected':''}>✅</option>
-      </select></td>
-      <td><input class="td-in" data-id="${v.id}" data-k="crd" value="${esc(s.crd||'')}" onchange="upVSi(this)" placeholder="TT.MM" style="width:60px"></td>
-      <td><select class="td-sel" data-id="${v.id}" data-k="li" onchange="upVS(this)">
-        <option${(s.li||'—')==='—'?' selected':''}>—</option>
-        <option${(s.li||'—')==='🟢'?' selected':''}>🟢</option>
-      </select></td>
-      <td><input class="td-in" data-id="${v.id}" data-k="lid" value="${esc(s.lid||'')}" onchange="upVSi(this)" placeholder="TT.MM" style="width:60px"></td>
-      <td><input class="td-in" data-id="${v.id}" data-k="n" value="${esc(s.n||'')}" onchange="upVSi(this)" placeholder="Notiz..." style="width:100%"></td>
-    </tr>`);
-  });
-}
-function upVS(el){const id=el.dataset.id,k=el.dataset.k;if(!S.vs[id])S.vs[id]={};S.vs[id][k]=el.value;save();if(CI.dashboard)rDash();}
-function upVSi(el){const id=el.dataset.id,k=el.dataset.k;if(!S.vs[id])S.vs[id]={};S.vs[id][k]=el.value;save();}
-
-// ═══ ADS ════════════════════════════════════════
-function rAds() {
-  if(!S.mads||S.mads.length!==12)S.mads=MONTHS.map(()=>({bud:'',rev:'',note:''}));
-  const fmtE=v=>v===0?'0':v.toLocaleString('de-DE',{maximumFractionDigits:0});
-  const rc=v=>v===null?'var(--text2)':v>=2?'var(--green)':v>=1.5?'var(--amber)':'var(--red)';
-  const phC={'Phase 1':'#60B4F0','Phase 2':'#5FDF90','Phase 3':'#F8C244','Phase 4':'#C48DE8','Phase 5':'#4DD8C0'};
-
-  let cumB=0,cumR=0,totB=0,totR=0,lastRoas=null,prevRoas=null;
-  let bestI=-1,bestRoas=-Infinity,worstI=-1,worstRoas=Infinity;
-
-  const rows=MONTHS.map((m,i)=>{
-    const a=S.mads[i]||{bud:'',rev:'',note:''};
-    const b=a.bud!==''?parseFloat(a.bud)||0:null;
-    const r=a.rev!==''?parseFloat(a.rev)||0:null;
-    const bv=b||0,rv=r||0;
-    if(b!==null){totB+=bv;cumB+=bv;}
-    if(r!==null){totR+=rv;cumR+=rv;}
-    const roas=bv>0?rv/bv:null;
-    const profit=b!==null&&r!==null?rv-bv:null;
-    const cumRoas=cumB>0?cumR/cumB:null;
-    const dRoas=(prevRoas!==null&&roas!==null)?roas-prevRoas:null;
-    if(roas!==null){
-      if(roas>bestRoas){bestRoas=roas;bestI=i;}
-      if(roas<worstRoas){worstRoas=roas;worstI=i;}
-      lastRoas=roas;
-    }
-    prevRoas=roas;
-    return {m,bv,rv,b,r,roas,profit,cumB,cumR,cumRoas,dRoas,note:a.note||''};
-  });
-
-  const totRoas=totB>0?totR/totB:null;
-  const totProfit=totR-totB;
-
-  // ─── KPI Summary ──────────────────────────────
-  const kpig=document.getElementById('ads-kpis');
-  if(kpig){
-    const filled=rows.filter(r=>r.b!==null||r.r!==null).length;
-    const kpis=[
-      {lbl:'∑ Budget',val:'€ '+fmtE(totB),sub:filled+' Monate aktiv',cl:'neu'},
-      {lbl:'∑ Umsatz',val:'€ '+fmtE(totR),sub:'TikTok Shop GMV',cl:totR>totB?'pos':totR>0?'neu':'neg'},
-      {lbl:'∑ Profit',val:(totProfit>0?'+ ':'− ')+'€ '+fmtE(Math.abs(totProfit)),sub:'Umsatz − Budget',cl:totProfit>0?'pos':totProfit<0?'neg':'neu'},
-      {lbl:'Ø ROAS',val:totRoas!==null?totRoas.toFixed(2)+'x':'—',sub:'Gesamt-Durchschnitt',cl:totRoas===null?'neu':totRoas>=2?'pos':totRoas>=1.5?'neu':'neg'},
-      {lbl:'Bestes Monat',val:bestI>=0?MONTHS[bestI].lbl:'—',sub:bestI>=0?'ROAS '+bestRoas.toFixed(2):'kein Datum',cl:bestI>=0?'pos':'neu'},
-      {lbl:'Schlechtestes',val:worstI>=0?MONTHS[worstI].lbl:'—',sub:worstI>=0?'ROAS '+worstRoas.toFixed(2):'kein Datum',cl:worstI>=0?'neg':'neu'}
-    ];
-    kpig.innerHTML=kpis.map(k=>'<div class="kk"><div class="kk-lbl">'+k.lbl+'</div><div class="kk-val '+k.cl+'">'+k.val+'</div><div class="kk-sub">'+k.sub+'</div></div>').join('');
-  }
-
-  // ─── Chart data ───────────────────────────────
-  if(CI.ads){
-    const cads=Chart.getChart('ch-ads');
-    if(cads){
-      cads.data.labels=MONTHS.map(m=>m.lbl);
-      cads.data.datasets[0].data=rows.map(r=>r.b);
-      cads.data.datasets[1].data=rows.map(r=>r.r);
-      cads.data.datasets[2].data=rows.map(r=>r.roas);
-      cads.data.datasets[3].data=MONTHS.map(m=>m.plan);
-      cads.update();
-    }
-  }
-
-  // ─── Monthly table ────────────────────────────
-  const tb=document.getElementById('mads-tbl');
-  if(!tb)return;
-  let html2='';
-  rows.forEach((row,i)=>{
-    const a=S.mads[i];
-    const rClr=rc(row.roas);
-    const dR=row.dRoas!==null?'<span style="font-size:10px;color:'+(row.dRoas>=0?'var(--green)':'var(--red)')+';">'+(row.dRoas>=0?'↑':'↓')+' '+Math.abs(row.dRoas).toFixed(2)+'</span>':'<span style="color:var(--text3)">—</span>';
-    const isActive=row.b!==null||row.r!==null;
-    html2+='<tr style="opacity:'+(isActive?'1':'.55')+'">'
-      +'<td><b>'+row.m.lbl+'</b></td>'
-      +'<td><span style="font-size:10px;padding:2px 6px;border-radius:8px;background:'+phC[row.m.phase]+'22;color:'+phC[row.m.phase]+'">'+row.m.phase+'</span></td>'
-      +'<td><input type="number" min="0" step="50" value="'+(a.bud)+'" placeholder="€ Plan: '+row.m.plan+'" data-i="'+i+'" data-k="bud" oninput="upMA(this)" style="width:120px"></td>'
-      +'<td><input type="number" min="0" step="10" value="'+(a.rev)+'" placeholder="€ Umsatz" data-i="'+i+'" data-k="rev" oninput="upMA(this)" style="width:120px"></td>'
-      +'<td style="color:'+(row.profit===null?'var(--text3)':row.profit>=0?'var(--green)':'var(--red)')+'">'+(row.profit===null?'—':(row.profit>0?'+ ':'− ')+'€ '+fmtE(Math.abs(row.profit)))+'</td>'
-      +'<td style="color:'+rClr+';font-weight:700">'+(row.roas===null?'—':row.roas.toFixed(2)+'x')+'</td>'
-      +'<td>'+dR+'</td>'
-      +'<td style="color:var(--text2)">'+(row.cumB>0?'€ '+fmtE(row.cumB):'—')+'</td>'
-      +'<td style="color:'+(row.cumRoas===null?'var(--text3)':rc(row.cumRoas))+'">'+( row.cumRoas===null?'—':row.cumRoas.toFixed(2)+'x')+'</td>'
-      +'<td><input value="'+esc(row.note)+'" placeholder="Notiz…" data-i="'+i+'" data-k="note" oninput="upMA(this)" style="width:110px"></td>'
-      +'</tr>';
-  });
-  tb.innerHTML=html2;
-}
-function upMA(el){const i=+el.dataset.i,k=el.dataset.k;if(!S.mads[i])S.mads[i]={bud:'',rev:'',note:''};S.mads[i][k]=el.value;save();rAds();if(CI.kpi)rKPI();}
-function togMS(pid,j){
-  if(!S.ms[pid])S.ms[pid]=[];
-  S.ms[pid][j]=!S.ms[pid][j];
-  save();rRoadmap();
-}
-
-// ═══ TODOS ══════════════════════════════════════
-function rTodos(){
-  const g=document.getElementById('tdg');if(!g)return;g.innerHTML='';
-  TDEFS.forEach(td=>{
-    const state=S.td[td.id]||Array(td.items.length).fill(false);
-    const hist=S.tdH[td.id]||[];
-    let itemsHtml='';
-    td.items.forEach((item,j)=>{
-      const dn=state[j]?' dn':'';
-      itemsHtml+='<div class="td-item'+dn+'" onclick="togTd(\''+td.id+'\','+j+')">'
-        +'<div class="td-cb'+dn+'">'+(state[j]?'✓':'')+'</div>'
-        +'<div class="td-txt">'+esc(item)+'</div>'
-        +'</div>';
-    });
-    let histHtml='';
-    hist.slice(-7).reverse().forEach(e=>{
-      const pct=e.total?Math.round(e.done/e.total*100):0;
-      histHtml+='<div class="td-hr">'
-        +'<span class="td-hd">'+e.d+'</span>'
-        +'<div class="td-hb"><div style="width:'+pct+'%;background:var(--green)"></div></div>'
-        +'<span class="td-hs">'+e.done+'/'+e.total+'</span>'
-        +'</div>';
-    });
-    g.insertAdjacentHTML('beforeend',
-      '<div class="td-card">'
-      +'<div class="td-hdr">'+td.ic+' '+esc(td.lbl)
-        +' <button class="td-rst" onclick="rstTd(\''+td.id+'\')" title="Zurücksetzen">↺</button></div>'
-      +itemsHtml
-      +'<div class="td-ht" onclick="togTdH(\''+td.id+'\')">'
-        +'<span class="td-ht-ct">'+hist.length+'</span> Verlauf'
-      +'</div>'
-      +'<div class="td-hl" id="tdh-'+td.id+'">'+histHtml+'</div>'
-      +'</div>');
-  });
-}
-function togTd(id,j){
-  if(!S.td[id])S.td[id]=[];
-  S.td[id][j]=!S.td[id][j];
-  save();rTodos();
-}
-function rstTd(id){
-  const def=TDEFS.find(t=>t.id===id);
-  S.td[id]=Array(def?def.items.length:0).fill(false);
-  save();rTodos();
-}
-function togTdH(id){
-  const el=document.getElementById('tdh-'+id);if(el)el.classList.toggle('on');
-}
-
-// ═══ THEME ══════════════════════════════════════
-function toggleTheme(){
-  const isLight=document.documentElement.classList.toggle('light');
-  document.getElementById('theme-lbl').textContent=isLight?'Dunkel-Modus':'Hell-Modus';
-  localStorage.setItem('glart_theme',isLight?'light':'dark');
-}
-(()=>{const t=localStorage.getItem('glart_theme');if(t==='light'){document.documentElement.classList.add('light');if(document.getElementById('theme-lbl'))document.getElementById('theme-lbl').textContent='Dunkel-Modus';}})();
-
-// ═══ EXPORT / IMPORT ════════════════════════════
-function exportData(){
-  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='glart-data-'+new Date().toISOString().slice(0,10)+'.json';
-  a.click();URL.revokeObjectURL(a.href);
-}
-function importData(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    try{
-      const parsed=JSON.parse(ev.target.result);
-      S={...defState(),...parsed};
-      if(!S.ck)S.ck=[];
-      if(!S.tdH)S.tdH={daily:[],wkmon:[],wkfri:[],ahmet:[],monthly:[],quarterly:[]};
-      save();location.reload();
-    }catch(err){alert('Fehler beim Importieren: '+err.message);}
-  };
-  reader.readAsText(file);
-}
-
-// ═══ CREATOR ════════════════════════════════════
-const CR_ST=['📋 Briefed','🎬 In Produktion','✅ Gepostet','💰 Abgerechnet','❌ Abgebrochen'];
-function crShowForm(){
-  document.getElementById('cr-form').style.display='block';
-  document.getElementById('cr-name').focus();
-  document.getElementById('cr-form').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function crHideForm(){
-  document.getElementById('cr-form').style.display='none';
-  ['cr-name','cr-handle','cr-bud','cr-konzept','cr-dline','cr-notiz'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-}
-function crSave(){
-  const nEl=document.getElementById('cr-name');
-  const name=nEl.value.trim();
-  if(!name){nEl.focus();nEl.style.outline='1px solid var(--red)';return;}
-  nEl.style.outline='';
-  if(!S.crd)S.crd=[];
-  S.crd.push({
-    id:'CR-'+Date.now(),
-    name,
-    handle:document.getElementById('cr-handle').value.trim(),
-    bud:document.getElementById('cr-bud').value.trim(),
-    konzept:document.getElementById('cr-konzept').value.trim(),
-    dline:document.getElementById('cr-dline').value.trim(),
-    notiz:document.getElementById('cr-notiz').value.trim(),
-    st:'📋 Briefed',link:'',views:'',likes:'',datum:new Date().toLocaleDateString('de-DE')
-  });
-  save();crHideForm();rCreator();
-}
-function crDel(id){if(!confirm('Creator-Deal löschen?'))return;S.crd=S.crd.filter(v=>v.id!==id);save();rCreator();}
-function crUpSel(el){const v=S.crd.find(x=>x.id===el.dataset.id);if(v){v[el.dataset.k]=el.value;save();rCreator();}}
-function crUpIn(el){const v=S.crd.find(x=>x.id===el.dataset.id);if(v){v[el.dataset.k]=el.value;save();}}
-function rCreator(){
-  if(!S.crd)S.crd=[];
-  const cr=S.crd;
-  const totB=cr.reduce((s,v)=>s+(parseFloat(v.bud)||0),0);
-  const posted=cr.filter(v=>v.st==='✅ Gepostet'||v.st==='💰 Abgerechnet').length;
-  const totV=cr.reduce((s,v)=>s+(parseInt(v.views)||0),0);
-  const cntEl=document.getElementById('cr-cnt');
-  if(cntEl)cntEl.textContent=cr.length+' Deal'+(cr.length===1?'':'s');
-  const kpig=document.getElementById('cr-kpis');
-  if(kpig){
-    const kpis=[
-      {lbl:'Creator gesamt',val:cr.length,sub:'aktive Deals',cl:'neu'},
-      {lbl:'∑ Honorar',val:'€ '+totB.toLocaleString('de-DE'),sub:'Budget für Creator',cl:'neu'},
-      {lbl:'Gepostet',val:posted,sub:'von '+cr.length+' Deals',cl:posted>0?'pos':'neu'},
-      {lbl:'∑ Views',val:totV>=1000?(totV/1000).toFixed(1)+'k':totV||'—',sub:'über alle Creator-Videos',cl:totV>10000?'pos':totV>0?'neu':'neu'}
-    ];
-    kpig.innerHTML=kpis.map(k=>'<div class="kk"><div class="kk-lbl">'+k.lbl+'</div><div class="kk-val '+k.cl+'">'+k.val+'</div><div class="kk-sub">'+k.sub+'</div></div>').join('');
-  }
-  const tb=document.getElementById('cr-tb');if(!tb)return;
-  if(cr.length===0){
-    tb.innerHTML='<tr><td colspan="12" style="text-align:center;color:var(--text3);padding:28px">Noch keine Creator-Deals — klick "+ Neuer Creator-Deal" um loszulegen</td></tr>';
+function showFCCard(){
+  flipped=false;
+  if(fcIdx>=fcDeck.length){
+    document.getElementById('flashcard').innerHTML=`<div style="text-align:center;padding:20px"><div style="font-size:36px;margin-bottom:12px">🎉</div><div style="font-size:20px;font-weight:700;margin-bottom:8px">Fertig!</div><p style="color:var(--muted);margin-bottom:16px">Alle ${fcDeck.length} Karten durch.</p><button class="fc-good" onclick="buildDeck(fcDeckKey)">Nochmal starten</button></div>`;
+    document.getElementById('fc-controls').style.display='none';
     return;
   }
-  let h='';
-  cr.forEach((v,i)=>{
-    const stOpts=CR_ST.map(s=>'<option'+(v.st===s?' selected':'')+'>'+s+'</option>').join('');
-    const stCl=v.st==='✅ Gepostet'||v.st==='💰 Abgerechnet'?'pos':v.st==='❌ Abgebrochen'?'neg':'neu';
-    h+='<tr>'
-      +'<td style="color:var(--text3)">'+(i+1)+'</td>'
-      +'<td><b>'+esc(v.name)+'</b><div style="font-size:10px;color:var(--text3)">'+esc(v.datum||'')+'</div></td>'
-      +'<td><a href="https://tiktok.com/@'+(v.handle||'').replace('@','')+'" target="_blank" style="color:var(--accent);font-size:11px">'+esc(v.handle||'—')+'</a></td>'
-      +'<td style="max-width:160px;font-size:11px">'+esc(v.konzept||'—')+'</td>'
-      +'<td style="font-weight:600">'+( v.bud?'€ '+parseFloat(v.bud).toLocaleString('de-DE'):'—')+'</td>'
-      +'<td style="font-size:11px;color:var(--text2)">'+esc(v.dline||'—')+'</td>'
-      +'<td><select class="td-sel" data-id="'+v.id+'" data-k="st" onchange="crUpSel(this)">'+stOpts+'</select></td>'
-      +'<td><input class="td-in" data-id="'+v.id+'" data-k="link" value="'+esc(v.link||'')+'" onchange="crUpIn(this)" placeholder="tiktok.com/…" style="width:130px"></td>'
-      +'<td><input class="td-in" type="number" data-id="'+v.id+'" data-k="views" value="'+esc(v.views||'')+'" onchange="crUpIn(this)" placeholder="0" style="width:70px"></td>'
-      +'<td><input class="td-in" type="number" data-id="'+v.id+'" data-k="likes" value="'+esc(v.likes||'')+'" onchange="crUpIn(this)" placeholder="0" style="width:70px"></td>'
-      +'<td><input class="td-in" data-id="'+v.id+'" data-k="notiz" value="'+esc(v.notiz||'')+'" onchange="crUpIn(this)" placeholder="Notiz…" style="width:100px"></td>'
-      +'<td><button onclick="crDel(\''+v.id+'\')" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 5px" title="Löschen">×</button></td>'
-      +'</tr>';
+  const t=fcDeck[fcIdx];
+  document.getElementById('fc-side').textContent='Begriff';
+  document.getElementById('fc-term').textContent=t.abbr;
+  document.getElementById('fc-sub').textContent=t.full;
+  document.getElementById('fc-sub').style.display='block';
+  document.getElementById('fc-answer').style.display='none';
+  document.getElementById('fc-formula').style.display='none';
+  document.getElementById('fc-hint').textContent='Klicken zum Aufdecken';
+  document.getElementById('fc-controls').style.display='none';
+  document.getElementById('fc-cur').textContent=fcIdx+1;
+  document.getElementById('fc-tot').textContent=fcDeck.length;
+  document.getElementById('fc-bar').style.width=(fcIdx/fcDeck.length*100)+'%';
+}
+function flipCard(){
+  if(fcIdx>=fcDeck.length||flipped)return;
+  flipped=true;
+  const t=fcDeck[fcIdx];
+  document.getElementById('fc-side').textContent='Erklärung';
+  document.getElementById('fc-sub').style.display='none';
+  document.getElementById('fc-answer').textContent=t.def;
+  document.getElementById('fc-answer').style.display='block';
+  if(t.formula!=='—'){document.getElementById('fc-formula').textContent=t.formula;document.getElementById('fc-formula').style.display='block';}
+  document.getElementById('fc-hint').textContent=t.ex;
+  document.getElementById('fc-controls').style.display='flex';
+  document.getElementById('fc-term').style.fontSize='18px';
+}
+function rateCard(r){
+  const t=fcDeck[fcIdx];
+  fcStats[r]++;
+  if(r==='hard')hardSet.add(t.abbr);else hardSet.delete(t.abbr);
+  updateFCStats();
+  fcIdx++;
+  document.getElementById('fc-term').style.fontSize='26px';
+  showFCCard();
+}
+function updateFCStats(){
+  document.getElementById('s-good').textContent=fcStats.good;
+  document.getElementById('s-hard').textContent=fcStats.hard;
+  document.getElementById('s-skip').textContent=fcStats.skip;
+}
+
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(id==='flashcards'&&!fcDeck.length)buildDeck('all');
+}
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    const b=event.target;const orig=b.textContent;b.textContent='✓ Kopiert!';setTimeout(()=>b.textContent=orig,2000);
   });
-  tb.innerHTML=h;
 }
 
-// ═══ KREATIV ════════════════════════════════════
-const PC2={'Phase 1':'bblue','Phase 2':'bgreen','Phase 3':'bgold','Phase 4':'bpurp','Phase 5':'bteal'};
-const SC2={'Einfach':'bgreen','Mittel':'bgold','Hoch':'bred'};
-
-function ckShowForm(){
-  document.getElementById('ck-form').style.display='block';
-  document.getElementById('ck-titel').focus();
-  document.getElementById('ck-form').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function ckHideForm(){
-  document.getElementById('ck-form').style.display='none';
-  ['ck-titel','ck-konzept','ck-datum','ck-notiz'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-}
-function ckSave(){
-  const tEl=document.getElementById('ck-titel');
-  const titel=tEl.value.trim();
-  if(!titel){tEl.focus();tEl.style.outline='1px solid var(--red)';return;}
-  tEl.style.outline='';
-  const v={
-    id:'CK-'+Date.now(),
-    titel,
-    konzept:document.getElementById('ck-konzept').value.trim(),
-    format:document.getElementById('ck-format').value,
-    phase:document.getElementById('ck-phase').value,
-    schw:document.getElementById('ck-schw').value,
-    datum:document.getElementById('ck-datum').value.trim(),
-    notizen:document.getElementById('ck-notiz').value.trim(),
-    cr:'—',crd:'',li:'—',lid:''
-  };
-  S.ck.push(v);save();ckHideForm();rKreativ();
-}
-function ckDel(id){
-  if(!confirm('Video löschen?'))return;
-  S.ck=S.ck.filter(v=>v.id!==id);save();rKreativ();
-}
-function ckUpSel(el){
-  const id=el.dataset.id,k=el.dataset.k;
-  const v=S.ck.find(x=>x.id===id);
-  if(v){v[k]=el.value;save();rKreativ();}
-}
-function ckUpIn(el){
-  const id=el.dataset.id,k=el.dataset.k;
-  const v=S.ck.find(x=>x.id===id);
-  if(v){v[k]=el.value;save();}
-}
-function rKreativ(){
-  const ck=S.ck||[];
-  const crN=ck.filter(v=>v.cr==='✅').length;
-  const liN=ck.filter(v=>v.li==='🟢').length;
-  const cntEl=document.getElementById('ck-cnt');if(cntEl)cntEl.textContent=ck.length+' eigene Video'+(ck.length===1?'':'s');
-  const crEl=document.getElementById('ck-cr');if(crEl)crEl.textContent=crN;
-  const liEl=document.getElementById('ck-li');if(liEl)liEl.textContent=liN;
-  const tb=document.getElementById('ck-tb');if(!tb)return;
-  if(ck.length===0){
-    tb.innerHTML='<tr><td colspan="12" style="text-align:center;color:var(--text3);padding:28px">Noch keine Kreativ-Videos — klick "+ Neues Video" um loszulegen</td></tr>';
-  } else {
-    tb.innerHTML='';
-    ck.forEach((v,i)=>{
-      tb.insertAdjacentHTML('beforeend',`<tr>
-        <td style="color:var(--text3)">${i+1}</td>
-        <td><span class="bdg ${PC2[v.phase]||'bgray'}">${(v.phase||'').replace('Phase ','P')}</span></td>
-        <td><span class="bdg bgray" style="white-space:nowrap">${esc(v.format||'')}</span></td>
-        <td>
-          <div style="font-weight:500">${esc(v.titel)}</div>
-          ${v.konzept?'<div style="font-size:10px;color:var(--text2);margin-top:2px">'+esc(v.konzept)+'</div>':''}
-        </td>
-        <td style="font-size:11px;color:var(--text2);white-space:nowrap">${esc(v.datum||'—')}</td>
-        <td><span class="bdg ${SC2[v.schw]||'bgray'}">${esc(v.schw||'')}</span></td>
-        <td><select class="td-sel" data-id="${v.id}" data-k="cr" onchange="ckUpSel(this)">
-          <option${v.cr==='—'?' selected':''}>—</option>
-          <option${v.cr==='✅'?' selected':''}>✅</option>
-        </select></td>
-        <td><input class="td-in" data-id="${v.id}" data-k="crd" value="${esc(v.crd||'')}" onchange="ckUpIn(this)" placeholder="TT.MM" style="width:58px"></td>
-        <td><select class="td-sel" data-id="${v.id}" data-k="li" onchange="ckUpSel(this)">
-          <option${v.li==='—'?' selected':''}>—</option>
-          <option${v.li==='🟢'?' selected':''}>🟢</option>
-        </select></td>
-        <td><input class="td-in" data-id="${v.id}" data-k="lid" value="${esc(v.lid||'')}" onchange="ckUpIn(this)" placeholder="TT.MM" style="width:58px"></td>
-        <td><input class="td-in" data-id="${v.id}" data-k="notizen" value="${esc(v.notizen||'')}" onchange="ckUpIn(this)" placeholder="Notiz…" style="width:100%"></td>
-        <td><button onclick="ckDel('${v.id}')" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 5px;line-height:1" title="Löschen">×</button></td>
-      </tr>`);
-    });
-  }
-  const ppCr=VIDEOS.filter(v=>(S.vs[v.id]?.cr||'—')==='✅').length;
-  const ppLi=VIDEOS.filter(v=>(S.vs[v.id]?.li||'—')==='🟢').length;
-  const els={tot:'mx-ck-tot',cCr:'mx-ck-cr',cLi:'mx-ck-li',pCr:'mx-pp-cr',pLi:'mx-pp-li'};
-  const setEl=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
-  setEl('mx-ck-tot',ck.length);setEl('mx-ck-cr',crN);setEl('mx-ck-li',liN);
-  setEl('mx-pp-cr',ppCr);setEl('mx-pp-li',ppLi);
-  const mxTb=document.getElementById('mx-tb');if(!mxTb)return;
-  let rows='';
-  ck.forEach(v=>{
-    const crB=v.cr==='✅'?'<span class="bdg bgreen">✅</span>':'<span class="bdg bgray">—</span>';
-    const liB=v.li==='🟢'?'<span class="bdg bgreen">🟢</span>':'<span class="bdg bgray">—</span>';
-    rows+=`<tr>
-      <td><span class="bdg bgold">🎨 Kreativ</span></td>
-      <td style="color:var(--gold);font-weight:600;font-size:10px;white-space:nowrap">${esc(v.id)}</td>
-      <td>${esc(v.titel)}</td>
-      <td><span class="bdg ${PC2[v.phase]||'bgray'}">${(v.phase||'').replace('Phase ','P')}</span></td>
-      <td>${crB}</td><td>${liB}</td>
-    </tr>`;
-  });
-  VIDEOS.forEach(v=>{
-    const s=S.vs[v.id]||{};
-    if((s.cr||'—')==='—'&&(s.li||'—')==='—')return;
-    const crB=(s.cr||'—')==='✅'?'<span class="bdg bgreen">✅</span>':'<span class="bdg bgray">—</span>';
-    const liB=(s.li||'—')==='🟢'?'<span class="bdg bgreen">🟢</span>':'<span class="bdg bgray">—</span>';
-    rows+=`<tr>
-      <td><span class="bdg bblue">🎬 Pipeline</span></td>
-      <td style="color:var(--gold);font-weight:600;font-size:10px;white-space:nowrap">${esc(v.id)}</td>
-      <td>${esc(v.title)}</td>
-      <td><span class="bdg ${PC2[v.phase]||'bgray'}">${v.phase.replace('Phase ','P')}</span></td>
-      <td>${crB}</td><td>${liB}</td>
-    </tr>`;
-  });
-  mxTb.innerHTML=rows||'<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">Kreativ-Videos erscheinen hier direkt · Pipeline-Videos sobald du Status setzt</td></tr>';
-}
-
-// ═══ INIT ═══════════════════════════════════════
-window.addEventListener('load',()=>{
-  CI['dashboard']=true;
-  initCharts('dashboard');
-  rDash();
-
-  // Erster Pull beim Laden
-  setTimeout(_fbPull,2000);
-});
+renderGlossary();
 </script>
 </body>
 </html>
