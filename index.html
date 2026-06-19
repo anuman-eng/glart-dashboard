@@ -526,7 +526,7 @@ const _fbUrl='https://glart-dashboard-default-rtdb.europe-west1.firebasedatabase
 const _fbUrlTs=parseInt(new URL(location.href).searchParams.get('fbts')||'0');
 const _fbShow=(ok,msg)=>{let el=document.getElementById('_fbSt');if(!el){el=document.createElement('div');el.id='_fbSt';el.style.cssText='position:fixed;bottom:8px;right:8px;padding:6px 12px;border-radius:4px;font-size:12px;font-weight:bold;z-index:99999;cursor:pointer;max-width:350px;word-break:break-word;';el.onclick=()=>el.remove();document.body.appendChild(el);}el.style.background=ok?'#1a7a3a':'#c0392b';el.style.color='#fff';el.textContent=(ok?'✅ Firebase: Gespeichert':'❌ Firebase-Fehler: ')+msg;if(ok)setTimeout(()=>{if(el.parentNode)el.remove();},4000);};
 const _fbPush=()=>{try{const body=JSON.stringify({_sid:_fbSID,_ts:S._ts||Date.now(),d:JSON.stringify(S)});fetch(_fbUrl,{method:'PUT',headers:{'Content-Type':'application/json'},body}).then(r=>{if(r.ok){_fbShow(true,'');}else{r.text().then(t=>_fbShow(false,'HTTP '+r.status+': '+t.slice(0,80)));}}).catch(e=>_fbShow(false,e.message||'Netzwerkfehler'));}catch(e){_fbShow(false,'JSON-Fehler: '+e.message);}};
-const _fbPull=async()=>{try{const r=await fetch(_fbUrl);if(!r.ok)return;const fb=await r.json();if(!fb||fb._sid===_fbSID)return;const fbTs=fb._ts||0;if(fbTs>(S._ts||0)&&fbTs!==_fbUrlTs){const data=JSON.parse(fb.d);Object.assign(S,data);S._ts=fbTs;try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}location.replace(location.pathname+'?fbts='+fbTs);}}catch(e){}};
+const _fbPull=async()=>{try{const r=await fetch(_fbUrl);if(!r.ok)return;const fb=await r.json();if(!fb||fb._sid===_fbSID)return;const fbTs=fb._ts||0;if(fbTs>(S._ts||0)){const data=JSON.parse(fb.d);Object.assign(S,data);S._ts=fbTs;try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}const curNav=document.querySelector('.nav.on');const curId=curNav?curNav.dataset.sec:'dashboard';refresh(curId);_fbShow(true,'🔄 Sync von Teamkollege');}}catch(e){}};
 setTimeout(_fbPull,2000);
 setInterval(_fbPull,5000);
 
@@ -726,7 +726,7 @@ function initCharts(sec) {
       {label:'Follower',data:[],borderColor:'#E8A020',backgroundColor:'rgba(232,160,32,.1)',fill:true,tension:.3,pointRadius:3},
       {label:'🎯 Ziel: 500',data:[],borderColor:'rgba(46,204,113,.55)',borderDash:[5,3],pointRadius:0,borderWidth:1.5,fill:false}
     ];
-    mkChart('ch-st','doughnut',{plugins:{legend:{position:'bottom',labels:{color:'#7090A8',font:{size:10},boxWidth:10}}},scales:{}});
+    mkChart('ch-st','doughnut',{animation:false,plugins:{legend:{position:'bottom',labels:{color:'#7090A8',font:{size:10},boxWidth:10}}},scales:{}});
   }
   if (sec==='kpi') {
     mkChart('ch-kf','line',{plugins:{legend:{display:true,labels:{color:'#7090A8',font:{size:9},boxWidth:8,padding:10}}},scales:{y:{min:0,ticks:{color:'#3A5570',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(28,51,80,.4)'}},x:{ticks:{color:'#3A5570',font:{size:8},maxRotation:45,minRotation:45},grid:{display:false}}}});
@@ -1286,4 +1286,4 @@ window.addEventListener('load',()=>{
 });
 </script>
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
