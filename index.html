@@ -525,9 +525,10 @@ const _fbSID=Date.now()+'_'+Math.random().toString(36).slice(2);
 const _fbUrl='https://glart-dashboard-default-rtdb.europe-west1.firebasedatabase.app/glart/v3.json';
 const _fbUrlTs=parseInt(new URL(location.href).searchParams.get('fbts')||'0');
 const _fbShow=(ok,msg)=>{let el=document.getElementById('_fbSt');if(!el){el=document.createElement('div');el.id='_fbSt';el.style.cssText='position:fixed;bottom:8px;right:8px;padding:6px 12px;border-radius:4px;font-size:12px;font-weight:bold;z-index:99999;cursor:pointer;max-width:350px;word-break:break-word;';el.onclick=()=>el.remove();document.body.appendChild(el);}el.style.background=ok?'#1a7a3a':'#c0392b';el.style.color='#fff';el.textContent=(ok?'✅ Firebase: Gespeichert':'❌ Firebase-Fehler: ')+msg;if(ok)setTimeout(()=>{if(el.parentNode)el.remove();},4000);};
-const _fbPush=()=>{try{const body=JSON.stringify({_sid:_fbSID,_ts:S._ts||Date.now(),d:JSON.stringify(S)});fetch(_fbUrl,{method:'PUT',headers:{'Content-Type':'application/json'},body}).then(r=>{if(r.ok){_fbShow(true,'');}else{r.text().then(t=>_fbShow(false,'HTTP '+r.status+': '+t.slice(0,80)));}}).catch(e=>_fbShow(false,e.message||'Netzwerkfehler'));}catch(e){_fbShow(false,'JSON-Fehler: '+e.message);}};
-const _fbPull=async()=>{try{const r=await fetch(_fbUrl);if(!r.ok)return;const fb=await r.json();if(!fb||fb._sid===_fbSID)return;const fbTs=fb._ts||0;if(fbTs>(S._ts||0)){const data=JSON.parse(fb.d);Object.assign(S,data);S._ts=fbTs;try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}const curNav=document.querySelector('.nav.on');const curId=curNav?curNav.dataset.sec:'dashboard';refresh(curId);_fbShow(true,'🔄 Sync von Teamkollege');}}catch(e){}};
-setTimeout(_fbPull,2000);
+let _fbReady=false;
+const _fbPush=()=>{if(!_fbReady)return;try{const body=JSON.stringify({_sid:_fbSID,_ts:S._ts||Date.now(),d:JSON.stringify(S)});fetch(_fbUrl,{method:'PUT',headers:{'Content-Type':'application/json'},body}).then(r=>{if(r.ok){_fbShow(true,'');}else{r.text().then(t=>_fbShow(false,'HTTP '+r.status+': '+t.slice(0,80)));}}).catch(e=>_fbShow(false,e.message||'Netzwerkfehler'));}catch(e){_fbShow(false,'JSON-Fehler: '+e.message);}};
+const _fbPull=async()=>{try{const r=await fetch(_fbUrl);if(!r.ok){_fbReady=true;return;}const fb=await r.json();_fbReady=true;if(!fb||fb._sid===_fbSID)return;const fbTs=fb._ts||0;if(fbTs>(S._ts||0)){const data=JSON.parse(fb.d);Object.assign(S,data);S._ts=fbTs;try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}const curNav=document.querySelector('.nav.on');const curId=curNav?curNav.dataset.sec:'dashboard';refresh(curId);_fbShow(true,'🔄 Sync von Teamkollege');}}catch(e){_fbReady=true;}};
+_fbPull();
 setInterval(_fbPull,5000);
 
 // ═══ DATA ═══════════════════════════════════════
@@ -659,7 +660,8 @@ if(S.lastDate && S.lastDate !== _today){
     if(ex>=0){S.tdH[td.id][ex]=entry;}else if(done>0){S.tdH[td.id].push(entry);}
   });
 }
-S.lastDate=_today; save();
+S.lastDate=_today;
+try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}
 
 // ═══ NAV ════════════════════════════════════════
 const CI = {};
